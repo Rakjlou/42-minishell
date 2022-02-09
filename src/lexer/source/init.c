@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   peek.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 00:33:13 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 23:17:57 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/09 01:25:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user_input.h"
+#include "lexer.h"
+#include "libft.h"
 
-char	ui_peek(t_user_input *ui)
+void	lsource_init(t_lsource *src, char *raw)
 {
-	if (ui->cursor >= ui->size)
-		return (UI_EOF);
-	return (ui->raw[ui->cursor]);
+	ft_bzero(src, sizeof(t_lsource));
+	src->raw = raw;
+	src->size = (unsigned long)ft_strlen(raw);
+	src->cursor = 0;
 }
