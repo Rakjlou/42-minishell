@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rewind.c                                           :+:      :+:    :+:   */
+/*   peek.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 00:33:12 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/09 01:31:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user_input.h"
+#include "lexer.h"
 
-void	ui_rewind(t_user_input *ui)
+char	lsource_peek(t_lsource *src)
 {
-	if (ui->cursor > 0)
-		--ui->cursor;
+	if (src->cursor >= src->size)
+		return (LEX_EOF);
+	return (src->raw[src->cursor]);
 }

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   next.c                                             :+:      :+:    :+:   */
+/*   skip_whitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 00:33:14 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 23:15:00 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/09 01:25:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user_input.h"
+#include "lexer.h"
+#include "libft.h"
 
-char	ui_next(t_user_input *ui)
+void	lsource_skip_whitespace(t_lsource *src)
 {
-	if (ui->cursor >= ui->size)
-		return (UI_EOF);
-	return (ui->raw[ui->cursor++]);
+	while (ft_isspace(lsource_peek(src)))
+		lsource_next(src);
 }

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/08 23:08:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/09 01:33:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # define PS1_DEFAULT "minishell$ "
 # define PS2_DEFAULT "> "
 
-# include "user_input.h"
+# include "lexer.h"
 
 #endif

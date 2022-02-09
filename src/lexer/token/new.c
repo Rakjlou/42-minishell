@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_destroy.c                                    :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:44:48 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 00:33:10 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/09 01:29:45 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/09 01:31:25 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "user_input.h"
+#include <stdio.h>
+#include "lexer.h"
+#include "libft.h"
 
-void	ui_token_destroy(t_token *token)
+t_ltoken	*ltoken_new(void)
 {
-	free(token->raw);
-	free(token);
+	t_ltoken	*token;
+
+	token = ft_calloc(sizeof(t_ltoken), 1);
+	if (token == NULL)
+		return (perror(LEX_TOK_ALLOC_E), NULL);
+	return (token);
 }
