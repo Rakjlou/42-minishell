@@ -1,0 +1,10 @@
+operateur &|
+
+echo "hello,""world"
+echo "hello,"$USER"world"
+echo "hello,"$USER"world"$USER
+echo 'hello,''world'
+echo 'hello,'test'world'
+echo 'hello,'$USER'world'$USER
+echo 'hello,'test'world'"yop"
+echo "lol"&&echo "mdr"
