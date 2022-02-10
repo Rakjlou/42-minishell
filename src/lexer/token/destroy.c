@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:44:48 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 01:29:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/10 01:55:34 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "lexer.h"
+#include "lexer/token.h"
 
-void	ltoken_destroy(t_ltoken *token)
+void	token_destroy(t_token *token)
 {
 	free(token->raw);
 	free(token);

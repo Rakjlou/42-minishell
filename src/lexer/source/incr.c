@@ -6,13 +6,13 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 20:59:39 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/10 01:55:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "lexer/source.h"
 
-void	lsource_incr(t_lsource *src)
+void	source_incr(t_source *src)
 {
 	if (src->cursor >= src->size)
 		return ;

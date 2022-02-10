@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getc.c                                             :+:      :+:    :+:   */
+/*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:00 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/10 02:25:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer/source.h"
+#ifndef TOKENS_H
+# define TOKENS_H
 
-char	source_getc(t_source *src)
-{
-	if (src->cursor >= src->size)
-		return (SOURCE_EOF);
-	return (src->raw[src->cursor]);
-}
+# define AND_IF "&&"
+# define OR_IF "||"
+# define DLESS "<<"
+# define DGREAT ">>"
+# define SLESS "<"
+# define SGREAT ">"
+
+#endif
