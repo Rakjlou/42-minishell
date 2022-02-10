@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getc.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:00 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/10 02:17:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer/source.h"
+#include <stddef.h>
+#include <stdio.h>
+#include "lexer/lexer.h"
+#include "lexer/token.h"
 
-char	source_getc(t_source *src)
+void	lexer(char *line)
 {
-	if (src->cursor >= src->size)
-		return (SOURCE_EOF);
-	return (src->raw[src->cursor]);
+	t_source	src;
+	t_token		*token;
+
+	source_init(&src, line);
+	while (42)
+	{
+		token = tokenize(&src);
+		if (token == NULL)
+			break ;
+		else if (token_is_eof(token))
+		{
+			token_destroy(token);
+			break ;
+		}
+		printf("\t%s\n", token->raw);
+		token_destroy(token);
+	}
 }

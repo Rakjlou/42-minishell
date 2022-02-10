@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getc.c                                             :+:      :+:    :+:   */
+/*   name.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:00 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/10 02:33:11 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/10 02:45:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer/source.h"
+#include "libft.h"
+#include "lexer/token_candidate.h"
 
-char	source_getc(t_source *src)
+void	token_candidate_consume_name(t_token_candidate *candidate)
 {
-	if (src->cursor >= src->size)
-		return (SOURCE_EOF);
-	return (src->raw[src->cursor]);
+	char	c;
+
+	token_candidate_incr(candidate);
+	while (42)
+	{
+		c = source_getc(candidate->src);
+		if (c != '_' && !ft_isalnum(c))
+			return ;
+		token_candidate_incr(candidate);
+	}
 }

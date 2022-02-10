@@ -6,13 +6,14 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/10 00:30:54 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/10 02:50:02 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/lexer/lexer.c \
 	src/lexer/source/getc.c \
 	src/lexer/source/incr.c \
 	src/lexer/source/init.c \
@@ -22,6 +23,12 @@ SRC = src/main.c \
 	src/lexer/token/is_eof.c \
 	src/lexer/token/new.c \
 	src/lexer/token/tokenize.c \
+	src/lexer/token/candidate/incr.c \
+	src/lexer/token/candidate/init.c \
+	src/lexer/token/candidate/name.c \
+	src/lexer/token/candidate/operator.c \
+	src/lexer/token/candidate/quote.c \
+	src/lexer/token/candidate/text.c \
 
 OBJ = $(SRC:.c=.o)
 
