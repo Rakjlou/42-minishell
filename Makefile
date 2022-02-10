@@ -6,16 +6,17 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/09 01:33:08 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/10 00:30:54 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/lexer/source/getc.c \
+	src/lexer/source/incr.c \
 	src/lexer/source/init.c \
 	src/lexer/source/next.c \
-	src/lexer/source/peek.c \
 	src/lexer/source/skip_whitespace.c \
 	src/lexer/token/destroy.c \
 	src/lexer/token/is_eof.c \

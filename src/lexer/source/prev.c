@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   peek.c                                             :+:      :+:    :+:   */
+/*   prev.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:14:58 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 01:31:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/09 21:38:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-char	lsource_peek(t_lsource *src)
+char	lsource_prev(t_lsource *src)
 {
-	if (src->cursor >= src->size)
+	if (src->cursor == 0)
 		return (LEX_EOF);
-	return (src->raw[src->cursor]);
+	return (src->raw[src->cursor - 1]);
 }

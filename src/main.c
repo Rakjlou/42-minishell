@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 01:34:23 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/10 00:31:56 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(void)
 				ltoken_destroy(token);
 				break ;
 			}
+			printf(">>>%s\n", token->raw);
 			ltoken_destroy(token);
 		}
 		free(line);
