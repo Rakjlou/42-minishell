@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 02:22:27 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 02:47:05 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/10 21:50:27 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define DGREAT ">>"
 # define SLESS "<"
 # define SGREAT ">"
+# define PIPE "|"
 
 typedef struct s_token_candidate
 {
@@ -47,6 +48,5 @@ void	token_candidate_handle_quote(t_token_candidate *candidate);
 int		token_candidate_is_part_of_operator(t_token_candidate *candidate);
 int		token_candidate_is_end_of_operator(t_token_candidate *candidate);
 int		token_candidate_is_start_of_operator(t_token_candidate *candidate);
-
 
 #endif

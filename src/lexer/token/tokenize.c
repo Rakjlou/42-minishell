@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:44:38 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 02:48:46 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/10 21:48:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ static void	consume_source(t_source *src)
 		token_candidate_handle_quote(&token);
 	else if (token_candidate_is_unquoted_param(&token))
 		token_candidate_consume_name(&token);
-	else if (token_candidate_is_start_of_operator(&token) && token.end != token.start)
+	else if (token_candidate_is_start_of_operator(&token)
+		&& token.end != token.start)
 		token.delimited = 1;
 	else if (token_candidate_is_start_of_operator(&token))
-		(token.is_operator = 1, token_candidate_incr(&token));
+		token.is_operator = 1;
 	else if (token_candidate_is_unquoted_space(&token))
 		token.delimited = 1;
 	else if (token.is_word)
 		token_candidate_incr(&token);
 	else
-		(token.is_word = 1, token_candidate_incr(&token));
+		(token_candidate_incr(&token), token.is_word = 1);
 }
 
 t_token	*tokenize(t_source *src)
