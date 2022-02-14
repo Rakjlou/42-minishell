@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 02:22:27 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 21:50:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/11 02:11:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,7 @@
 
 # include "lexer/source.h"
 
-# define AND_IF "&&"
-# define OR_IF "||"
-# define DLESS "<<"
-# define DGREAT ">>"
-# define SLESS "<"
-# define SGREAT ">"
-# define PIPE "|"
+# include "tokens.h"
 
 typedef struct s_token_candidate
 {
