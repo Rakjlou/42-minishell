@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 02:25:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/11 02:10:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # define DGREAT ">>"
 # define SLESS "<"
 # define SGREAT ">"
+# define PIPE "|"
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize.c                                         :+:      :+:    :+:   */
+/*   recognizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:44:38 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 21:48:24 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/11 01:29:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	consume_source(t_source *src)
 		(token_candidate_incr(&token), token.is_word = 1);
 }
 
-t_token	*tokenize(t_source *src)
+t_token	*token_recognizer(t_source *src)
 {
 	t_token			*token;
 	unsigned long	start;
@@ -67,5 +67,6 @@ t_token	*tokenize(t_source *src)
 		return (perror("minishell"), token);
 	token->size = end - start;
 	token->src = src;
+	token->type = TOK_TOKEN;
 	return (token);
 }

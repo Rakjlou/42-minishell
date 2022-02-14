@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:53:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/11 00:45:38 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void)
 		line = readline("$ ");
 		if (line == NULL)
 			break ;
-		lexer(line);
+		lexer_execute(line);
 		free(line);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:44:48 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:34 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/11 01:16:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,9 @@ void	token_destroy(t_token *token)
 {
 	free(token->raw);
 	free(token);
+}
+
+void	token_vdestroy(void *token)
+{
+	token_destroy((t_token *)token);
 }
