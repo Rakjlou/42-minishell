@@ -3,6 +3,15 @@ Signals:
 - Ctrl + D
 - Ctrl + \
 
+	sighandler_t signal(int signum, sighandler_t handler);  
+signal() renvoie la valeur précédente du gestionnaire de signaux, ou SIG_ERR en cas d'erreur.  
+Si le gestionnaire est SIG_DFL, l'action par défaut associé à ce signal est entreprise, comme décrit dans signal(7).
+Si le gestionnaire est SIG_IGN, le signal est ignoré.
+
+
+	int sigaction(int signum, const struct sigaction *act,
+              struct sigaction *oldact);
+
 
 
 • In interactive mode:
@@ -25,5 +34,3 @@ Ctrl+C: SIGINT
 
 
 Ctrl + \: SIGQUIT
-
-
