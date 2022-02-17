@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 20:15:41 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/17 20:34:30 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "adrian/test.h"
 
-# define PS1_DEFAULT "minishell$ "
-# define PS2_DEFAULT "> "
+void	init_arg_main(int argc, char **argv)
+{
+	t_shell 		*shell;
+	extern char		**environ;
 
-
-
-
-# include "lexer/lexer.h"
-# include "adrian/test.h"
-
-
-#endif
+	shell = _shell();
+	shell->args.argc = argc;
+	shell->args.argv = argv;
+	shell->args.envp = environ;
+}
