@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 20:15:41 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/17 20:25:27 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/17 20:28:47 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "adrian/test.h"
 
-# define PS1_DEFAULT "minishell$ "
-# define PS2_DEFAULT "> "
+t_shell	*_shell(void)
+{
+	static t_shell	shell;
+	static int		check = 0;
 
-
-
-
-# include "lexer/lexer.h"
-# include "adrian/test.h"
-
-
-#endif
+	if (check == 0)
+	{
+		check = 1;
+		ft_bzero(&shell, sizeof(t_shell));
+	}
+	return (&shell);
+}
