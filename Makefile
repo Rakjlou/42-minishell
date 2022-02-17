@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/11 01:23:46 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/17 19:27:55 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRC = src/main.c \
 	src/lexer/token/candidate/operator.c \
 	src/lexer/token/candidate/quote.c \
 	src/lexer/token/candidate/text.c \
+	src/adrian/test.c \
+	src/adrian/utils1.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -36,10 +38,11 @@ CC = gcc
 
 LIBFT_DIR = libft
 
-CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD -g3 \
+CFLAGS = -Wall -Wextra -Werror -MMD -g3  \
 			-I . \
 			-I inc/ \
 			-I libft/ \
+			 #-pedantic -ansi 
 
 LDFLAGS = -L $(LIBFT_DIR) \
 
@@ -49,7 +52,7 @@ LDLIBS = -lft \
 all: libft $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)$(CFLAGS)
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
