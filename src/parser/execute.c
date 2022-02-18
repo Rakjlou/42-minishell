@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:42:02 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 02:15:37 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 02:25:27 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	tree_print_simple_command(t_command *command)
 	t_iter	iter;
 	t_token	*token;
 
-	token = command->data.simple.args.first->data;
 	iter_init(&iter, &command->data.simple.args, ASC);
 	ftprintf("Simple ");
 	while (iter_next(&iter))
@@ -143,6 +142,15 @@ static void	consume_redirection(t_parser *parser, t_iter *iter, t_command **cmd)
 		parser_internal_error(parser);
 }
 
+static int	command_is_eof(t_command *command)
+{
+	return (
+		command->type == COMMAND_SIMPLE
+		&& command->data.simple.args.size == 0
+		&& command->data.simple.redirections.size == 0
+	);
+}
+
 static void	consume_list(t_parser *parser, t_iter *iter, t_command **command)
 {
 	t_command	*list;
@@ -156,7 +164,7 @@ static void	consume_list(t_parser *parser, t_iter *iter, t_command **command)
 	list->data.list.type = (t_token *)iter->data;
 	list->before = *command;
 	parser_tree_build_command(parser, iter, &list->after);
-	if (list->after == NULL)
+	if (list->after == NULL || command_is_eof(list->after))
 		parser_unexpected_token(parser, (t_token *)iter->data);
 	else
 		*command = list;
