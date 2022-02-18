@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   build_token_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 22:16:33 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:55:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include <stdio.h>
+#include "ftprintf.h"
 #include "lexer/tokens.h"
 #include "lexer/lexer.h"
 #include "lexer/errors.h"
@@ -51,6 +52,8 @@ static void	lexer_spot_operators(t_lexer *lexer)
 			lexer_syntax_error(lexer, token, LEXER_UNEXPECTED_TOK_ERROR);
 		else if (!classify_as_operator(token))
 			token->type = TOK_TOKEN;
+		if (LEXER_DEBUG)
+			printf("%-2d | %s\n", token->type, token->raw);
 	}
 }
 
@@ -76,12 +79,8 @@ static void	lexer_load_tokens(t_lexer *lexer)
 	}
 }
 
-void	lexer_execute(char *line)
+void	lexer_build_token_list(t_lexer *lexer)
 {
-	t_lexer		lexer;
-
-	lexer_init(&lexer, line);
-	lexer_load_tokens(&lexer);
-	lexer_spot_operators(&lexer);
-	lexer_destroy(&lexer);
+	lexer_load_tokens(lexer);
+	lexer_spot_operators(lexer);
 }
