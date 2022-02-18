@@ -6,14 +6,20 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/18 01:43:43 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/18 18:49:54 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/parser/errors.c \
 	src/parser/execute.c \
+	src/parser/init_destroy.c \
+	src/parser/tree.c \
+	src/parser/command/is.c \
+	src/parser/command/list.c \
+	src/parser/command/simple.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \
