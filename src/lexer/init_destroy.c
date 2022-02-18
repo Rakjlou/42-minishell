@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_eof.c                                           :+:      :+:    :+:   */
+/*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 00:35:51 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:37 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 22:06:29 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/17 22:10:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "lexer/token.h"
+#include "lexer/lexer.h"
 
-int	token_is_eof(t_token *token)
+void	lexer_init(t_lexer *lexer, char *line)
 {
-	return (token->src == NULL && token->raw == NULL && token->size == 0);
+	ft_bzero(lexer, sizeof(t_lexer));
+	source_init(&lexer->src, line);
+}
+
+void	lexer_destroy(t_lexer *lexer)
+{
+	lst_destroy_nodes(&lexer->tokens, token_vdestroy);
 }
