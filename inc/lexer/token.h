@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 00:54:02 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:00:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		token_vdestroy(void *token);
 
 int			token_is_redirection_operator(t_token *token);
 int			token_is_logical_operator(t_token *token);
+int			token_is_pipeline(t_token *token);
 int			token_is_eof(t_token *token);
 
 #endif
