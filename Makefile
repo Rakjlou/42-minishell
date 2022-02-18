@@ -6,14 +6,16 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/11 01:23:46 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/17 22:11:29 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
-	src/lexer/lexer.c \
+	src/lexer/init_destroy.c \
+	src/lexer/execute.c \
+	src/lexer/errors.c \
 	src/lexer/source/getc.c \
 	src/lexer/source/incr.c \
 	src/lexer/source/init.c \
