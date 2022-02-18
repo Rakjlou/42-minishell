@@ -3,24 +3,34 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
+#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/17 19:27:55 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/18 20:45:58 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
-	src/lexer/lexer.c \
+	src/parser/errors.c \
+	src/parser/execute.c \
+	src/parser/init_destroy.c \
+	src/parser/tree.c \
+	src/parser/command/is.c \
+	src/parser/command/simple.c \
+	src/parser/command/list.c \
+	src/parser/command/pipeline.c \
+	src/lexer/init_destroy.c \
+	src/lexer/build_token_list.c \
+	src/lexer/errors.c \
 	src/lexer/source/getc.c \
 	src/lexer/source/incr.c \
 	src/lexer/source/init.c \
 	src/lexer/source/next.c \
 	src/lexer/source/skip_whitespace.c \
 	src/lexer/token/destroy.c \
-	src/lexer/token/is_eof.c \
+	src/lexer/token/is.c \
 	src/lexer/token/new.c \
 	src/lexer/token/recognizer.c \
 	src/lexer/token/candidate/incr.c \
@@ -42,7 +52,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD -g3  \
 			-I . \
 			-I inc/ \
 			-I libft/ \
-			 #-pedantic -ansi 
+			 #-pedantic -ansi
 
 LDFLAGS = -L $(LIBFT_DIR) \
 

@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 20:47:16 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:53:08 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/18 17:55:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <readline/readline.h>
-#include "libft.h"
 #include "parser/parser.h"
-#include "adrian/test.h"
+#include "lexer/errors.h"
 
-int	main(int argc, char **argv, char **envp)
+void	parser_unexpected_token(t_parser *parser, t_token *token)
 {
-	char		*line;
+	lexer_syntax_error(&parser->lexer, token, LEXER_UNEXPECTED_TOK_ERROR);
+	parser->status = PARSER_LEXER_ERROR;
+}
 
-	init_arg_main(argc, argv);
-	while (42)
-	{
-		line = readline("$ ");
-		if (line == NULL)
-			break ;
-		test(line);
-		parser_execute(line);
-		free(line);
-	}
-	return (0);
+void	parser_internal_error(t_parser *parser)
+{
+	perror("minishell");
+	parser->status = PARSER_INTERNAL_ERROR;
 }
