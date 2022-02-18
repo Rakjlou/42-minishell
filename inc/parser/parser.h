@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 01:37:43 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:48:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,13 @@
 # define PARSER_DEBUG 0
 
 # include "lexer/lexer.h"
+# include "parser/command.h"
 
 typedef struct s_redirection
 {
 	t_token	*type;
 	t_token	*arg;
 }	t_redirection;
-
-typedef enum e_command_type
-{
-	COMMAND_SIMPLE,
-	COMMAND_PIPELINE,
-	COMMAND_LIST,
-	COMMAND_TYPE_COUNT
-}	t_command_type;
-
-typedef struct s_command_simple
-{
-	t_lst	args;
-	t_lst	redirections;
-}	t_command_simple;
-
-typedef struct s_command_list
-{
-	t_token	*type;
-}	t_command_list;
-
-typedef union u_command_data
-{
-	t_command_simple	simple;
-	t_command_list		list;
-}	t_command_data;
-
-typedef struct s_command
-{
-	t_command_type		type;
-	t_command_data		data;
-	int					exit_status;
-	struct s_command	*before;
-	struct s_command	*after;
-}	t_command;
 
 typedef enum e_parser_status
 {
@@ -72,6 +39,21 @@ typedef struct s_parser
 	t_command		*tree;
 }	t_parser;
 
+void	parser_init(t_parser *parser, char *line);
+void	parser_destroy(t_parser *parser);
 void	parser_execute(char *line);
+
+void	parser_tree_print(t_command *tree, int level);
+void	parser_tree_build(t_parser *parser);
+void	parser_tree_build_command(t_parser *parser, t_iter *i, t_command **cmd);
+
+void	parser_unexpected_token(t_parser *parser, t_token *token);
+void	parser_internal_error(t_parser *parser);
+
+void	command_simple_consume(t_parser *parser, t_iter *iter, t_command **cmd);
+void	command_simple_debug(t_command *command);
+
+void	command_list_consume(t_parser *parser, t_iter *iter, t_command **cmd);
+void	command_list_debug(t_command *command);
 
 #endif
