@@ -1,6 +1,8 @@
 echo test1 &| echo test2
 echo hello','$USER'$USER'"$USER,"world
 echo "test1"&&echo "test2"
+cat << STOP || cat << STOP
 << "STOP"
 > test1 echo > test2 "mdr" > test3
 cat <
+echo a &&

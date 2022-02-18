@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 19:04:48 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 20:24:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	command_pipeline_consume(t_parser *parser, t_iter *it, t_command **cmd)
 	t_command	*pipeline;
 
 	if (*cmd == NULL || command_is_empty(*cmd))
+	{
 		parser_unexpected_token(parser, (t_token *)it->data);
+		return ;
+	}
 	pipeline = ft_calloc(sizeof(t_command), 1);
 	if (pipeline == NULL)
 		parser_internal_error(parser);
