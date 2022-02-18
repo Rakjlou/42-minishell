@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 18:48:12 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:02:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void	command_simple_debug(t_command *command);
 
 void	command_list_consume(t_parser *parser, t_iter *iter, t_command **cmd);
 void	command_list_debug(t_command *command);
+
+void	command_pipeline_consume(t_parser *parser, t_iter *i, t_command **cmd);
+void	command_pipeline_debug(t_command *command);
 
 #endif
