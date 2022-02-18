@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 18:46:05 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:00:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	command_simple_consume(
 		command_simple_consume(parser, iter, command);
 	}
 	else if (token_is_logical_operator(token))
+		command_list_consume(parser, iter, command);
+	else if (token_is_pipeline(token))
 		command_list_consume(parser, iter, command);
 	else if (!lst_push_back(command_get_args(*command), token))
 		parser_internal_error(parser);
