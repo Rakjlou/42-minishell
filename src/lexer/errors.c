@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 22:43:32 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 22:04:40 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/18 00:19:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <readline/readline.h>
-#include "libft.h"
-#include "parser/parser.h"
+#include <unistd.h>
+#include "ftprintf.h"
+#include "lexer/lexer.h"
+#include "lexer/errors.h"
 
-int	main(void)
+void	lexer_syntax_error(t_lexer *lexer, t_token *token, t_lexer_status e)
 {
-	char		*line;
+	char	*raw;
 
-	while (42)
+	lexer->status = e;
+	raw = NULL;
+	if (token != NULL)
+		raw = token->raw;
+	if (e == LEXER_UNEXPECTED_TOK_ERROR)
 	{
-		line = readline("$ ");
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
+		ftfprintf(
+			STDERR_FILENO,
+			"%s: syntax error near unexpected token `%s'\n",
+			"minishell",
+			raw);
 	}
-	return (0);
 }
