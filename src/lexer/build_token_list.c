@@ -6,11 +6,10 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 22:32:33 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:30:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
 #include <stdio.h>
 #include "ftprintf.h"
 #include "lexer/tokens.h"
@@ -19,14 +18,24 @@
 
 static int	classify_as_operator(t_token *token)
 {
-	if (!ft_strncmp(token->raw, AND_IF, UINT_MAX))
+	if (!ft_strncmp(token->raw, AND_IF, -1))
 		token->type = TOK_AND_IF;
-	else if (!ft_strncmp(token->raw, OR_IF, UINT_MAX))
+	else if (!ft_strncmp(token->raw, OR_IF, -1))
 		token->type = TOK_OR_IF;
-	else if (!ft_strncmp(token->raw, DLESS, UINT_MAX))
+	else if (!ft_strncmp(token->raw, DLESS, -1))
 		token->type = TOK_DLESS;
-	else if (!ft_strncmp(token->raw, DGREAT, UINT_MAX))
+	else if (!ft_strncmp(token->raw, DGREAT, -1))
 		token->type = TOK_DGREAT;
+	else if (!ft_strncmp(token->raw, SLESS, -1))
+		token->type = TOK_SLESS;
+	else if (!ft_strncmp(token->raw, SGREAT, -1))
+		token->type = TOK_SGREAT;
+	else if (!ft_strncmp(token->raw, O_PARENTHESIS, -1))
+		token->type = TOK_O_PARENTHESIS;
+	else if (!ft_strncmp(token->raw, C_PARENTHESIS, -1))
+		token->type = TOK_C_PARENTHESIS;
+	else if (!ft_strncmp(token->raw, PIPE, -1))
+		token->type = TOK_PIPE;
 	else
 		return (0);
 	return (1);
@@ -34,7 +43,7 @@ static int	classify_as_operator(t_token *token)
 
 static int	classifier_single_operator_err(t_token *token)
 {
-	return (!ft_strncmp(token->raw, "&", UINT_MAX));
+	return (!ft_strncmp(token->raw, "&", -1));
 }
 
 static void	lexer_spot_operators(t_lexer *lexer)

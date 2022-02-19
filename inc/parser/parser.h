@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 20:49:53 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:47:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define PARSER_DEBUG 0
+# define PARSER_DEBUG 1
 
 # include "lexer/lexer.h"
 # include "parser/command.h"
@@ -37,6 +37,7 @@ typedef struct s_parser
 	t_parser_status	status;
 	t_lexer			lexer;
 	t_command		*tree;
+	int				subshell;
 }	t_parser;
 
 void	parser_init(t_parser *parser, char *line);
@@ -58,5 +59,8 @@ void	command_list_debug(t_command *command);
 
 void	command_pipeline_consume(t_parser *parser, t_iter *i, t_command **cmd);
 void	command_pipeline_debug(t_command *command);
+
+void	command_compound_consume(t_parser *parser, t_iter *iter, t_command **c);
+void	command_compound_debug(t_command *command, int level);
 
 #endif

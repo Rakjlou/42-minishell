@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/18 21:02:03 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/19 01:43:11 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,11 @@ SRC = src/main.c \
 	src/parser/init_destroy.c \
 	src/parser/tree.c \
 	src/parser/command/is.c \
+	src/parser/command/get.c \
 	src/parser/command/simple.c \
 	src/parser/command/list.c \
 	src/parser/command/pipeline.c \
+	src/parser/command/compound.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \
@@ -47,7 +49,7 @@ CC = gcc
 
 LIBFT_DIR = libft
 
-CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD -g3 \
+CFLAGS = -Wall -Wextra -Werror -MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I libft/ \

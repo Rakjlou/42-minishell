@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:00:08 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 01:03:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# define LEXER_DEBUG 1
+# define LEXER_DEBUG 0
 
 # include "ftlst.h"
 # include "lexer/source.h"
