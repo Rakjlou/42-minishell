@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:24:03 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:43:56 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include "lexer/lexer.h"
 # include "parser/command.h"
+# include "parser/exec_tree.h"
 
 typedef struct s_redirection
 {
@@ -44,24 +45,7 @@ void	parser_init(t_parser *parser, char *line);
 void	parser_destroy(t_parser *parser);
 void	parser_execute(char *line);
 
-void	parser_tree_print(t_command *tree, int level);
-void	parser_tree_build(t_parser *parser);
-void	parser_tree_build_command(t_parser *parser, t_iter *i, t_command **cmd);
-void	parser_tree_destroy(t_command *command);
-
 void	parser_unexpected_token(t_parser *parser, t_token *token);
 void	parser_internal_error(t_parser *parser);
-
-void	command_simple_consume(t_parser *parser, t_iter *iter, t_command **cmd);
-void	command_simple_debug(t_command *command);
-
-void	command_list_consume(t_parser *parser, t_iter *iter, t_command **cmd);
-void	command_list_debug(t_command *command);
-
-void	command_pipeline_consume(t_parser *parser, t_iter *i, t_command **cmd);
-void	command_pipeline_debug(t_command *command);
-
-void	command_compound_consume(t_parser *parser, t_iter *i, t_command **cmd);
-void	command_compound_debug(t_command *command, int level);
 
 #endif
