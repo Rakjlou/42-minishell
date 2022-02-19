@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 02:42:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:00:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	consume_redirection(t_parser *parser, t_iter *iter, t_command **cmd)
 
 static int	must_stop(t_parser *parser, t_iter *iter, t_command **command)
 {
-	if (!iter_next(iter))
+	if (parser->status != PARSER_STATUS_DEFAULT || !iter_next(iter))
 		return (1);
 	else if (token_is((t_token *)iter->data, TOK_C_PARENTHESIS))
 	{
