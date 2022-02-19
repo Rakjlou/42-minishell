@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:24:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:39:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	parser_init(t_parser *parser, char *line)
 void	parser_destroy(t_parser *parser)
 {
 	lexer_destroy(&parser->lexer);
-	parser_tree_destroy(parser->tree);
+	exec_tree_destroy(parser->tree);
 	parser->tree = NULL;
 }

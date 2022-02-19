@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 00:33:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:39:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	command_list_consume(t_parser *parser, t_iter *iter, t_command **cmd)
 	list->type = COMMAND_LIST;
 	list->data.list.type = (t_token *)iter->data;
 	list->before = *cmd;
-	parser_tree_build_command(parser, iter, &list->after);
+	exec_tree_build_command(parser, iter, &list->after);
 	if (list->after == NULL || command_is_empty(list->after))
 		parser_unexpected_token(parser, (t_token *)iter->data);
 	else
