@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 19:00:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 20:25:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,18 @@ void	command_simple_debug(t_command *command)
 	t_redirection	*redirection;
 
 	iter_init(&iter, &command->data.simple.args, ASC);
-	ftprintf("Simple ");
+	if (command_is_empty(command))
+		ftprintf("(empty)");
 	while (iter_next(&iter))
 	{
 		token = (t_token *)iter.data;
 		ftprintf("%s ", token->raw);
 	}
-	if (command->data.simple.redirections.size > 0)
+	iter_init(&iter, &command->data.simple.redirections, ASC);
+	while (iter_next(&iter))
 	{
-		ftprintf("|%u ", (unsigned int)command->data.simple.redirections.size);
-		iter_init(&iter, &command->data.simple.redirections, ASC);
-		while (iter_next(&iter))
-		{
-			redirection = (t_redirection *)iter.data;
-			ftprintf("%s %s ", redirection->type->raw, redirection->arg->raw);
-		}
+		redirection = (t_redirection *)iter.data;
+		ftprintf("%s %s ", redirection->type->raw, redirection->arg->raw);
 	}
 	ftprintf("\n");
 }
