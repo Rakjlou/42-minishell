@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 21:04:28 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 22:32:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	lexer_spot_operators(t_lexer *lexer)
 		if (classifier_single_operator_err(token))
 			lexer_syntax_error(lexer, token, LEXER_UNEXPECTED_TOK_ERROR);
 		else if (!classify_as_operator(token))
-			token->type = TOK_WORD;
+			token->type = TOK_TOKEN;
 		if (LEXER_DEBUG)
 			printf("%-2d | %s\n", token->type, token->raw);
 	}

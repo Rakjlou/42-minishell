@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 18:58:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 22:58:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include "parser/command_simple.h"
 # include "parser/command_list.h"
+# include "parser/command_compound.h"
 
 typedef enum e_command_type
 {
 	COMMAND_SIMPLE,
 	COMMAND_PIPELINE,
 	COMMAND_LIST,
+	COMMAND_COMPOUND,
 	COMMAND_TYPE_COUNT
 }	t_command_type;
 
@@ -28,6 +30,7 @@ typedef union u_command_data
 {
 	t_command_simple	simple;
 	t_command_list		list;
+	t_command_compound	compound;
 }	t_command_data;
 
 typedef struct s_command

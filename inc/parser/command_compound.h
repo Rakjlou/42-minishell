@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   command_compound.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:00:08 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 22:54:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef COMMAND_COMPOUND_H
+# define COMMAND_COMPOUND_H
 
-# define LEXER_DEBUG 1
-
-# include "ftlst.h"
-# include "lexer/source.h"
-# include "lexer/token.h"
-
-typedef enum e_lexer_status
+typedef enum
 {
-	LEXER_STATUS_DEFAULT,
-	LEXER_STATUS_ERROR,
-	LEXER_SYNTAX_ERROR,
-	LEXER_UNEXPECTED_TOK_ERROR,
-	LEXER_STATUS_TOTAL
-}	t_lexer_status;
+	COMPOUND_GROUPING
+}	t_command_compound_type;
 
-typedef struct s_lexer
+typedef struct s_command_compound
 {
-	t_lexer_status	status;
-	t_source		src;
-	t_lst			tokens;
-}	t_lexer;
-
-void	lexer_build_token_list(t_lexer *lexer);
-void	lexer_init(t_lexer *lexer, char *line);
-void	lexer_destroy(t_lexer *lexer);
+	t_command_compound_type	type;
+	t_lst					lst;
+}	t_command_compound;
 
 #endif
