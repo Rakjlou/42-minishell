@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 00:35:51 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 19:00:21 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:52:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,33 @@ int	token_is_eof(t_token *token)
 	return (token->src == NULL && token->raw == NULL && token->size == 0);
 }
 
-int	token_is_logical_operator(t_token *token)
+int	token_is(t_token *token, t_token_type type)
 {
-	return (
-		token->type == TOK_AND_IF
-		|| token->type == TOK_OR_IF
-	);
+	return (token->type == type);
 }
 
-int	token_is_pipeline(t_token *token)
+int	token_is_invalid_command_start(t_token *token)
 {
-	return (!ft_strncmp(token->raw, PIPE, -1));
+	return (
+		token_is(token, TOK_C_PARENTHESIS) || token_is(token, TOK_PIPE)
+		|| token_is(token, TOK_AND_IF) || token_is(token, TOK_OR_IF)
+	);
 }
 
 int	token_is_redirection_operator(t_token *token)
 {
 	return (
-		token->type == TOK_DLESS
-		|| token->type == TOK_DGREAT
-		|| !ft_strncmp(token->raw, SLESS, -1)
-		|| !ft_strncmp(token->raw, SGREAT, -1)
+		token_is(token, TOK_DLESS) || token_is(token, TOK_DGREAT)
+		|| token_is(token, TOK_SLESS) || token_is(token, TOK_SGREAT)
+	);
+}
+
+int	token_is_operator(t_token *token)
+{
+	return (
+		token_is_redirection_operator(token)
+		|| token_is(token, TOK_AND_IF) || token_is(token, TOK_OR_IF)
+		|| token_is(token, TOK_PIPE) || token_is(token, TOK_O_PARENTHESIS)
+		|| token_is(token, TOK_C_PARENTHESIS)
 	);
 }

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 20:17:33 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 00:33:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ void	command_list_consume(t_parser *parser, t_iter *iter, t_command **cmd)
 {
 	t_command	*list;
 
-	if (*cmd == NULL || command_is_empty(*cmd))
-	{
-		parser_unexpected_token(parser, (t_token *)iter->data);
-		return ;
-	}
+	if (command_is_empty(*cmd))
+		return (parser_unexpected_token(parser, (t_token *)iter->data));
 	list = ft_calloc(sizeof(t_command), 1);
 	if (list == NULL)
-		parser_internal_error(parser);
+		return (parser_internal_error(parser));
 	list->type = COMMAND_LIST;
 	list->data.list.type = (t_token *)iter->data;
 	list->before = *cmd;
