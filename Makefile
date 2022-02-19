@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/18 19:05:04 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/18 21:02:03 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC = src/main.c \
 	src/lexer/token/candidate/text.c \
 
 OBJ = $(SRC:.c=.o)
+DEPS = $(SRC:.c=.d)
 
 CC = gcc
 

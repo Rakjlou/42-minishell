@@ -1,0 +1,3 @@
+commande terminée par un &&
+</dev/urandom ./minishell <<< segv
+<test&& <<< leaks
