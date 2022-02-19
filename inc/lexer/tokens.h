@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/11 02:10:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:03:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # define SLESS "<"
 # define SGREAT ">"
 # define PIPE "|"
+# define O_PARENTHESIS "("
+# define C_PARENTHESIS ")"
 
 #endif

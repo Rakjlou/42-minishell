@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 20:42:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:12:05 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ static void	tree_print_repeatc(unsigned char c, unsigned int n)
 		ft_putchar_fd(c, STDOUT_FILENO);
 }
 
-static void	tree_print_command(t_command *command)
+static void	tree_print_command(t_command *command, int level)
 {
 	if (command->type == COMMAND_SIMPLE)
 		command_simple_debug(command);
 	else if (command->type == COMMAND_LIST)
 		command_list_debug(command);
+	else if (command->type == COMMAND_PIPELINE)
+		command_pipeline_debug(command);
+	else if (command->type == COMMAND_COMPOUND)
+		command_compound_debug(command, level);
 	else
 		ftprintf("Unknown\n");
 }
@@ -38,7 +42,7 @@ void	parser_tree_print(t_command *tree, int level)
 	if (tree == NULL || !PARSER_DEBUG)
 		return ;
 	tree_print_repeatc(' ', level * 4);
-	tree_print_command(tree);
+	tree_print_command(tree, level);
 	++level;
 	parser_tree_print(tree->before, level);
 	parser_tree_print(tree->after, level);
@@ -53,10 +57,7 @@ void	parser_tree_build_command(
 	{
 		*command = ft_calloc(sizeof(t_command), 1);
 		if (*command == NULL)
-		{
-			parser_internal_error(parser);
-			return ;
-		}
+			return (parser_internal_error(parser));
 	}
 	command_simple_consume(parser, iter, command);
 }

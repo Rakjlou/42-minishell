@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 22:42:02 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:49:01 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/19 01:26:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/parser.h"
 
-void	parser_execute(char *line)
+t_lst	*command_get_redirections(t_command *command)
 {
-	t_parser	parser;
+	if (command->type == COMMAND_SIMPLE)
+		return (&command->data.simple.redirections);
+	return (NULL);
+}
 
-	parser_init(&parser, line);
-	parser_tree_build(&parser);
-	parser_tree_print(parser.tree, 0);
-	parser_destroy(&parser);
+t_lst	*command_get_args(t_command *command)
+{
+	if (command->type == COMMAND_SIMPLE)
+		return (&command->data.simple.args);
+	return (NULL);
 }
