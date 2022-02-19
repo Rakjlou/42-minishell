@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 02:34:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:39:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	command_compound_debug(t_command *command, int level)
 
 	tree = command->data.compound.tree;
 	ftprintf("()\n");
-	parser_tree_print(tree, level + 1);
+	exec_tree_print(tree, level + 1);
 }
 
 void	command_compound_consume(t_parser *parser, t_iter *iter, t_command **c)
@@ -47,7 +47,7 @@ void	command_compound_consume(t_parser *parser, t_iter *iter, t_command **c)
 	compound->type = COMMAND_COMPOUND;
 	compound->data.compound.tree = NULL;
 	++parser->subshell;
-	parser_tree_build_command(parser, iter, &compound->data.compound.tree);
+	exec_tree_build_command(parser, iter, &compound->data.compound.tree);
 	compound->before = *c;
 	*c = compound;
 }

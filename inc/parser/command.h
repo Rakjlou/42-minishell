@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 00:10:15 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:49:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "parser/command_simple.h"
 # include "parser/command_list.h"
 # include "parser/command_compound.h"
+
+typedef struct s_iter		t_iter;
+typedef struct s_parser		t_parser;
 
 typedef enum e_command_type
 {
@@ -46,5 +49,8 @@ t_lst	*command_get_redirections(t_command *command);
 t_lst	*command_get_args(t_command *command);
 int		command_is(t_command *command, t_command_type type);
 int		command_is_empty(t_command *command);
+
+void	command_pipeline_consume(t_parser *parser, t_iter *i, t_command **cmd);
+void	command_pipeline_debug(t_command *command);
 
 #endif

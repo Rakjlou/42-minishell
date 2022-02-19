@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:26:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:39:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static void	tree_print_command(t_command *command, int level)
 		ftprintf("Unknown\n");
 }
 
-void	parser_tree_print(t_command *tree, int level)
+void	exec_tree_print(t_command *tree, int level)
 {
 	if (tree == NULL || !PARSER_DEBUG)
 		return ;
 	tree_print_repeatc(' ', level * 4);
 	tree_print_command(tree, level);
 	++level;
-	parser_tree_print(tree->before, level);
-	parser_tree_print(tree->after, level);
+	exec_tree_print(tree->before, level);
+	exec_tree_print(tree->after, level);
 }
