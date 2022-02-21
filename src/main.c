@@ -6,21 +6,21 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 17:02:26 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/21 16:42:46 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <readline/readline.h>
 #include "libft.h"
-#include "lexer/lexer.h"
+#include "parser/parser.h"
 #include "adrian/test.h"
 
 int	main(int argc, char **argv)
 {
 	char		*input;
 	
+
 	init_arg_main(argc, argv);
 	handle_signal();
 	while (42)
