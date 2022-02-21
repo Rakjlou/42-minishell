@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   wordexp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 16:27:55 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 18:03:50 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/21 17:22:02 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/21 17:22:39 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "adrian/test.h"
 
-void	handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+char  **ft_wordexp(t_lst *words);
+t_lst  *ft_wordexp(t_lst *words);
 
-int	handle_signal()
+char  **ft_wordexp(t_lst *lst)
 {
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		exit (EXIT_FAILURE);
-	if (signal(SIGINT, handler) == SIG_ERR)
-		exit(EXIT_FAILURE);
-	return (0);
+    t_iter  iter;
+    t_token *token;
+    char    *content;
+    char    **result;
+
+    iter_init(&iter, lst, ASC);
+    while (iter_next(&iter))
+    {
+        token = (t_token *)iter.data;
+        content = token->raw;
+    }
+    return (result);
 }

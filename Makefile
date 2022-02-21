@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/21 16:52:54 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/21 17:23:38 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD -g3  \
 LDFLAGS = -L $(LIBFT_DIR) \
 
 LDLIBS = -lft \
-			-lreadline \
+		-lreadline \
 
 all: libft $(NAME)
 
