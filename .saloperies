@@ -6,3 +6,9 @@ cat << STOP || cat << STOP
 > test1 echo > test2 "mdr" > test3
 cat <
 echo a &&
+(echo ahaha) > toto
+
+export TEST=mdr"salut      '         ' * '  '      oui"
+echo $TEST
+
+"l"s

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
+#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/21 17:23:38 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/21 21:06:57 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,17 @@ SRC = src/main.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/init_destroy.c \
-	src/parser/tree.c \
+	src/parser/tree/dispatch.c \
+	src/parser/tree/build.c \
+	src/parser/tree/destroy.c \
+	src/parser/tree/print.c \
 	src/parser/command/is.c \
+	src/parser/command/get.c \
 	src/parser/command/simple.c \
+	src/parser/command/simple_run.c \
 	src/parser/command/list.c \
 	src/parser/command/pipeline.c \
+	src/parser/command/compound.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \
@@ -45,12 +51,14 @@ SRC = src/main.c \
 	src/adrian/signal.c \
 
 OBJ = $(SRC:.c=.o)
+DEPS = $(SRC:.c=.d)
 
 CC = gcc
 
 LIBFT_DIR = libft
 
-CFLAGS = -Wall -Wextra -Werror -MMD -g3  \
+CFLAGS = -Wall -Wextra -Werror \
+			-MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I libft/ \
@@ -80,12 +88,6 @@ fclean: clean
 re: fclean all
 
 test: all
-	valgrind \
-	--leak-check=full \
-	--track-origins=yes \
-	--show-leak-kinds=all \
-	--show-reachable=yes \
-	--suppressions=./.readline.supp \
 	./minishell
 
 .PHONY: clean fclean re libft test
