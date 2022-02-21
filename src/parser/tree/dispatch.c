@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_list.h                                     :+:      :+:    :+:   */
+/*   dispatch.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:30:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/21 20:33:39 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/21 20:36:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMAND_LIST_H
-# define COMMAND_LIST_H
+#include "parser/parser.h"
 
-typedef struct s_iter		t_iter;
-typedef struct s_parser		t_parser;
-
-typedef struct s_command_list
+void	exec_tree_dispatch(t_command *node)
 {
-	t_token	*type;
-}	t_command_list;
-
-void	command_list_run(t_command *command);
-void	command_list_consume(
-			t_parser *parser,
-			t_iter *iter,
-			t_command **command);
-void	command_list_debug(t_command *command);
-
-#endif
+	if (node == NULL)
+		return ;
+	if (node->type == COMMAND_SIMPLE)
+		command_simple_run(node);
+	else if (node->type == COMMAND_LIST)
+		command_list_run(node);
+	else if (node->type == COMMAND_PIPELINE)
+		command_pipeline_run(node);
+	else if (node->type == COMMAND_COMPOUND)
+		command_compound_run(node);
+}
