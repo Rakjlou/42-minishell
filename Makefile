@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/21 21:06:57 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/21 21:23:47 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC = src/main.c \
 	src/adrian/utils1.c \
 	src/adrian/shell.c \
 	src/adrian/signal.c \
+	src/adrian/wordexp.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
