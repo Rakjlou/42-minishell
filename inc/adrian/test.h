@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 16:31:43 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/21 16:53:44 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 # define TEST_H
 
 # include <stdio.h>
-# include "signal.h"
+# include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <fcntl.h>
 # include "libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+
+
+// typedef void (*sighandler_t)(int);
 
 
 
@@ -39,9 +44,11 @@ typedef struct s_shell
 
 }	t_shell;
 
-void	init_arg_main(int argc, char **argv);
-void	test(char *input);
-t_shell	*_shell(void);
+void			init_arg_main(int argc, char **argv);
+void			test(char *input);
+t_shell			*_shell(void);
+__sighandler_t	handle_signal();
+
 
 
 
