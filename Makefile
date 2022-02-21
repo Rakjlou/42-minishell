@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/18 20:45:58 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/21 16:32:36 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC = src/main.c \
 	src/lexer/token/candidate/text.c \
 	src/adrian/test.c \
 	src/adrian/utils1.c \
+	src/adrian/shell.c \
 
 OBJ = $(SRC:.c=.o)
 
