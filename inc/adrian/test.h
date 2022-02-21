@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:44 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:02:31 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 # include <readline/history.h>
 
 
+
 // typedef void (*sighandler_t)(int);
 
+//sighandler_t	handle_signal();
 
 
 typedef struct s_args
@@ -47,7 +49,7 @@ typedef struct s_shell
 void			init_arg_main(int argc, char **argv);
 void			test(char *input);
 t_shell			*_shell(void);
-__sighandler_t	handle_signal();
+int				handle_signal();
 
 
 
