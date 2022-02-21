@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/17 20:46:31 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/21 16:31:43 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_args
 {
 	int		argc;
 	char	**argv;
-	char	**envp;
+	char	**env;
 }	t_args;
 
 typedef struct s_shell 
