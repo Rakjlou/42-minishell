@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:43:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:21:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,15 @@ typedef struct s_parser
 	int				subshell;
 }	t_parser;
 
+char	**ft_wordexp(char *line);
+
 void	parser_init(t_parser *parser, char *line);
 void	parser_destroy(t_parser *parser);
 void	parser_execute(char *line);
 
 void	parser_unexpected_token(t_parser *parser, t_token *token);
 void	parser_internal_error(t_parser *parser);
+
+void	print_wordexp(t_token *token);
 
 #endif

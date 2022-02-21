@@ -6,10 +6,11 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:26:42 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:36:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:28:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ftprintf.h"
 #include "parser/parser.h"
 
 static int	command_simple_handle_redirections(t_command *command)
@@ -23,6 +24,14 @@ static int	command_simple_handle_redirections(t_command *command)
 	while (iter_next(&iter))
 	{
 		redirection = iter.data;
+		ftfprintf(
+			STDERR_FILENO,
+			"\tRedirection %s %s >",
+			redirection->type->raw,
+			redirection->arg->raw
+		);
+		ftfprintf(STDERR_FILENO, "<\n");
+		print_wordexp(redirection->arg);
 	}
 	return (1);
 }
@@ -38,6 +47,9 @@ static int	command_simple_exec(t_command *command)
 	while (iter_next(&iter))
 	{
 		arg = iter.data;
+		ftfprintf(STDERR_FILENO, "\tArg %s >", arg->raw);
+		print_wordexp(arg);
+		ftfprintf(STDERR_FILENO, "<\n");
 	}
 	return (1);
 }
@@ -47,6 +59,10 @@ void	command_simple_run(t_command *command)
 	t_command_simple	*simple_data;
 
 	simple_data = &command->data.simple;
+
+	ftfprintf(STDERR_FILENO, "----   Simple Command   ----\n");
 	command_simple_handle_redirections(command);
 	command_simple_exec(command);
+	ftfprintf(STDERR_FILENO, "---- End Simple Command ----\n");
+
 }
