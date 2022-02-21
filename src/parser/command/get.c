@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_list.h                                     :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:30:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/19 01:26:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMAND_LIST_H
-# define COMMAND_LIST_H
+#include "parser/parser.h"
 
-typedef struct s_iter		t_iter;
-typedef struct s_parser		t_parser;
-
-typedef struct s_command_list
+t_lst	*command_get_redirections(t_command *command)
 {
-	t_token	*type;
-}	t_command_list;
+	if (command->type == COMMAND_SIMPLE)
+		return (&command->data.simple.redirections);
+	return (NULL);
+}
 
-void	command_list_run(t_command *command);
-void	command_list_consume(
-			t_parser *parser,
-			t_iter *iter,
-			t_command **command);
-void	command_list_debug(t_command *command);
-
-#endif
+t_lst	*command_get_args(t_command *command)
+{
+	if (command->type == COMMAND_SIMPLE)
+		return (&command->data.simple.args);
+	return (NULL);
+}

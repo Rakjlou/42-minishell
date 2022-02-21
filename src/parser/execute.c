@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:42:02 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 18:52:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:34:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	parser_execute(char *line)
 	t_parser	parser;
 
 	parser_init(&parser, line);
-	parser_tree_build(&parser);
-	parser_tree_print(parser.tree, 0);
+	exec_tree_build(&parser);
+	exec_tree_print(parser.tree, 0);
+	exec_tree_dispatch(parser.tree);
 	parser_destroy(&parser);
 }
