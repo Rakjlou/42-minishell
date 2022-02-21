@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/21 16:32:36 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/21 16:52:54 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC = src/main.c \
 	src/adrian/test.c \
 	src/adrian/utils1.c \
 	src/adrian/shell.c \
+	src/adrian/signal.c \
 
 OBJ = $(SRC:.c=.o)
 

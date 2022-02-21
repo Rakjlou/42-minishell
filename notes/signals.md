@@ -7,9 +7,11 @@ Signals:
 signal() renvoie la valeur précédente du gestionnaire de signaux, ou SIG_ERR en cas d'erreur.  
 Si le gestionnaire est SIG_DFL, l'action par défaut associé à ce signal est entreprise, comme décrit dans signal(7).
 Si le gestionnaire est SIG_IGN, le signal est ignoré.
+signal() renvoie la valeur précédente du gestionnaire de signaux, ou SIG_ERR en cas d'erreur.  
 
 
-	int sigaction(int signum, const struct sigaction *act,
+
+int sigaction(int signum, const struct sigaction *act,
               struct sigaction *oldact);
 
 
@@ -26,6 +28,7 @@ SIGNALS:
 
 Ctrl+D: EOF
 Close the bash shell. This sends an EOF (End-of-file) marker to bash, and bash exits when it receives this marker. This is similar to running the exit command.
+PAS UN SIGNAL
 
 Ctrl+C: SIGINT
 "Interrupt (kill) the current foreground process running in in the terminal. This sends the SIGINT signal to the process, which is technically just a request—most processes will honor it, but some may ignore it."

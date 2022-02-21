@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:06:00 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/18 18:49:29 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/18 16:27:55 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/18 19:09:15 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "adrian/test.h"
 
-int		create_new_shell()
+void	handler(int signal)
 {
-	int 	status;
-	pid_t	process;
-	
-	ft_putstr_fd("Entering the abyss\n", 1);
-	process = fork();
-	waitpid(process, &status, 0);
-	if (process < 0)
-		return (perror("Fork: "), 1);
-	else if (process > 0)
+	if (signal == SIGINT)
+	{
 		write(1, "\n", 1);
-	return (0);
-	
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
-void	test(char *input)
+__sighandler_t	handle_signal()
 {
-	if (ft_strncmp(input, "minishell", 9) == 0 && !input[9])
-		create_new_shell();
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+		exit (EXIT_FAILURE);
+	if (signal(SIGINT, handler) == SIG_ERR)
+		exit(EXIT_FAILURE);
+	return (0);
 }
