@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/18 18:44:16 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/18 16:27:55 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/18 19:09:15 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "adrian/test.h"
 
-void	init_arg_main(int argc, char **argv)
+void	handler(int signal)
 {
-	t_shell 		*shell;
-	extern char		**environ;
+	if (signal == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
-	shell = _shell();
-	shell->args.argc = argc;
-	shell->args.argv = argv;
-	shell->args.envp = environ;
+__sighandler_t	handle_signal()
+{
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+		exit (EXIT_FAILURE);
+	if (signal(SIGINT, handler) == SIG_ERR)
+		exit(EXIT_FAILURE);
+	return (0);
 }
