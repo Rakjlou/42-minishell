@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # define PARSER_DEBUG 1
+# define E_INVALID_LIST_TOKEN_TYPE "%s: token type is invalid (%s)"
 
 # include "lexer/lexer.h"
 # include "parser/command.h"
