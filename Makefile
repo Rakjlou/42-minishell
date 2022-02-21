@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/19 03:27:39 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/21 20:34:36 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ SRC = src/main.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/init_destroy.c \
+	src/parser/tree/dispatch.c \
 	src/parser/tree/build.c \
 	src/parser/tree/destroy.c \
 	src/parser/tree/print.c \
 	src/parser/command/is.c \
 	src/parser/command/get.c \
 	src/parser/command/simple.c \
+	src/parser/command/simple_run.c \
 	src/parser/command/list.c \
 	src/parser/command/pipeline.c \
 	src/parser/command/compound.c \
@@ -51,7 +53,9 @@ CC = gcc
 
 LIBFT_DIR = libft
 
-CFLAGS = -Wall -Wextra -Werror -MMD -g3 \
+CFLAGS = -Wall -Wextra -Werror \
+			-MMD -g3 \
+			-MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I libft/ \
@@ -80,12 +84,6 @@ fclean: clean
 re: fclean all
 
 test: all
-	valgrind \
-	--leak-check=full \
-	--track-origins=yes \
-	--show-leak-kinds=all \
-	--show-reachable=yes \
-	--suppressions=./.readline.supp \
 	./minishell
 
 .PHONY: clean fclean re libft test
