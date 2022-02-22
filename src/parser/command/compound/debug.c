@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_list.h                                     :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:42:06 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/22 14:44:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMAND_LIST_H
-# define COMMAND_LIST_H
+#include "ftprintf.h"
+#include "parser/parser.h"
 
-typedef struct s_iter		t_iter;
-typedef struct s_parser		t_parser;
-
-typedef struct s_command_list
+void	command_compound_debug(t_command *command, int level)
 {
-	t_token	*type;
-}	t_command_list;
+	t_command	*tree;
 
-void	command_list_run(t_command *command);
-void	command_list_build(
-			t_parser *parser,
-			t_iter *iter,
-			t_command **command);
-void	command_list_debug(t_command *command);
-
-#endif
+	tree = command->data.compound.tree;
+	ftprintf("()\n");
+	exec_tree_print(tree, level + 1);
+}
