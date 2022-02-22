@@ -6,26 +6,25 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:54:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:59:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ftprintf.h"
 #include "parser/parser.h"
 
-void	command_pipeline_build(t_parser *parser, t_iter *it, t_command **cmd)
+void	command_simple_build(
+	t_parser *parser,
+	t_iter *iter,
+	t_command **command)
 {
-	t_command	*pipeline;
+	t_token		*token;
 
-	if (command_is_empty(*cmd))
-		return (parser_unexpected_token(parser, (t_token *)it->data));
-	pipeline = ft_calloc(sizeof(t_command), 1);
-	if (pipeline == NULL)
-		return (parser_internal_error(parser));
-	pipeline->type = COMMAND_PIPELINE;
-	pipeline->before = *cmd;
-	exec_tree_build_recursive(parser, it, &pipeline->after);
-	if (pipeline->after == NULL || command_is_empty(pipeline->after))
-		parser_unexpected_token(parser, (t_token *)it->data);
-	else
-		*cmd = pipeline;
+	token = (t_token *)iter->data;
+	/*
+	** Recursion ?
+	** build redirection
+	** tout token generique est ajoute a la commande
+	** tout token non generique est une syntax error ?
+	*/
 }
