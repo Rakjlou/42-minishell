@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:42:05 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:56:47 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,12 @@ void	command_build(
 	if (build_stop(parser, iter, command))
 		return ;
 	token = (t_token *)iter->data;
-	if (token_is_redirection_operator(token))
-		handle_redirection(parser, iter, command);
-	else if (token_is(token, TOK_O_PARENTHESIS))
+	if (token_is(token, TOK_O_PARENTHESIS))
 		handle_compound(parser, iter, command);
 	else if (token_is(token, TOK_AND_IF) || token_is(token, TOK_OR_IF))
 		command_list_build(parser, iter, command);
 	else if (token_is(token, TOK_PIPE))
 		command_pipeline_build(parser, iter, command);
-	else if (!lst_push_back(command_get_args(*command), token))
-		parser_internal_error(parser);
 	else
-		command_build(parser, iter, command);
+		command_simple_build(parser, iter, command);
 }
