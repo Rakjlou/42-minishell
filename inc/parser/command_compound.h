@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:31:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:31:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_command_compound
 }	t_command_compound;
 
 void	command_compound_run(t_command *command);
-void	command_compound_consume(
+void	command_compound_build(
 			t_parser *parser,
 			t_iter *iter,
 			t_command **command);

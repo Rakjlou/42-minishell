@@ -2,6 +2,7 @@ commande terminée par un &&
 </dev/urandom ./minishell <<< segv
 <test&& <<< leaks
 heredocs
+(cat) < Makefile
 
 complete_command : list separator_op
                  | list

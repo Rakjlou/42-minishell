@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_run.c                                       :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 20:26:42 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:36:29 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/22 14:38:00 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	command_simple_handle_redirections(t_command *command)
 	while (iter_next(&iter))
 	{
 		redirection = iter.data;
+		(void)redirection;
 	}
 	return (1);
 }
@@ -38,6 +39,7 @@ static int	command_simple_exec(t_command *command)
 	while (iter_next(&iter))
 	{
 		arg = iter.data;
+		(void)arg;
 	}
 	return (1);
 }
@@ -49,4 +51,5 @@ void	command_simple_run(t_command *command)
 	simple_data = &command->data.simple;
 	command_simple_handle_redirections(command);
 	command_simple_exec(command);
+	(void)simple_data;
 }
