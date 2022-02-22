@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   pathname.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 20:25:27 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 15:57:56 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/22 15:51:00 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/22 20:32:40 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "adrian/test.h"
 
-t_shell	*_shell(void)
+char *pathname_exp(char *str)
 {
-	static t_shell	shell;
-	static int		check = 0;
-
-	if (check == 0)
-	{
-		check = 1;
-		ft_bzero(&shell, sizeof(t_shell));
-	}
-	return (&shell);
+	(void) str;
+	int	i;
+// 	Si IFS est set
+// 	--> return ;
+	i = 0;
+	while (str[i] != '*' && str[i])
+		i++;
+	while  (str[i] == '*')
+		i++;
+	//On est sur le char apres les **
 }
