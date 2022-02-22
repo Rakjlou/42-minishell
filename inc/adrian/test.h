@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 17:02:31 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/22 19:40:34 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include "libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <dirent.h>
+
 
 
 
@@ -50,6 +53,11 @@ void			init_arg_main(int argc, char **argv);
 void			test(char *input);
 t_shell			*_shell(void);
 int				handle_signal();
+
+/* WORD_EXPPANSION */
+char	**fieldsplit(char *str);
+char	*get_IFS();
+int		syntaxerror(char *str);
 
 
 

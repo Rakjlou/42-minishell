@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/21 21:23:47 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/22 18:39:12 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,13 @@ SRC = src/main.c \
 	src/adrian/utils1.c \
 	src/adrian/shell.c \
 	src/adrian/signal.c \
-	src/adrian/wordexp.c \
+	src/adrian/wordexp/wordexp.c \
+	src/adrian/wordexp/fieldsplit.c \
+	src/adrian/wordexp/paramexp.c \
+	src/adrian/wordexp/pathname.c \
+	src/adrian/wordexp/unquoting.c \
+	src/adrian/wordexp/syntaxerror.c \
+
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
