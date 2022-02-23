@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 18:25:29 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 19:31:14 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/23 17:07:58 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,14 @@ static int	check_single_quote(char *str)
 	}
 	if (single_quotes % 2 == 0)
 		return (EXIT_SUCCESS);
-	else	
+	else
+	{
+		dprintf(2, "minishell: syntax error\n");
 		return (EXIT_FAILURE);
+	}
 }
+
+// Ne gere pas le cas " ' "
 
 int	syntaxerror(char *str)
 {

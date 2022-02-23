@@ -12,3 +12,4 @@ export TEST=mdr"salut      '         ' * '  '      oui"
 echo $TEST
 
 "l"s
+export a=3 | env

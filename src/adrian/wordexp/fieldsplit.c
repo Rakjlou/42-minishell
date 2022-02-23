@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:51:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 17:53:31 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/23 17:11:03 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_IFS()
 {
 	char	*IFS;
 
-	IFS = "";
+	IFS = " \n\t";
 
 	return (IFS);
 }
@@ -57,5 +57,4 @@ char	**fieldsplit(char *str)
 		return (NULL);
 	//aff_output(output);
 	return (output);
-	//difference IFS = NULL et IFS = ""
 }
