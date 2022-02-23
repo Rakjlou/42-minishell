@@ -50,6 +50,7 @@ ARGS:
 		else if $IFS est set a NULL -> no field splitting
 		else ft_split avec $IFS comme charset.
 
+
 ---------SIMPLE COMMAND------------
 ARGS:
 	>> mdr"salut

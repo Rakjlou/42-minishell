@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pathname.c                                         :+:      :+:    :+:   */
+/*   env_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 15:51:00 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 15:48:56 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/23 20:42:45 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/23 20:45:20 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include "env.h"
 
-char *pathname_exp(char *str)
+static void	free_content(void *content)
 {
-	(void) str;
-/* 	int	i;
-// 	Si IFS est set
-// 	--> return ;
-	i = 0;
-	while (str[i] != '*' && str[i])
-		i++;
-	while  (str[i] == '*')
-		i++;
-	//On est sur le char apres les ** */
-	return (str);
+	env_content_destroy((t_env_content *)content);
+}
+
+void	env_free(t_lst **env)
+{
+	lst_destroy(env, &free_content);
 }
