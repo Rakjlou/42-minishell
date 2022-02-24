@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 20:47:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 21:29:21 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:15:21 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	env_print(t_lst *env)
 			continue ;
 		ftprintf("%s=%s\n", content->key, content->value);
 	}
-	return (NULL);
 }
 
 static int get_copy_env(t_lst *env, t_lst *copy)

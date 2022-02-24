@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 21:07:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:26:19 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(int argc, char **argv)
 {
 	char		*input;
 
-
 	init_arg_main(argc, argv);
+	env_init();
 	handle_signal();
 	while (42)
 	{

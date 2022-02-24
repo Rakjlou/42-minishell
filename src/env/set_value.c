@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:40:42 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 20:31:51 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:10:14 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ static int	env_update_value(t_env_content *content, char *value)
 	return (EXIT_SUCCESS);
 }
 
-static t_env_content	*env_content_new(char *key, char *value)
+t_env_content	*env_content_new(char *key, char *value)
 {
 	t_env_content	*content;
 	
 	content = ft_calloc(sizeof(t_env_content), 1);
 	if (!content)
-		return (EXIT_FAILURE);
+		return (NULL);
 	content->key = ft_strdup(key);
 	if (!content->key)
 		return (env_content_destroy(content), NULL);
