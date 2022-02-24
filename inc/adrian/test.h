@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 19:40:34 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:09:15 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include "env.h"
+# include "ftlst.h"
 
 
 
@@ -44,6 +46,7 @@ typedef struct s_args
 
 typedef struct s_shell 
 {
+	t_lst	env;
 	t_args	args;
 	int		last_status;
 
@@ -54,13 +57,11 @@ void			test(char *input);
 t_shell			*_shell(void);
 int				handle_signal();
 
-/* WORD_EXPPANSION */
+/* WORD_EXPANSION */
 char	**fieldsplit(char *str);
 char	*get_IFS();
 int		syntaxerror(char *str);
 
-
-
-
+void	perror_exit();
 
 #endif
