@@ -1,17 +1,22 @@
 https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
 
 
-- Je recois 1 mot sans espces (sauf dans quote)
 
 
-- regarder directory avec opendir readdir closedir
-	exclure . et .. 
+- TO DO:
+	- Param expansion
+	- Pathname expansion simplifie
+	- unquoting
+	- changer fonciton syntax error
+	- hard code unset / export / env
 
 
-- STEP 0
-	Preparsing pour voir si il y a des quotes non fermes, 
-	ou si ca rencontre d'autre quote ex:
-	export TEST2=' "*' "
+
+-Je recois 1 mot sans espces (sauf dans quote)
+
+
+
+
 
 export TEST=mdr"salut   '   '  * '*'     oui"
 echo $TEST
@@ -82,6 +87,7 @@ ARGS:
            };
 	-->return NULL si plus rien a lire ou erreur
 	--> free ptr??
+	--> exclure . et ..
 
 	closedir:
 	int closedir(DIR *dirp);
@@ -103,7 +109,8 @@ ARGS:
 
 - STEP 4
 	Unquoting
-	Quote removal shall always be performed last.
+	The quote characters (single-quote, and double-quote) that were present in the original 
+	word shall be removed unless they have themselves been quoted.
 
 ---------SIMPLE COMMAND------------
 ARGS:

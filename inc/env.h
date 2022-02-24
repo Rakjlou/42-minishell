@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 21:15:32 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:02:37 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	env_free(t_lst **env);
 void	env_print(t_lst *env);
 void	env_print_export(t_lst *env);
 void	env_content_destroy(t_env_content *content);
+int		env_init(void);
+t_env_content	*env_content_new(char *key, char *value);
+
 
 /* 
 export est trie par ordre alphabetique

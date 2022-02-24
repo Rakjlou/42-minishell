@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/23 19:17:29 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/24 19:14:03 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,14 @@ SRC = src/main.c \
 	src/adrian/wordexp/pathname.c \
 	src/adrian/wordexp/unquoting.c \
 	src/adrian/wordexp/syntaxerror.c \
+	src/adrian/perror_exit.c \
 	src/env/content_destroy.c \
 	src/env/set_value.c \
+	src/env/env_free.c \
+	src/env/env_init.c \
+	src/env/env_print.c \
+	src/env/get_value.c \
+	src/env/unset.c \
 
 
 OBJ = $(SRC:.c=.o)
