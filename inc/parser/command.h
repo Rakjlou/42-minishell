@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:39:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:05:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_lst	*command_get_redirections(t_command *command);
 t_lst	*command_get_args(t_command *command);
 int		command_is(t_command *command, t_command_type type);
 int		command_is_empty(t_command *command);
+int		command_is_start_of(t_token *token, t_command_type type);
 void	command_build(
 			t_parser *parser,
 			t_iter *iter,
