@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:22:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 19:30:09 by ajung            ###   ########.fr       */
+/*   Updated: 2022/02/25 17:40:23 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ char  **ft_wordexp(char *str)
 	
 
 	//PART 1 Param expansion
-	//need env
 	
 	//PART 2 field splitting
 	field_split_output = fieldsplit(str);
 
 	//PART 3 Pathname expansion
+	//version simplifie pour maintenant
 
 	//PART 4 Unquoting
 	
