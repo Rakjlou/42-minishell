@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/24 19:14:03 by ajung            ###   ########.fr        #
+#    Updated: 2022/02/25 17:39:15 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC = src/main.c \
 	src/adrian/signal.c \
 	src/adrian/wordexp/wordexp.c \
 	src/adrian/wordexp/fieldsplit.c \
-	src/adrian/wordexp/paramexp.c \
+	src/adrian/wordexp/param_exp/paramexp.c \
 	src/adrian/wordexp/pathname.c \
 	src/adrian/wordexp/unquoting.c \
 	src/adrian/wordexp/syntaxerror.c \
