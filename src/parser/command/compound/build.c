@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:44:34 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 21:45:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,33 @@ static int	valid_start(t_command **command)
 	);
 }
 
-void	command_compound_build(t_parser *parser, t_iter *iter, t_command **c)
+void	command_compound_build(
+	t_parser *parser,
+	t_iter *iter,
+	t_command **command)
 {
-	t_command	*compound;
+	t_command			*compound;
+	t_command_compound	*cdata;
 
-	if (!valid_start(c))
+	if (!valid_start(command))
 		return (parser_unexpected_token(parser, (t_token *)iter->data));
 	compound = ft_calloc(sizeof(t_command), 1);
 	if (compound == NULL)
 		return (parser_internal_error(parser));
 	compound->type = COMMAND_COMPOUND;
-	compound->data.compound.tree = NULL;
+	cdata = &compound->data.compound;
+	cdata->tree = NULL;
 	++parser->subshell;
-	exec_tree_build_recursive(parser, iter, &compound->data.compound.tree);
-	compound->before = *c;
-	*c = compound;
+	if (!parser_next_token_noendl(parser, iter))
+		return ;
+	exec_tree_build_recursive(parser, iter, &cdata->tree);
+	--parser->subshell;
+	if (!token_is(iter->data, TOK_C_PARENTHESIS))
+		return (parser_unexpected_token(parser, iter->data));
+	compound->before = *command;
+	*command = compound;
+	if (!parser_next_token(parser, iter))
+		return ;
+	while (token_is_redirection_operator(iter->data))
+		command_redirection_build(parser, iter, &cdata->redirections);
 }
