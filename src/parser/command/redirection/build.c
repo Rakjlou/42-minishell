@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/25 11:39:59 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 21:39:34 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	command_redirection_build(t_parser *parser, t_iter *iter, t_lst *lst)
 	t_redirection	candidate;
 
 	candidate.type = iter->data;
-	if (!iter_next(iter))
-		return (parser_unexpected_token(parser, NULL));
+	if (!parser_next_token_noendl(parser, iter))
+		return ;
 	else if (!token_is(iter->data, TOK_TOKEN))
 		return (parser_unexpected_token(parser, iter->data));
 	token = iter->data;
@@ -32,4 +32,7 @@ void	command_redirection_build(t_parser *parser, t_iter *iter, t_lst *lst)
 	redirection = ft_memcpy(redirection, &candidate, sizeof(t_redirection));
 	if (!lst_push_back(lst, redirection))
 		parser_internal_error(parser);
+	puts("---");
+	parser_next_token(parser, iter);
+	puts("------");
 }
