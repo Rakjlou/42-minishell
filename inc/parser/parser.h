@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:43:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 20:58:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define PARSER_DEBUG 1
 # define E_INVALID_LIST_TOKEN_TYPE "%s: token type is invalid (%s)"
 
+# include <stdio.h> /* REMOVE ME */
 # include "lexer/lexer.h"
 # include "parser/command.h"
 # include "parser/exec_tree.h"
@@ -45,6 +46,8 @@ typedef struct s_parser
 void	parser_init(t_parser *parser, char *line);
 void	parser_destroy(t_parser *parser);
 void	parser_execute(char *line);
+int		parser_next_token(t_parser *parser, t_iter *iter);
+int		parser_next_token_noendl(t_parser *parser, t_iter *iter);
 
 void	parser_unexpected_token(t_parser *parser, t_token *token);
 void	parser_internal_error(t_parser *parser);

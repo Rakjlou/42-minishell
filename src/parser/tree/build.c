@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 17:50:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 20:58:05 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void	exec_tree_build(t_parser *parser)
 	if (parser->lexer.status != LEXER_STATUS_DEFAULT)
 		parser->status = PARSER_LEXER_ERROR;
 	iter_init(&iter, &parser->lexer.tokens, ASC);
+	if (!iter_next(&iter))
+		return ;
 	exec_tree_build_recursive(parser, &iter, &parser->tree);
 }

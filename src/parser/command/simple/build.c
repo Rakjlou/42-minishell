@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/25 11:27:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 20:33:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,29 @@ static void	command_simple_build_recursive(
 	t_iter *iter,
 	t_command **command)
 {
-	t_token	*token;
+	t_token		*token;
+	t_command	*cmd;
 
 	token = iter->data;
-	if (!valid_start(token))
+	cmd = *command;
+	if (parser->status != PARSER_STATUS_DEFAULT || !valid_start(token))
 		return ;
 	else if (token_is_redirection_operator(token))
+	{
 		command_redirection_build(
 			parser,
 			iter,
-			command->data.simple.redirections
+			&cmd->data.simple.redirections
 		);
+	}
+	else if (!lst_push_back(&cmd->data.simple.args, token))
+		return (parser_internal_error(parser));
+	else
+	{
+		token->type = TOK_WORD;
+		parser_next_token(parser, iter);
+	}
+	command_simple_build_recursive(parser, iter, command);
 }
 
 void	command_simple_build(
@@ -48,13 +60,6 @@ void	command_simple_build(
 
 	token = iter->data;
 	if (!valid_start(token))
-		parser_unexpected_token(parser, token);
-	else
-		command_simple_build_recursive(parser, iter, command);
-	/*
-	** Recursion ?
-	** build redirection
-	** tout token generique est ajoute a la commande
-	** tout token non generique est une syntax error ?
-	*/
+		return (parser_unexpected_token(parser, token));
+	return (command_simple_build_recursive(parser, iter, command));
 }

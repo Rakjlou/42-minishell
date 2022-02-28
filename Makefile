@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/22 14:50:02 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/02/28 21:09:29 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = minishell
 SRC = src/main.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
+	src/parser/next_token.c \
 	src/parser/init_destroy.c \
 	src/parser/tree/dispatch.c \
 	src/parser/tree/build.c \
@@ -33,6 +34,8 @@ SRC = src/main.c \
 	src/parser/command/pipeline/debug.c \
 	src/parser/command/pipeline/run.c \
 	src/parser/command/redirection/build.c \
+	src/parser/command/redirection/debug.c \
+	src/parser/command/simple/build.c \
 	src/parser/command/simple/debug.c \
 	src/parser/command/simple/run.c \
 	src/lexer/init_destroy.c \
@@ -62,7 +65,6 @@ CC = gcc
 LIBFT_DIR = libft
 
 CFLAGS = -Wall -Wextra -Werror \
-			-MMD -g3 \
 			-MMD -g3 \
 			-I . \
 			-I inc/ \
