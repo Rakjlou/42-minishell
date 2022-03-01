@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/28 21:43:32 by ajung            ###   ########.fr        #
+#    Updated: 2022/03/01 19:59:13 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,8 @@ CFLAGS = -Wall -Wextra -Werror \
 			-I . \
 			-I inc/ \
 			-I libft/ \
+			-g \
+			-fsanitize=address \
 			 #-pedantic -ansi
 
 LDFLAGS = -L $(LIBFT_DIR) \
