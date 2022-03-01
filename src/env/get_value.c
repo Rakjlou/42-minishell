@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:18:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 20:26:18 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/01 19:07:28 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*env_get_value(t_lst *env, char *key)
 	while (iter_next(&iter))
 	{
 		content = iter.data;
+				//dprintf(2, "key = %s\n", content->key);
 		if (ft_strncmp(content->key, key, -1) == 0)
 			return (content->value);
 	}

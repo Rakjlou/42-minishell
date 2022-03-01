@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:22:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/28 21:46:41 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/01 18:55:08 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ char  **ft_wordexp(char *str)
 	
 
 	//PART 1 Param expansion
+	dprintf(2, "\n\nStarting paramexp\n");
 	param_exp_output = paramexp(str);
-	
+
 	//PART 2 field splitting
 	field_split_output = fieldsplit(param_exp_output);
 
@@ -39,6 +40,6 @@ char  **ft_wordexp(char *str)
 	//version simplifie pour maintenant
 
 	//PART 4 Unquoting
-	
+	dprintf(2, "\n\n\n\n\n");
     return (field_split_output);
 }
