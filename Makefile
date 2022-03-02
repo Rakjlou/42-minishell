@@ -6,13 +6,19 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 18:25:36 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 19:09:48 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/wordexp/debug.c \
+	src/wordexp/fieldsplit.c \
+	src/wordexp/wordexp.c \
+	src/wordexp/param_exp/get_dollar_str.c \
+	src/wordexp/param_exp/get_index.c \
+	src/wordexp/param_exp/paramexp.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/init_destroy.c \
@@ -49,14 +55,6 @@ SRC = src/main.c \
 	src/adrian/utils1.c \
 	src/adrian/shell.c \
 	src/adrian/signal.c \
-	src/adrian/wordexp/wordexp.c \
-	src/adrian/wordexp/fieldsplit.c \
-	src/adrian/wordexp/param_exp/paramexp.c \
-	src/adrian/wordexp/param_exp/get_dollar_str.c \
-	src/adrian/wordexp/param_exp/get_index.c \
-	src/adrian/wordexp/pathname.c \
-	src/adrian/wordexp/unquoting.c \
-	src/adrian/wordexp/syntaxerror.c \
 	src/adrian/perror_exit.c \
 	src/env/content_destroy.c \
 	src/env/set_value.c \
