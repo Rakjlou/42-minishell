@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 04:29:26 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
-#include "parser/parser.h"
+#ifndef INPUT_H
+# define INPUT_H
 
-int	main(void)
-{
-	char		*line;
+# include <readline/readline.h>
+# include <readline/history.h>
 
-	while (42)
-	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
-	}
-	input_clear();
-	return (0);
-}
+# define PS1_DEFAULT "minishell$ "
+# define PS2_DEFAULT "> "
+
+char	*input_get_line(void);
+void	input_clear(void);
+
+#endif

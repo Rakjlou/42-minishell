@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 04:35:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "input.h"
-#include "parser/parser.h"
 
-int	main(void)
+void	input_clear(void)
 {
-	char		*line;
-
-	while (42)
-	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
-	}
-	input_clear();
-	return (0);
+	rl_clear_history();
 }
