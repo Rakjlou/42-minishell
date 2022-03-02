@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:22:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/01 18:55:08 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:16:12 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char  **ft_wordexp(char *str)
 	//version simplifie pour maintenant
 
 	//PART 4 Unquoting
+	free(param_exp_output);
 	dprintf(2, "\n\n\n\n\n");
     return (field_split_output);
 }
