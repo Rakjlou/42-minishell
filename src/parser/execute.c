@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:03:31 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 22:42:02 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 17:08:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "parser/parser.h"
 
-# define AND_IF "&&"
-# define OR_IF "||"
-# define DLESS "<<"
-# define DGREAT ">>"
-# define SLESS "<"
-# define SGREAT ">"
-# define PIPE "|"
-# define O_PARENTHESIS "("
-# define C_PARENTHESIS ")"
+void	parser_execute(char *line)
+{
+	t_parser	parser;
 
-#endif
+	parser_init(&parser, line);
+	exec_tree_build(&parser);
+		exec_tree_print(parser.tree, 0);
+	if (parser.status == PARSER_STATUS_FINISHED)
+	{
+		exec_tree_dispatch(parser.tree);
+	}
+	parser_destroy(&parser);
+}

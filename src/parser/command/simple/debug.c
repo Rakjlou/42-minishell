@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/28 21:08:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
+#include "ftprintf.h"
 #include "parser/parser.h"
 
-int	main(void)
+void	command_simple_debug(t_command *command)
 {
-	char		*line;
+	t_iter			iter;
+	t_token			*token;
 
-	while (42)
+	iter_init(&iter, &command->data.simple.args, ASC);
+	if (command_is_empty(command))
+		return ((void)ftprintf("\n"));
+	ftprintf("- ");
+	while (iter_next(&iter))
 	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
+		token = (t_token *)iter.data;
+		ftprintf("%s ", token->raw);
 	}
-	input_clear();
-	return (0);
+	redirections_debug(&command->data.simple.redirections);
+	ftprintf("\n");
 }
