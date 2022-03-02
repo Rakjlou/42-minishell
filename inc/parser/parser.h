@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 03:45:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:35:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@
 # include "lexer/lexer.h"
 # include "parser/command.h"
 # include "parser/exec_tree.h"
-
-typedef struct s_redirection
-{
-	t_token	*type;
-	t_token	*arg;
-}	t_redirection;
+# include "parser/redirection.h"
 
 typedef enum e_parser_status
 {
