@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/28 20:33:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:24:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static void	command_simple_build_recursive(
 		command_redirection_build(
 			parser,
 			iter,
-			&cmd->data.simple.redirections
-		);
+			&cmd->data.simple.redirections);
 	}
 	else if (!lst_push_back(&cmd->data.simple.args, token))
 		return (parser_internal_error(parser));

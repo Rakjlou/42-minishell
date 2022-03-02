@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/28 20:35:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:29:39 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	command_pipeline_build(
 		return (parser_internal_error(parser));
 	pipeline->type = COMMAND_PIPELINE;
 	pipeline->before = *command;
+	parser_next_token(parser, iter);
 	exec_tree_build_recursive(parser, iter, &pipeline->after);
 	if (pipeline->after == NULL || command_is_empty(pipeline->after))
 		parser_unexpected_token(parser, (t_token *)iter->data);
