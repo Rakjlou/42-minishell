@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:17:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/28 21:46:24 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 20:53:38 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 # define OPEN 1
 # define CLOSE 0
+
+# define SINGLE 1
+# define DOUBLE 2
 
 
 // typedef void (*sighandler_t)(int);
@@ -60,8 +63,6 @@ int				handle_signal();
 
 /* WORD_EXPANSION */
 char	**fieldsplit(char *str);
-char	*get_IFS();
-int		syntaxerror(char *str);
 
 void	perror_exit();
 
@@ -76,6 +77,9 @@ int	get_index_end(char *str, int index_dollar);
 char	*get_before_dollar(char *str, int index_dollar);
 char	*get_new_dollar_value(char *str, int index_dollar);
 char	*get_after_dollar(char *str, int index_dollar);
+
+/*UNQUOTING*/
+char	**unquoting(char **str);
 
 
 
