@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:06:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 17:51:58 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 19:11:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_wordexp.h"
 #include "adrian/test.h"
 
 static int	is_it_name(char c)
@@ -33,26 +34,17 @@ int	get_index_end(char *str, int index_dollar)
 {
 	int	i;
 
-		dprintf(2, "index dollar = %d\n", index_dollar);
 	i = index_dollar + 1;
 	if (ft_isdigit(str[i]) == 1)
-	{
-		dprintf(2, "dectecte un numerique apres $\n");
 		return (i + 1);
-	}
-	// if (str[i] == '\0')
-	// 	return (i);
 	while (str[i])
 	{
 		if (is_it_name(str[i]) == 0)
 			break ;
 		i++;
 	}
-	dprintf(2, "index_end = %d\n", i);
-
-	return (i); //return le char apres la fin du NAME
+	return (i);
 }
-
 
 int	get_index_dollar(char *str)
 {

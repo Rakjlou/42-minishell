@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:26:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:54:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,4 @@ void	exec_tree_print(t_command *tree, int level)
 	++level;
 	exec_tree_print(tree->before, level);
 	exec_tree_print(tree->after, level);
-}
-
-/*
-** TODO: REMOVE ME
-*/
-void	print_wordexp(t_token *token)
-{
-	char	**words;
-	int		i;
-
-	if (token == NULL)
-		return ;
-	i = 0;
-	words = ft_wordexp(token->raw);
-	while (words && words[i] != NULL)
-	{
-		ftfprintf(STDERR_FILENO, "%s ", words[i]);
-		i++;
-	}
-	i = 0;
-	while (words && words[i])
-	{
-		free(words[i]);
-		i++;
-	}
-	free(words);
 }

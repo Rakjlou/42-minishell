@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_value.c                                        :+:      :+:    :+:   */
+/*   ft_wordexp.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 19:18:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:04:38 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/02 19:14:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#ifndef FT_WORDEXP_H
+# define FT_WORDEXP_H
 
-char	*env_get_value(t_lst *env, char *key)
-{
-	t_iter			iter;
-	t_env_content	*content;
+# define WORDEXP_DEBUG 1
 
-	iter_init(&iter, env, ASC);
-	while (iter_next(&iter))
-	{
-		content = iter.data;
-		if (ft_strncmp(content->key, key, -1) == 0)
-			return (content->value);
-	}
-	return (NULL);
-}
+# include <stdlib.h>
+
+typedef struct s_token	t_token;
+
+char	**ft_wordexp(char *str);
+char	*paramexp(char *str);
+char	**fieldsplit(char *str);
+
+void	wordexp_debug(char *str, ...);
+void	wordexp_print(t_token *token);
+
+#endif
