@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/19 03:39:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:39:52 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	exec_tree_destroy(t_command *command)
 		lst_destroy_nodes(&command->data.simple.args, NULL);
 	}
 	else if (command->type == COMMAND_COMPOUND)
+	{
+		lst_destroy_nodes(&command->data.compound.redirections, free);
 		exec_tree_destroy(command->data.compound.tree);
+	}
 	free(command);
 	exec_tree_destroy(before);
 	exec_tree_destroy(after);
