@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dollar_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:04:25 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 18:05:23 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:29:51 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ char	*get_new_dollar_value(char *str, int index_dollar)
 	{
 		dprintf(2, "detecte raw[0] est numerique \n");
 		return (free(raw), ft_calloc(sizeof(char), 1));
-	}	
+	}
 	shell = _shell();
 	value = env_get_value(&(shell->env), raw);
 	if (!value) //Si on a pas trouve de value corresspondant a la key
-		value = ft_calloc(sizeof(char), 1);
+		return (free(raw), ft_strdup(""));
 	return (free(raw), ft_strdup(value));
 }
 

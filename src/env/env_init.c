@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:26:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/24 19:25:46 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:31:34 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "adrian/test.h"
 #include "env.h"
 
-static char *get_key(char *str)
+static char	*get_key(char *str)
 {
 	int	i;
 
@@ -23,21 +23,21 @@ static char *get_key(char *str)
 	return (ft_substr(str, 0, i));
 }
 
-static char *get_value(char *str)
+static char	*get_value(char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i] != '=' && str[i])
+	while (str[i] != '=' && str[i])
 		i++;
 	return (ft_substr(str, i + 1, -1));
 }
 
 static int	fill_content(char *str, t_lst *env)
 {
-	t_env_content *content;
-	char	*value;
-	char	*key;
+	t_env_content	*content;
+	char			*value;
+	char			*key;
 
 	value = get_value(str);
 	key = get_key(str);
@@ -52,7 +52,7 @@ static int	fill_content(char *str, t_lst *env)
 
 int	env_init(void)
 {
-	t_shell *shell;
+	t_shell	*shell;
 	char	**envp;
 	int		i;
 
@@ -67,8 +67,4 @@ int	env_init(void)
 	}
 	env_print(&shell->env);
 	return (EXIT_SUCCESS);
-	
-	
-	
-	
 }
