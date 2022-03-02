@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_run.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:26:42 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 21:28:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:48:09 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ static int	command_simple_exec(t_command *command)
 
 void	command_simple_run(t_command *command)
 {
-	t_command_simple	*simple_data;
-
-	simple_data = &command->data.simple;
-
 	ftfprintf(STDERR_FILENO, "----   Simple Command   ----\n");
 	command_simple_handle_redirections(command);
 	command_simple_exec(command);
