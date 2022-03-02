@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:00:46 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:03:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	command_compound_build(
 	else if (!parser_next_token(parser, iter))
 		return ;
 	while (token_is_redirection_operator(iter->data))
-		command_redirection_build(parser, iter, &cdata->redirections);
+		redirection_build(parser, iter, &cdata->redirections);
 }
