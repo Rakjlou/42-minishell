@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 02:00:20 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 04:01:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	command_build(
 		command_list_build(parser, iter, command);
 	else if (command_is_start_of(token, COMMAND_PIPELINE))
 		command_pipeline_build(parser, iter, command);
-	else if (command_is_start_of(token, COMMAND_SIMPLE))
+	else if (command_is_start_of(token, COMMAND_SIMPLE)
+		&& command_is(*command, COMMAND_SIMPLE))
 		command_build_loop(command_simple_build, parser, iter, command);
 	else
 		parser_unexpected_token(parser, token);
