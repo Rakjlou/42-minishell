@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 04:24:27 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 #include "input.h"
-#include "parser/parser.h"
 
-int	main(void)
+static char	*input_save_line_to_history(char *line)
 {
-	char		*line;
+	add_history(line);
+	return (line);
+}
 
-	while (42)
-	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
-	}
-	input_clear();
-	return (0);
+char	*input_get_line(void)
+{
+	char	*line;
+	char	*line_trimmed;
+
+	line = readline(PS1_DEFAULT);
+	if (line == NULL || !*line)
+		return (line);
+	line_trimmed = ft_strtrim(line, " \t\n\r\v\f");
+	if (line_trimmed == NULL)
+		return (input_save_line_to_history(line));
+	free(line);
+	return (input_save_line_to_history(line_trimmed));
 }
