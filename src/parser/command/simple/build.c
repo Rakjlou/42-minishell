@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 01:24:15 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:04:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	command_simple_build_recursive(
 		return ;
 	else if (token_is_redirection_operator(token))
 	{
-		command_redirection_build(
+		redirection_build(
 			parser,
 			iter,
 			&cmd->data.simple.redirections);
