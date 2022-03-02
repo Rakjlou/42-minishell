@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_eof.c                                           :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 00:35:51 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 01:55:37 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 17:15:53 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "lexer/token.h"
+#ifndef INPUT_H
+# define INPUT_H
 
-int	token_is_eof(t_token *token)
-{
-	return (token->src == NULL && token->raw == NULL && token->size == 0);
-}
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define PS1_DEFAULT "\x1b[32mminishell$ \x1b[0m"
+# define PS2_DEFAULT "\x1b[33m> \x1b[0m"
+
+char	*input_get_line(void);
+char	*input_get_line2(void);
+char	*input_get_line_prompt(char *prompt);
+void	input_clear(void);
+
+#endif

@@ -6,12 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/11 01:59:22 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/19 01:03:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+
+# define LEXER_DEBUG 0
 
 # include "ftlst.h"
 # include "lexer/source.h"
@@ -33,6 +35,8 @@ typedef struct s_lexer
 	t_lst			tokens;
 }	t_lexer;
 
-void	lexer_execute(char *line);
+void	lexer_build_token_list(t_lexer *lexer);
+void	lexer_init(t_lexer *lexer, char *line);
+void	lexer_destroy(t_lexer *lexer);
 
 #endif

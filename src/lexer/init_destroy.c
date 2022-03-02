@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:03:31 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 22:06:29 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/17 22:10:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "lexer/lexer.h"
 
-# define AND_IF "&&"
-# define OR_IF "||"
-# define DLESS "<<"
-# define DGREAT ">>"
-# define SLESS "<"
-# define SGREAT ">"
-# define PIPE "|"
-# define O_PARENTHESIS "("
-# define C_PARENTHESIS ")"
+void	lexer_init(t_lexer *lexer, char *line)
+{
+	ft_bzero(lexer, sizeof(t_lexer));
+	source_init(&lexer->src, line);
+}
 
-#endif
+void	lexer_destroy(t_lexer *lexer)
+{
+	lst_destroy_nodes(&lexer->tokens, token_vdestroy);
+}

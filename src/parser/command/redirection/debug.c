@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:03:31 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/28 21:08:25 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "ftprintf.h"
+#include "parser/parser.h"
 
-# define AND_IF "&&"
-# define OR_IF "||"
-# define DLESS "<<"
-# define DGREAT ">>"
-# define SLESS "<"
-# define SGREAT ">"
-# define PIPE "|"
-# define O_PARENTHESIS "("
-# define C_PARENTHESIS ")"
+void	redirections_debug(t_lst *redirections)
+{
+	t_iter			iter;
+	t_redirection	*redirection;
 
-#endif
+	iter_init(&iter, redirections, ASC);
+	while (iter_next(&iter))
+	{
+		redirection = (t_redirection *)iter.data;
+		ftprintf("%s %s ", redirection->type->raw, redirection->arg->raw);
+	}
+}

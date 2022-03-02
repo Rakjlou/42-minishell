@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 06:02:46 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 #include "input.h"
-#include "parser/parser.h"
 
-int	main(void)
+static char	*input_save_line_to_history(char *line)
 {
-	char		*line;
+	add_history(line);
+	return (line);
+}
 
-	while (42)
-	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
-	}
-	input_clear();
-	return (0);
+char	*input_get_line(void)
+{
+	return (input_get_line_prompt(PS1_DEFAULT));
+}
+
+char	*input_get_line2(void)
+{
+	return (readline(PS2_DEFAULT));
+}
+
+char	*input_get_line_prompt(char *prompt)
+{
+	char	*line;
+
+	line = readline(prompt);
+	if (line == NULL || !*line)
+		return (line);
+	return (input_save_line_to_history(line));
 }

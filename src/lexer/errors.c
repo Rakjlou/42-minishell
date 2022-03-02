@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 04:29:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 22:04:40 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/18 20:20:01 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
-#include "parser/parser.h"
+#include <unistd.h>
+#include "ftprintf.h"
+#include "lexer/lexer.h"
+#include "lexer/errors.h"
 
-int	main(void)
+void	lexer_syntax_error(t_lexer *lexer, t_token *token, t_lexer_status e)
 {
-	char		*line;
+	char	*raw;
 
-	while (42)
+	lexer->status = e;
+	raw = "newline";
+	if (token != NULL)
+		raw = token->raw;
+	if (e == LEXER_UNEXPECTED_TOK_ERROR)
 	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
+		ftfprintf(
+			STDERR_FILENO,
+			"%s: syntax error near unexpected token `%s'\n",
+			"minishell",
+			raw);
 	}
-	input_clear();
-	return (0);
 }

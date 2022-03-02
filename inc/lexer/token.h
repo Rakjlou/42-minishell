@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/11 01:15:51 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:53:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ typedef enum s_token_type
 	TOK_IO,
 	TOK_AND_IF,
 	TOK_OR_IF,
+	TOK_O_PARENTHESIS,
+	TOK_C_PARENTHESIS,
+	TOK_PIPE,
+	TOK_SLESS,
+	TOK_SGREAT,
 	TOK_DLESS,
 	TOK_DGREAT
 }	t_token_type;
@@ -47,6 +52,11 @@ t_token		*token_recognizer(t_source *src);
 t_token		*token_new(void);
 void		token_destroy(t_token *token);
 void		token_vdestroy(void *token);
+
+int			token_is_redirection_operator(t_token *token);
+int			token_is_invalid_command_start(t_token *token);
+int			token_is(t_token *token, t_token_type type);
+int			token_raw_is(t_token *token, char *text);
 int			token_is_eof(t_token *token);
 
 #endif

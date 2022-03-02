@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:03:31 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/22 14:54:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "parser/parser.h"
 
-# define AND_IF "&&"
-# define OR_IF "||"
-# define DLESS "<<"
-# define DGREAT ">>"
-# define SLESS "<"
-# define SGREAT ">"
-# define PIPE "|"
-# define O_PARENTHESIS "("
-# define C_PARENTHESIS ")"
+void	command_pipeline_run(t_command *command)
+{
+	t_command_list	*list_data;
+	t_command		*before;
+	t_command		*after;
 
-#endif
+	before = command->before;
+	after = command->after;
+	list_data = &command->data.list;
+	(void)list_data;
+	exec_tree_dispatch(before);
+	exec_tree_dispatch(after);
+}
