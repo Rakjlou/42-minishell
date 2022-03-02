@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:35:28 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:24:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define PARSER_DEBUG 1
+# define PARSER_DEBUG 0
 # define E_INVALID_LIST_TOKEN_TYPE "%s: token type is invalid (%s)"
 
 #include <stdio.h>
