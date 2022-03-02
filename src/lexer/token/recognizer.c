@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 23:44:38 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/11 01:29:20 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:53:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	consume_source(t_source *src)
 	token_candidate_init(src, &token);
 	while (!token.delimited)
 		if (source_getc(token.src) == SOURCE_EOF)
-		token.delimited = 1;
+			token.delimited = 1;
 	else if (token_candidate_is_part_of_operator(&token))
 		token_candidate_incr(&token);
 	else if (token_candidate_is_end_of_operator(&token))

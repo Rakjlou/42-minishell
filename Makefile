@@ -6,21 +6,51 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/11 01:23:46 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 17:05:41 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
-	src/lexer/lexer.c \
+	src/input/get_line.c \
+	src/input/clear.c \
+	src/parser/errors.c \
+	src/parser/execute.c \
+	src/parser/next_token.c \
+	src/parser/init_destroy.c \
+	src/parser/tree/dispatch.c \
+	src/parser/tree/build.c \
+	src/parser/tree/destroy.c \
+	src/parser/tree/print.c \
+	src/parser/command/build.c \
+	src/parser/command/is.c \
+	src/parser/command/get.c \
+	src/parser/command/compound/build.c \
+	src/parser/command/compound/debug.c \
+	src/parser/command/compound/run.c \
+	src/parser/command/list/build.c \
+	src/parser/command/list/debug.c \
+	src/parser/command/list/run.c \
+	src/parser/command/pipeline/build.c \
+	src/parser/command/pipeline/debug.c \
+	src/parser/command/pipeline/run.c \
+	src/parser/command/redirection/build.c \
+	src/parser/command/redirection/heredoc.c \
+	src/parser/command/redirection/debug.c \
+	src/parser/command/simple/build.c \
+	src/parser/command/simple/debug.c \
+	src/parser/command/simple/run.c \
+	src/lexer/init_destroy.c \
+	src/lexer/build_token_list.c \
+	src/lexer/errors.c \
 	src/lexer/source/getc.c \
 	src/lexer/source/incr.c \
 	src/lexer/source/init.c \
 	src/lexer/source/next.c \
 	src/lexer/source/skip_whitespace.c \
 	src/lexer/token/destroy.c \
-	src/lexer/token/is_eof.c \
+	src/lexer/token/is.c \
 	src/lexer/token/new.c \
 	src/lexer/token/recognizer.c \
 	src/lexer/token/candidate/incr.c \
@@ -31,12 +61,14 @@ SRC = src/main.c \
 	src/lexer/token/candidate/text.c \
 
 OBJ = $(SRC:.c=.o)
+DEPS = $(SRC:.c=.d)
 
 CC = gcc
 
 LIBFT_DIR = libft
 
-CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD -g3 \
+CFLAGS = -Wall -Wextra -Werror \
+			-MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I libft/ \

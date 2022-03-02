@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 02:42:29 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/10 23:21:33 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:04:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int	token_candidate_is_part_of_operator(t_token_candidate *candidate)
 	if (text == NULL)
 		return (perror("minishell"), 0);
 	len = ft_strlen(text);
-	result = (ft_strncmp(text, AND_IF, len) == 0
-			|| ft_strncmp(text, OR_IF, len) == 0
-			|| ft_strncmp(text, DLESS, len) == 0
-			|| ft_strncmp(text, DGREAT, len) == 0);
+	result = (!ft_strncmp(text, AND_IF, len)
+			|| !ft_strncmp(text, OR_IF, len)
+			|| !ft_strncmp(text, DLESS, len)
+			|| !ft_strncmp(text, DGREAT, len)
+			|| !ft_strncmp(text, O_PARENTHESIS, len)
+			|| !ft_strncmp(text, C_PARENTHESIS, len));
 	free(text);
 	return (result);
 }
@@ -53,7 +55,9 @@ int	token_candidate_is_end_of_operator(t_token_candidate *candidate)
 		&& ft_strncmp(SLESS, text, UINT_MAX) != 0
 		&& ft_strncmp(SGREAT, text, UINT_MAX) != 0
 		&& ft_strncmp(DLESS, text, UINT_MAX) != 0
-		&& ft_strncmp(DGREAT, text, UINT_MAX) != 0)
+		&& ft_strncmp(DGREAT, text, UINT_MAX) != 0
+		&& ft_strncmp(O_PARENTHESIS, text, UINT_MAX) != 0
+		&& ft_strncmp(C_PARENTHESIS, text, UINT_MAX) != 0)
 		return (free(text), --candidate->end, 1);
 	return (free(text), 0);
 }
@@ -70,5 +74,7 @@ int	token_candidate_is_start_of_operator(t_token_candidate *candidate)
 		|| c == '|'
 		|| c == '<'
 		|| c == '>'
+		|| c == '('
+		|| c == ')'
 	);
 }
