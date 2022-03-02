@@ -3,34 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   wordexp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 17:22:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 18:16:12 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 19:11:01 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include "ft_wordexp.h"
 
-char  **ft_wordexp(char *str)
+char	**ft_wordexp(char *str)
 {
-    
 	char	*param_exp_output;
 	char	**field_split_output;
 	char	**pathname_output;
 	char	**output;
-	
+
 	(void) param_exp_output;
 	(void) pathname_output;
 	(void) output;
-	
-	//PART 0 Check syntax error
-	if (syntaxerror(str) == EXIT_FAILURE)
-		return (NULL);
-	
 
 	//PART 1 Param expansion
-	dprintf(2, "\n\nStarting paramexp\n");
 	param_exp_output = paramexp(str);
 
 	//PART 2 field splitting
@@ -41,6 +34,5 @@ char  **ft_wordexp(char *str)
 
 	//PART 4 Unquoting
 	free(param_exp_output);
-	dprintf(2, "\n\n\n\n\n");
-    return (field_split_output);
+	return (field_split_output);
 }

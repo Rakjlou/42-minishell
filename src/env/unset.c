@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:30:33 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/23 20:36:02 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:37:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	env_unset(t_lst *env, char *key)
 {
 	t_iter			iter;
 	t_env_content	*content;
-	
+
 	iter_init(&iter, env, ASC);
 	while (iter_next(&iter))
 	{

@@ -3,55 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:40:42 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/24 19:10:14 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:37:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
-
-/*
-static int	create_new_elem(t_lst **ptr_list, char *key, char *value)
-{
-	t_lst			*new_elem;
-	t_env_content	*new_content;
-
-	new_elem = ft_calloc(sizeof(t_lst), 1);
-	if (!new_elem)
-		return (EXIT_FAILURE);
-	new_content = ft_calloc(sizeof(t_env_content), 1);
-	if (!new_content)
-		return (free(new_elem), EXIT_FAILURE);
-	new_content->key = ft_strdup(key);
-	if (value != NULL)
-		new_content->value = ft_strdup(value);
-	if ((!new_content->value && value != NULL)|| !new_content->key)
-		return (env_destroy_content(&new_content), free(new_elem), EXIT_FAILURE);
-	new_elem->content = new_content;
-	ft_lstadd_back(ptr_list, new_elem);
-	return (EXIT_SUCCESS);
-}
-
-int		env_set_value(t_lst *env, char *key, char *value)
-{
-	t_env_content	*content;
-	t_lst			*iter;
-
-	iter = env;
-	
-	while (iter != NULL)
-	{
-		content = iter->content;
-		if (ft_strncmp(content->key, key, -1) == 0)
-			return (env_update_value(content, value));
-		iter = iter->next;
-	}
-	create_new_elem(&env, key, value);
-
-}
-*/
 
 static int	env_update_value(t_env_content *content, char *value)
 {
@@ -68,7 +27,7 @@ static int	env_update_value(t_env_content *content, char *value)
 t_env_content	*env_content_new(char *key, char *value)
 {
 	t_env_content	*content;
-	
+
 	content = ft_calloc(sizeof(t_env_content), 1);
 	if (!content)
 		return (NULL);
@@ -94,11 +53,11 @@ static int	create_new_elem(t_lst *env, char *key, char *value)
 	return (EXIT_SUCCESS);
 }
 
-int		env_set_value(t_lst *env, char *key, char *value)
+int	env_set_value(t_lst *env, char *key, char *value)
 {
 	t_iter			iter;
 	t_env_content	*content;
-	
+
 	iter_init(&iter, env, ASC);
 	while (iter_next(&iter))
 	{
