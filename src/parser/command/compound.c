@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compound.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:31:52 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:49:29 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ static int	valid_start(t_command **command)
 void	command_compound_run(t_command *command)
 {
 	t_command_compound	*compound_data;
-	t_command			*before;
 	t_command			*after;
 	t_command			*subshell;
 
-	before = command->before;
 	after = command->after;
 	compound_data = &command->data.compound;
 	subshell = compound_data->tree;

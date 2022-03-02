@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:06:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/01 20:16:55 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 17:51:58 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_index_end(char *str, int index_dollar)
 	i = index_dollar + 1;
 	if (ft_isdigit(str[i]) == 1)
 	{
-			dprintf(2, "dectecte un numerique apres $\n");
+		dprintf(2, "dectecte un numerique apres $\n");
 		return (i + 1);
 	}
 	// if (str[i] == '\0')
@@ -48,7 +48,7 @@ int	get_index_end(char *str, int index_dollar)
 			break ;
 		i++;
 	}
-		dprintf(2, "index_end = %d\n", i);
+	dprintf(2, "index_end = %d\n", i);
 
 	return (i); //return le char apres la fin du NAME
 }

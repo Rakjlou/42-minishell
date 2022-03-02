@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:33:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/01 20:10:15 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:08:55 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,31 @@ static char	*expand(char *str, int index_dollar)
 
 	// if (str[index_dollar + 1] == '\0')
 	// 	return (return_dollar());
-		dprintf(2, "---GET BEFORE---\n");
+	dprintf(2, "---GET BEFORE---\n");
 	before_dollar = get_before_dollar(str, index_dollar);
-		dprintf(2, "before = \'%s\'\n\n", before_dollar);
+	dprintf(2, "before = \'%s\'\n\n", before_dollar);
 	if (!before_dollar)
 		return (NULL);
-	
-		dprintf(2, "---GET NEW DOLLAR VALUE---\n");
+	dprintf(2, "---GET NEW DOLLAR VALUE---\n");
 	new_dollar_value = get_new_dollar_value(str, index_dollar);
-		dprintf(2, "new_dollar_value = \'%s\'\n\n", new_dollar_value);
+	dprintf(2, "new_dollar_value = \'%s\'\n\n", new_dollar_value);
 	if (!new_dollar_value)
 		return (free(before_dollar), NULL);
 
-		dprintf(2, "---GET AFTER DOLLAR---\n");
+	dprintf(2, "---GET AFTER DOLLAR---\n");
 	after_dollar = get_after_dollar(str, index_dollar);
-		dprintf(2, "after_dollar = \'%s\'\n\n", after_dollar);
+	dprintf(2, "after_dollar = \'%s\'\n\n", after_dollar);
 	if (!after_dollar)
 		return (free(before_dollar), free(new_dollar_value), NULL);
 
-		dprintf(2, "---GET EXPANDED---\n");
+	dprintf(2, "---GET EXPANDED---\n");
 	expanded = get_expanded(before_dollar, new_dollar_value, after_dollar);
-		dprintf(2, "expanded = \'%s\'\n\n", expanded);
+	dprintf(2, "expanded = \'%s\'\n\n", expanded);
 	
 	free(before_dollar);
 	free(new_dollar_value);
 	free(after_dollar);
+
 	return (expanded);
 }
 
@@ -99,6 +99,7 @@ char	*paramexp(char *str)
 		index_dollar = get_index_dollar(expanded);
 	}
 	dprintf(2, "--->RESULTAT FINAL = \'%s\'\n\n", expanded);
+	//env_print(&_shell()->env);
 	return (expanded);
 	
 }
