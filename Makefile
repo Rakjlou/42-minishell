@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 19:09:48 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 20:44:37 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,12 @@ NAME = minishell
 
 SRC = src/main.c \
 	src/wordexp/debug.c \
-	src/wordexp/fieldsplit.c \
+	src/wordexp/fieldsplit/fieldsplit.c \
 	src/wordexp/wordexp.c \
 	src/wordexp/param_exp/get_dollar_str.c \
 	src/wordexp/param_exp/get_index.c \
 	src/wordexp/param_exp/paramexp.c \
+	src/wordexp/unquoting/unquoting.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/init_destroy.c \
