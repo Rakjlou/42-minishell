@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:07:47 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 19:59:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "shell.h"
+#ifndef SHELL_H
+# define SHELL_H
 
-int	main(int argc, char **argv)
+# include "env.h"
+
+typedef struct s_shell_param
 {
-	if (shell_init(argc, argv) != EXIT_SUCCESS)
-		return (perror("minishell"), EXIT_FAILURE);
-	shell_loop();
-	return (EXIT_SUCCESS);
-}
+	int		argc;
+	char	**argv;
+	char	**env;
+}	t_shell_param;
+
+typedef struct s_shell
+{
+	t_shell_param	param;
+	t_env			env;
+}	t_shell;
+
+t_shell	*_shell(void);
+
+int		shell_init(int argc, char **argv);
+void	shell_loop(void);
+int		signals_init(void);
+
+#endif

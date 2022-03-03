@@ -6,15 +6,13 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 18:38:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:31:43 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-# include "libft.h"
-# include "ftprintf.h"
 # include "ftlst.h"
 # include <stdlib.h>
 # include <stdio.h>
@@ -25,18 +23,20 @@ typedef struct s_env_content
 	char	*value;
 }	t_env_content;
 
-char			*env_get_value(t_lst *env, char *key);
-int				env_set_value(t_lst *env, char *key, char *value);
-void			env_unset(t_lst *env, char *key);
-void			env_free(t_lst *env);
-void			env_print(t_lst *env);
-void			env_print_export(t_lst *env);
-void			env_content_destroy(t_env_content *content);
+typedef t_lst	t_env;
+
+t_env			*_env(void);
+
 int				env_init(void);
+char			*env_get_value(char *key);
+t_env_content	*env_get_content(char *key);
+int				env_set_value(char *key, char *value);
+void			env_unset(char *key);
+void			env_free(void);
+void			env_print(void);
+void			env_print_export(void);
+void			env_content_destroy(t_env_content *content);
+
 t_env_content	*env_content_new(char *key, char *value);
 
-
-/*
-export est trie par ordre alphabetique
- */
 #endif

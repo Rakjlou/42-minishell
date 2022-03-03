@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_exit.c                                      :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 19:04:29 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/24 19:08:33 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 20:07:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include "input.h"
+#include "env.h"
+#include "parser/parser.h"
 
-void	perror_exit()
+void	shell_loop(void)
 {
-	perror("minishell");
-	exit (EXIT_FAILURE);
+	char		*line;
+
+	while (42)
+	{
+		line = input_get_line();
+		if (line == NULL)
+			break ;
+		parser_execute(line);
+		free(line);
+	}
+	input_clear();
+	env_free();
 }
