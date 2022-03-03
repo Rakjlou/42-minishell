@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 16:27:55 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 21:23:33 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:41:27 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	handler(int signal)
 	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
-		//rl_on_new_line();
-		//rl_replace_line("", 0);
-		//rl_redisplay();
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 }
 
