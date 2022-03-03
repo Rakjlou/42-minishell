@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:48:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/09 00:00:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:50:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_fill_str(char *str, char to_fill, size_t size);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			**ft_split(char const *str, const char *sep);
+
+/* String arrays */
+void			ft_cmatrix_print(char **matrix);
+void			ft_cmatrix_free(char **matrix);
+size_t			ft_cmatrix_size(char **matrix);
 
 /* Raw memory */
 void			ft_bzero(void *s, size_t n);
