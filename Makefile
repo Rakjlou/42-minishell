@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 19:38:00 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 19:00:26 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,13 @@ NAME = minishell
 SRC = src/main.c \
 	src/input/get_line.c \
 	src/input/clear.c \
+	src/wordexp/debug.c \
+	src/wordexp/fieldsplit/fieldsplit.c \
+	src/wordexp/wordexp.c \
+	src/wordexp/param_exp/get_dollar_str.c \
+	src/wordexp/param_exp/get_index.c \
+	src/wordexp/param_exp/paramexp.c \
+	src/wordexp/unquoting/unquoting.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/next_token.c \
@@ -59,6 +66,19 @@ SRC = src/main.c \
 	src/lexer/token/candidate/operator.c \
 	src/lexer/token/candidate/quote.c \
 	src/lexer/token/candidate/text.c \
+	src/adrian/test.c \
+	src/adrian/utils1.c \
+	src/adrian/shell.c \
+	src/adrian/signal.c \
+	src/adrian/perror_exit.c \
+	src/env/content_destroy.c \
+	src/env/set_value.c \
+	src/env/env_free.c \
+	src/env/env_init.c \
+	src/env/env_print.c \
+	src/env/get_value.c \
+	src/env/unset.c \
+
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -68,7 +88,8 @@ CC = gcc
 LIBFT_DIR = libft
 
 CFLAGS = -Wall -Wextra -Werror \
-			-MMD -g3 \
+			-MMD \
+			-g3 \
 			-I . \
 			-I inc/ \
 			-I libft/ \
@@ -76,12 +97,12 @@ CFLAGS = -Wall -Wextra -Werror \
 LDFLAGS = -L $(LIBFT_DIR) \
 
 LDLIBS = -lft \
-			-lreadline \
+		-lreadline \
 
 all: libft $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)$(CFLAGS)
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)

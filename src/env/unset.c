@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:47:53 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/23 19:30:33 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/02 18:37:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser/parser.h"
+#include "env.h"
 
-void	command_pipeline_run(t_command *command)
+static void	free_content(void *content)
 {
-	t_command		*before;
-	t_command		*after;
+	env_content_destroy((t_env_content *)content);
+}
 
-	before = command->before;
-	after = command->after;
-	exec_tree_dispatch(before);
-	exec_tree_dispatch(after);
+void	env_unset(t_lst *env, char *key)
+{
+	t_iter			iter;
+	t_env_content	*content;
+
+	iter_init(&iter, env, ASC);
+	while (iter_next(&iter))
+	{
+		content = iter.data;
+		if (ft_strncmp(content->key, key, -1) == 0)
+		{
+			lst_remove(env, iter.pos, free_content);
+			return ;
+		}
+	}
 }
