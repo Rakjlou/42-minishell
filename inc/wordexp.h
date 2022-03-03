@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wordexp.h                                       :+:      :+:    :+:   */
+/*   wordexp.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 21:00:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:33:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_WORDEXP_H
-# define FT_WORDEXP_H
+#ifndef WORDEXP_H
+# define WORDEXP_H
 
-# define WORDEXP_DEBUG 1
+# define WORDEXP_DEBUG 0
 
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
@@ -22,7 +22,7 @@
 
 typedef struct s_token	t_token;
 
-char	**ft_wordexp(char *str);
+char	**wordexp(char *str);
 char	*paramexp(char *str);
 char	**fieldsplit(char *str);
 

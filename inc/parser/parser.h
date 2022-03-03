@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:07:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:12:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define PARSER_DEBUG 0
 # define E_INVALID_LIST_TOKEN_TYPE "%s: token type is invalid (%s)"
 
+#include <stdio.h>
 # include "lexer/lexer.h"
 # include "parser/command.h"
 # include "parser/exec_tree.h"

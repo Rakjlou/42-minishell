@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unquoting.c                                        :+:      :+:    :+:   */
+/*   ft_cmatrix_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 20:21:16 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 20:36:35 by nsierra-         ###   ########.fr       */
+/*   Created: 2021/11/30 15:48:53 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 21:49:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wordexp.h"
+#include <stdlib.h>
+#include "libft.h"
 
-static int	change_quote_status(int status)
+size_t	ft_cmatrix_size(char **matrix)
 {
-	if (status == QUOTE_STATUS_CLOSE)
-		return (QUOTE_STATUS_OPEN);
-	else
-		return (QUOTE_STATUS_CLOSE);
-}
+	size_t	i;
 
-char	**unquoting(char **str)
-{
-	int		i;
-	char	**output;
-
+	if (matrix == NULL)
+		return (0);
 	i = 0;
-	change_quote_status(i);
-	(void) output;
-	return (str);
+	while (matrix[i])
+		++i;
+	return (i);
 }

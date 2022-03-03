@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:37:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:08:02 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	lexer_load_tokens(t_lexer *lexer)
 		token = token_recognizer(&lexer->src);
 		if (token == NULL)
 			lexer->status = LEXER_STATUS_ERROR;
-		else if (token->type == TOK_EOF)
+		else if (token_is(token, TOK_EOF))
 		{
 			token_destroy(token);
 			break ;

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:43:02 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:28:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	command_list_run(t_command *command)
 	if (token_is(list_data->type, TOK_AND_IF))
 	{
 		exec_tree_dispatch(before);
-		if (before->exit_status == EXIT_SUCCESS)
+		if (before->status == EXIT_SUCCESS)
 			exec_tree_dispatch(after);
 	}
 	else if (token_is(list_data->type, TOK_OR_IF))
 	{
 		exec_tree_dispatch(before);
-		if (before->exit_status != EXIT_SUCCESS)
+		if (before->status != EXIT_SUCCESS)
 			exec_tree_dispatch(after);
 	}
 	else

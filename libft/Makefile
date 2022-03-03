@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 13:56:55 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/09 00:42:18 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 21:54:39 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,9 @@ LIBFT_SRC = ft_isalpha.c \
 	ft_max.c \
 	ft_ends_with.c \
 	ft_cvalid.c \
+	ft_cmatrix_free.c \
+	ft_cmatrix_print.c \
+	ft_cmatrix_size.c \
 
 PRINTF_DIR = printf/
 PRINTF_SRC = ftprintf.c \
