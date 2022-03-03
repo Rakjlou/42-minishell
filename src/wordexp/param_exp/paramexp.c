@@ -6,12 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:33:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:11:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:10:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_wordexp.h"
-#include "adrian/test.h"
+#include "libft.h"
+#include "wordexp.h"
 
 static char	*get_expanded(char *before_dollar, char *new_dollar_value,
 	char *after_dollar)
@@ -73,9 +73,3 @@ char	*paramexp(char *str)
 	wordexp_debug("Paramexp '%s' --> '%s'\n", str, expanded);
 	return (expanded);
 }
-
-/*
-PROBLEM:
-$USER$SHELL --> retour bizarre de env get value
-$ tout seul --> disparait
-*/

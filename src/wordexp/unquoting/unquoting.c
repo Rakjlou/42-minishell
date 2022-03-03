@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   unquoting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 20:21:16 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/03 18:49:51 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/03 19:14:47 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "adrian/test.h"
-
+#include "wordexp.h"
 
 static int	change_quote_status(int status)
 {
-	if (status == CLOSE)
-		return (OPEN);
+	if (status == QUOTE_STATUS_CLOSE)
+		return (QUOTE_STATUS_OPEN);
 	else
-		return (CLOSE);
+		return (QUOTE_STATUS_CLOSE);
 }
 
 // char **quote_get_index(char **str)
 // {
-	
+
 // }
 
 char	**unquoting(char **str)
@@ -35,5 +34,4 @@ char	**unquoting(char **str)
 	change_quote_status(i);
 	(void) output;
 	return (str);
-	
 }

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_value.c                                        :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 19:18:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:04:38 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 18:37:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#ifndef INPUT_H
+# define INPUT_H
 
-char	*env_get_value(t_lst *env, char *key)
-{
-	t_iter			iter;
-	t_env_content	*content;
+# include <readline/readline.h>
+# include <readline/history.h>
 
-	iter_init(&iter, env, ASC);
-	while (iter_next(&iter))
-	{
-		content = iter.data;
-		if (ft_strncmp(content->key, key, -1) == 0)
-			return (content->value);
-	}
-	return (NULL);
-}
+# define PS1_DEFAULT "\x1b[32mminishell$ \x1b[0m"
+# define PS2_DEFAULT "\x1b[33m> \x1b[0m"
+
+char	*input_get_line(void);
+char	*input_get_line2(void);
+void	input_clear(void);
+
+#endif

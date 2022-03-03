@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:30:08 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:08:02 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ static int	classify_as_operator(t_token *token)
 	return (1);
 }
 
-static int	classifier_single_operator_err(t_token *token)
-{
-	return (!ft_strncmp(token->raw, "&", -1));
-}
-
 static void	lexer_spot_operators(t_lexer *lexer)
 {
 	t_iter	iter;
@@ -57,9 +52,7 @@ static void	lexer_spot_operators(t_lexer *lexer)
 	while (lexer->status == LEXER_STATUS_DEFAULT && iter_next(&iter))
 	{
 		token = (t_token *)iter.data;
-		if (classifier_single_operator_err(token))
-			lexer_syntax_error(lexer, token, LEXER_UNEXPECTED_TOK_ERROR);
-		else if (!classify_as_operator(token))
+		if (!classify_as_operator(token))
 			token->type = TOK_TOKEN;
 		if (LEXER_DEBUG)
 			printf("%-2d | %s\n", token->type, token->raw);
@@ -75,7 +68,7 @@ static void	lexer_load_tokens(t_lexer *lexer)
 		token = token_recognizer(&lexer->src);
 		if (token == NULL)
 			lexer->status = LEXER_STATUS_ERROR;
-		else if (token->type == TOK_EOF)
+		else if (token_is(token, TOK_EOF))
 		{
 			token_destroy(token);
 			break ;

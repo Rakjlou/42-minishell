@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:31:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/02/28 20:26:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ typedef enum e_command_compound_type
 typedef struct s_command_compound
 {
 	t_command_compound_type	type;
+	t_lst					redirections;
 	struct s_command		*tree;
 }	t_command_compound;
 
-void	command_compound_run(t_command *command);
-void	command_compound_consume(
+void	command_compound_build(
 			t_parser *parser,
 			t_iter *iter,
 			t_command **command);
+void	command_compound_run(t_command *command);
 void	command_compound_debug(t_command *command, int level);
 
 #endif

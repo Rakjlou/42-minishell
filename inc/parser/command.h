@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 20:30:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:27:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_command
 {
 	t_command_type		type;
 	t_command_data		data;
-	int					exit_status;
+	int					status;
 	struct s_command	*before;
 	struct s_command	*after;
 }	t_command;
@@ -49,9 +49,15 @@ t_lst	*command_get_redirections(t_command *command);
 t_lst	*command_get_args(t_command *command);
 int		command_is(t_command *command, t_command_type type);
 int		command_is_empty(t_command *command);
+int		command_is_start_of(t_token *token, t_command_type type);
+void	command_build(
+			t_parser *parser,
+			t_iter *iter,
+			t_command **command);
 
 void	command_pipeline_run(t_command *command);
-void	command_pipeline_consume(t_parser *parser, t_iter *i, t_command **cmd);
+void	command_pipeline_build(t_parser *parser, t_iter *i, t_command **cmd);
 void	command_pipeline_debug(t_command *command);
+
 
 #endif

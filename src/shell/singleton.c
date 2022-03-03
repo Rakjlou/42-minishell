@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   singleton.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:07:47 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/02 19:21:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 #include "shell.h"
 
-int	main(int argc, char **argv)
+t_shell	*_shell(void)
 {
-	if (shell_init(argc, argv) != EXIT_SUCCESS)
-		return (perror("minishell"), EXIT_FAILURE);
-	shell_loop();
-	return (EXIT_SUCCESS);
+	static t_shell	shell;
+	static int		check = 0;
+
+	if (check == 0)
+	{
+		check = 1;
+		ft_bzero(&shell, sizeof(t_shell));
+	}
+	return (&shell);
+}
+
+t_env	*_env(void)
+{
+	t_shell	*shell;
+
+	shell = _shell();
+	return (&shell->env);
 }
