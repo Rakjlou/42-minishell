@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:31 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/23 20:42:45 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/02 19:39:52 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include "env.h"
 
-void	init_arg_main(int argc, char **argv)
+static void	free_content(void *content)
 {
-	t_shell 		*shell;
-	extern char		**environ;
+	env_content_destroy(content);
+}
 
-	shell = _shell();
-	shell->args.argc = argc;
-	shell->args.argv = argv;
-	shell->args.env = environ;
+void	env_free(void)
+{
+	lst_destroy_nodes(_env(), &free_content);
 }

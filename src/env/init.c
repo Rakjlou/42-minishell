@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_init.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:26:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 18:36:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:02:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
-#include "env.h"
+#include "shell.h"
 
 static char	*get_key(char *str)
 {
@@ -33,38 +32,30 @@ static char	*get_value(char *str)
 	return (ft_substr(str, i + 1, -1));
 }
 
-static int	fill_content(char *str, t_lst *env)
+static int	env_load_envp_variable(char *str)
 {
-	t_env_content	*content;
 	char			*value;
 	char			*key;
 
 	value = get_value(str);
 	key = get_key(str);
-	if (!key || !value)
-		return (EXIT_FAILURE);
-	content = env_content_new(key, value);
-	if (!content)
+	if (!key || !value || env_set_value(key, value) == EXIT_FAILURE)
 		return (free(key), free(value), EXIT_FAILURE);
-	lst_push_back(env, content);
 	return (free(key), free(value), EXIT_SUCCESS);
 }
 
 int	env_init(void)
 {
-	t_shell	*shell;
 	char	**envp;
 	int		i;
 
-	shell = _shell();
-	envp = shell->args.env;
+	envp = _shell()->param.env;
 	i = 0;
-	while (envp[i])
+	while (envp && envp[i])
 	{
-		if (fill_content(envp[i], &shell->env) == EXIT_FAILURE)
+		if (env_load_envp_variable(envp[i]) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		i++;
 	}
-	env_print(&shell->env);
 	return (EXIT_SUCCESS);
 }

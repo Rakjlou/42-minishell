@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   wordexp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:48:25 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 22:18:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_wordexp.h"
-#include "adrian/test.h"
+#include "wordexp.h"
 
-char	**ft_wordexp(char *str)
+char	**wordexp(char *str)
 {
 	char	*param_exp_output;
 	char	**field_split_output;

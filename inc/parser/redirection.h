@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   redirection.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:07:47 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 21:22:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "shell.h"
+#ifndef REDIRECTION_H
+# define REDIRECTION_H
 
-int	main(int argc, char **argv)
+typedef struct s_redirection
 {
-	if (shell_init(argc, argv) != EXIT_SUCCESS)
-		return (perror("minishell"), EXIT_FAILURE);
-	shell_loop();
-	return (EXIT_SUCCESS);
-}
+	t_token	*type;
+	t_token	*arg;
+}	t_redirection;
+
+void	redirections_debug(t_lst *redirections);
+void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst);
+int		heredoc_request(t_parser *parser, t_redirection *redirection);
+
+#endif

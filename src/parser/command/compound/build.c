@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compound.c                                         :+:      :+:    :+:   */
+/*   build.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:49:29 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 18:48:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
 #include "parser/parser.h"
 
 /*
@@ -26,41 +25,44 @@ static int	valid_start(t_command **command)
 	);
 }
 
-void	command_compound_run(t_command *command)
+static void	command_compound_build_subtree(
+	t_parser *parser,
+	t_iter *iter,
+	t_command_compound *cdata)
 {
-	t_command_compound	*compound_data;
-	t_command			*after;
-	t_command			*subshell;
-
-	after = command->after;
-	compound_data = &command->data.compound;
-	subshell = compound_data->tree;
-	exec_tree_dispatch(subshell);
-	exec_tree_dispatch(after);
+	++parser->subshell;
+	if (!parser_next_token_noendl(parser, iter))
+		return ;
+	exec_tree_build_recursive(parser, iter, &cdata->tree);
+	--parser->subshell;
 }
 
-void	command_compound_debug(t_command *command, int level)
+void	command_compound_build(
+	t_parser *parser,
+	t_iter *iter,
+	t_command **command)
 {
-	t_command	*tree;
+	t_command			*compound;
+	t_command_compound	*cdata;
 
-	tree = command->data.compound.tree;
-	ftprintf("()\n");
-	exec_tree_print(tree, level + 1);
-}
-
-void	command_compound_consume(t_parser *parser, t_iter *iter, t_command **c)
-{
-	t_command	*compound;
-
-	if (!valid_start(c))
+	if (!valid_start(command))
 		return (parser_unexpected_token(parser, (t_token *)iter->data));
 	compound = ft_calloc(sizeof(t_command), 1);
 	if (compound == NULL)
 		return (parser_internal_error(parser));
 	compound->type = COMMAND_COMPOUND;
-	compound->data.compound.tree = NULL;
-	++parser->subshell;
-	exec_tree_build_command(parser, iter, &compound->data.compound.tree);
-	compound->before = *c;
-	*c = compound;
+	cdata = &compound->data.compound;
+	cdata->tree = NULL;
+	command_compound_build_subtree(parser, iter, cdata);
+	compound->before = *command;
+	*command = compound;
+	if (parser->status != PARSER_STATUS_DEFAULT)
+		return ;
+	else if (!token_is(iter->data, TOK_C_PARENTHESIS)
+		|| command_is_empty(cdata->tree))
+		return (parser_unexpected_token(parser, iter->data));
+	else if (!parser_next_token(parser, iter))
+		return ;
+	while (token_is_redirection_operator(iter->data))
+		redirection_build(parser, iter, &cdata->redirections);
 }
