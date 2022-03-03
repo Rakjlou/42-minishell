@@ -6,13 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:04:25 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:11:19 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:31:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_wordexp.h"
-#include "adrian/test.h"
-#include "env.h"
+#include "shell.h"
 
 char	*get_before_dollar(char *str, int index_dollar)
 {
@@ -41,7 +40,6 @@ static char	*get_raw_dollar_var(char *str, int index_dollar)
 char	*get_new_dollar_value(char *str, int index_dollar)
 {
 	char	*raw;
-	t_shell	*shell;
 	char	*value;
 
 	if (index_dollar < 0)
@@ -51,8 +49,7 @@ char	*get_new_dollar_value(char *str, int index_dollar)
 		return (NULL);
 	if (ft_isdigit(raw[0] == 1))
 		return (free(raw), ft_calloc(sizeof(char), 1));
-	shell = _shell();
-	value = env_get_value(&(shell->env), raw);
+	value = env_get_value(raw);
 	if (!value)
 		return (free(raw), ft_strdup(""));
 	return (free(raw), ft_strdup(value));

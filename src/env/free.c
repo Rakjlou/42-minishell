@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 20:25:27 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 15:57:56 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/23 20:42:45 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/02 19:39:52 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include "env.h"
 
-t_shell	*_shell(void)
+static void	free_content(void *content)
 {
-	static t_shell	shell;
-	static int		check = 0;
+	env_content_destroy(content);
+}
 
-	if (check == 0)
-	{
-		check = 1;
-		ft_bzero(&shell, sizeof(t_shell));
-	}
-	return (&shell);
+void	env_free(void)
+{
+	lst_destroy_nodes(_env(), &free_content);
 }

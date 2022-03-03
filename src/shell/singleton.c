@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   singleton.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:31 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/02 19:21:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include "libft.h"
+#include "shell.h"
 
-void	init_arg_main(int argc, char **argv)
+t_shell	*_shell(void)
 {
-	t_shell 		*shell;
-	extern char		**environ;
+	static t_shell	shell;
+	static int		check = 0;
+
+	if (check == 0)
+	{
+		check = 1;
+		ft_bzero(&shell, sizeof(t_shell));
+	}
+	return (&shell);
+}
+
+t_env	*_env(void)
+{
+	t_shell	*shell;
 
 	shell = _shell();
-	shell->args.argc = argc;
-	shell->args.argv = argv;
-	shell->args.env = environ;
+	return (&shell->env);
 }

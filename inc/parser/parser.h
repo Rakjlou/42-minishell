@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:52:23 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:59:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define PARSER_DEBUG 0
+# define PARSER_DEBUG 1
 # define E_INVALID_LIST_TOKEN_TYPE "%s: token type is invalid (%s)"
 
 # include "lexer/lexer.h"
@@ -36,8 +36,6 @@ typedef struct s_parser
 	t_command		*tree;
 	int				subshell;
 }	t_parser;
-
-char	**ft_wordexp(char *line);
 
 void	parser_init(t_parser *parser, char *line);
 void	parser_destroy(t_parser *parser);

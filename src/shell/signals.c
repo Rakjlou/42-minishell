@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_value.c                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 19:18:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:04:38 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 20:38:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include <signal.h>
+#include <unistd.h>
+#include "libft.h"
+#include "input.h"
+#include "shell.h"
 
-char	*env_get_value(t_lst *env, char *key)
+static void	sigint_handler(int signal)
 {
-	t_iter			iter;
-	t_env_content	*content;
+	(void)signal;
+	ft_putstr_fd("\n", STDIN_FILENO);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
 
-	iter_init(&iter, env, ASC);
-	while (iter_next(&iter))
-	{
-		content = iter.data;
-		if (ft_strncmp(content->key, key, -1) == 0)
-			return (content->value);
-	}
-	return (NULL);
+int	signals_init(void)
+{
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR
+		|| signal(SIGINT, sigint_handler) == SIG_ERR)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
