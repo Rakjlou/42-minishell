@@ -1,49 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:36:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:38:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "wordexp.h"
-#include "parser/parser.h"
-#include <stdarg.h>
+#include <signal.h>
 #include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
+#include "input.h"
+#include "shell.h"
 
-void	wordexp_debug(char *str, ...)
+static void	sigint_handler(int signal)
 {
-	va_list	args;
-
-	if (WORDEXP_DEBUG == 0)
-		return ;
-	va_start(args, str);
-	vdprintf(STDERR_FILENO, str, args);
-	va_end(args);
+	(void)signal;
+	ft_putstr_fd("\n", STDIN_FILENO);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
-/*
-** TODO: REMOVE ME
-*/
-void	print_wordexp(t_token *token)
+int	signals_init(void)
 {
-	char	**words;
-	int		i;
-
-	if (token == NULL || WORDEXP_DEBUG == 0)
-		return ;
-	words = wordexp(token->raw);
-	i = 0;
-	while (words && words[i])
-	{
-		free(words[i]);
-		i++;
-	}
-	free(words);
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR
+		|| signal(SIGINT, sigint_handler) == SIG_ERR)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

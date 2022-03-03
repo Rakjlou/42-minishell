@@ -3,16 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
+#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 20:44:37 by ajung            ###   ########.fr        #
+#    Updated: 2022/03/02 20:37:55 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/shell/init.c \
+	src/shell/loop.c \
+	src/shell/signals.c \
+	src/shell/singleton.c \
+	src/input/get_line.c \
+	src/input/clear.c \
 	src/wordexp/debug.c \
 	src/wordexp/fieldsplit/fieldsplit.c \
 	src/wordexp/wordexp.c \
@@ -22,18 +28,30 @@ SRC = src/main.c \
 	src/wordexp/unquoting/unquoting.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
+	src/parser/next_token.c \
 	src/parser/init_destroy.c \
 	src/parser/tree/dispatch.c \
 	src/parser/tree/build.c \
 	src/parser/tree/destroy.c \
 	src/parser/tree/print.c \
+	src/parser/command/build.c \
 	src/parser/command/is.c \
 	src/parser/command/get.c \
-	src/parser/command/simple.c \
-	src/parser/command/simple_run.c \
-	src/parser/command/list.c \
-	src/parser/command/pipeline.c \
-	src/parser/command/compound.c \
+	src/parser/command/compound/build.c \
+	src/parser/command/compound/debug.c \
+	src/parser/command/compound/run.c \
+	src/parser/command/list/build.c \
+	src/parser/command/list/debug.c \
+	src/parser/command/list/run.c \
+	src/parser/command/pipeline/build.c \
+	src/parser/command/pipeline/debug.c \
+	src/parser/command/pipeline/run.c \
+	src/parser/command/redirection/build.c \
+	src/parser/command/redirection/heredoc.c \
+	src/parser/command/redirection/debug.c \
+	src/parser/command/simple/build.c \
+	src/parser/command/simple/debug.c \
+	src/parser/command/simple/run.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \
@@ -52,17 +70,12 @@ SRC = src/main.c \
 	src/lexer/token/candidate/operator.c \
 	src/lexer/token/candidate/quote.c \
 	src/lexer/token/candidate/text.c \
-	src/adrian/test.c \
-	src/adrian/utils1.c \
-	src/adrian/shell.c \
-	src/adrian/signal.c \
-	src/adrian/perror_exit.c \
-	src/env/content_destroy.c \
-	src/env/set_value.c \
-	src/env/env_free.c \
-	src/env/env_init.c \
-	src/env/env_print.c \
-	src/env/get_value.c \
+	src/env/content.c \
+	src/env/set.c \
+	src/env/free.c \
+	src/env/init.c \
+	src/env/print.c \
+	src/env/get.c \
 	src/env/unset.c \
 
 

@@ -5,45 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:36:35 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/28 21:08:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
-#include "wordexp.h"
 #include "parser/parser.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 
-void	wordexp_debug(char *str, ...)
+void	command_simple_debug(t_command *command)
 {
-	va_list	args;
+	t_iter			iter;
+	t_token			*token;
 
-	if (WORDEXP_DEBUG == 0)
-		return ;
-	va_start(args, str);
-	vdprintf(STDERR_FILENO, str, args);
-	va_end(args);
-}
-
-/*
-** TODO: REMOVE ME
-*/
-void	print_wordexp(t_token *token)
-{
-	char	**words;
-	int		i;
-
-	if (token == NULL || WORDEXP_DEBUG == 0)
-		return ;
-	words = wordexp(token->raw);
-	i = 0;
-	while (words && words[i])
+	iter_init(&iter, &command->data.simple.args, ASC);
+	if (command_is_empty(command))
+		return ((void)ftprintf("\n"));
+	ftprintf("- ");
+	while (iter_next(&iter))
 	{
-		free(words[i]);
-		i++;
+		token = (t_token *)iter.data;
+		ftprintf("%s ", token->raw);
 	}
-	free(words);
+	redirections_debug(&command->data.simple.redirections);
+	ftprintf("\n");
 }

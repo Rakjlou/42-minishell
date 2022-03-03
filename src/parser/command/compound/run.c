@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:07:47 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/02/22 14:47:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "shell.h"
+#include "parser/parser.h"
 
-int	main(int argc, char **argv)
+void	command_compound_run(t_command *command)
 {
-	if (shell_init(argc, argv) != EXIT_SUCCESS)
-		return (perror("minishell"), EXIT_FAILURE);
-	shell_loop();
-	return (EXIT_SUCCESS);
+	t_command_compound	*compound_data;
+	t_command			*before;
+	t_command			*after;
+	t_command			*subshell;
+
+	(void)before;
+	(void)after;
+	before = command->before;
+	after = command->after;
+	compound_data = &command->data.compound;
+	subshell = compound_data->tree;
+	exec_tree_dispatch(subshell);
+	exec_tree_dispatch(after);
 }

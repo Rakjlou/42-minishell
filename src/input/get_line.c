@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:36:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:37:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "wordexp.h"
-#include "parser/parser.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+#include "input.h"
 
-void	wordexp_debug(char *str, ...)
+static char	*input_save_line_to_history(char *line)
 {
-	va_list	args;
-
-	if (WORDEXP_DEBUG == 0)
-		return ;
-	va_start(args, str);
-	vdprintf(STDERR_FILENO, str, args);
-	va_end(args);
+	add_history(line);
+	return (line);
 }
 
-/*
-** TODO: REMOVE ME
-*/
-void	print_wordexp(t_token *token)
+static char	*input_get_line_prompt(char *prompt, int history_save)
 {
-	char	**words;
-	int		i;
+	char	*line;
 
-	if (token == NULL || WORDEXP_DEBUG == 0)
-		return ;
-	words = wordexp(token->raw);
-	i = 0;
-	while (words && words[i])
-	{
-		free(words[i]);
-		i++;
-	}
-	free(words);
+	line = readline(prompt);
+	if (!history_save || line == NULL || !*line)
+		return (line);
+	return (input_save_line_to_history(line));
+}
+
+char	*input_get_line(void)
+{
+	return (input_get_line_prompt(PS1_DEFAULT, 1));
+}
+
+char	*input_get_line2(void)
+{
+	return (input_get_line_prompt(PS2_DEFAULT, 0));
 }

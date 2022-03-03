@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_cmatrix_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 20:07:47 by nsierra-         ###   ########.fr       */
+/*   Created: 2021/11/30 15:48:53 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 21:49:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "shell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_cmatrix_size(char **matrix)
 {
-	if (shell_init(argc, argv) != EXIT_SUCCESS)
-		return (perror("minishell"), EXIT_FAILURE);
-	shell_loop();
-	return (EXIT_SUCCESS);
+	size_t	i;
+
+	if (matrix == NULL)
+		return (0);
+	i = 0;
+	while (matrix[i])
+		++i;
+	return (i);
 }

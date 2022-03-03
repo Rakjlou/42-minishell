@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 20:25:27 by ajung             #+#    #+#             */
-/*   Updated: 2022/02/22 15:57:56 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 20:07:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "adrian/test.h"
+#include <stdlib.h>
+#include "input.h"
+#include "env.h"
+#include "parser/parser.h"
 
-t_shell	*_shell(void)
+void	shell_loop(void)
 {
-	static t_shell	shell;
-	static int		check = 0;
+	char		*line;
 
-	if (check == 0)
+	while (42)
 	{
-		check = 1;
-		ft_bzero(&shell, sizeof(t_shell));
+		line = input_get_line();
+		if (line == NULL)
+			break ;
+		parser_execute(line);
+		free(line);
 	}
-	return (&shell);
+	input_clear();
+	env_free();
 }

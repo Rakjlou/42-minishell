@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 20:15:41 by ajung            ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/02 18:47:53 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "parser/parser.h"
 
-# define PS1_DEFAULT "minishell$ "
-# define PS2_DEFAULT "> "
+void	command_pipeline_run(t_command *command)
+{
+	t_command		*before;
+	t_command		*after;
 
-
-
-
-# include "lexer/lexer.h"
-# include "adrian/test.h"
-
-
-#endif
+	before = command->before;
+	after = command->after;
+	exec_tree_dispatch(before);
+	exec_tree_dispatch(after);
+}

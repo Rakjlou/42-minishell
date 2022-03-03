@@ -2,4 +2,6 @@
 *.d
 *.a
 *.sublime*
+.nfs*
+.vscode
 minishell
