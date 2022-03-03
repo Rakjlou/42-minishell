@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:47:53 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 16:27:55 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/21 21:23:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser/parser.h"
+#include "adrian/test.h"
 
-void	command_pipeline_run(t_command *command)
+void	handler(int signal)
 {
-	t_command		*before;
-	t_command		*after;
+	if (signal == SIGINT)
+	{
+		write(1, "\n", 1);
+		//rl_on_new_line();
+		//rl_replace_line("", 0);
+		//rl_redisplay();
+	}
+}
 
-	before = command->before;
-	after = command->after;
-	exec_tree_dispatch(before);
-	exec_tree_dispatch(after);
+int	handle_signal()
+{
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+		exit (EXIT_FAILURE);
+	if (signal(SIGINT, handler) == SIG_ERR)
+		exit(EXIT_FAILURE);
+	return (0);
 }

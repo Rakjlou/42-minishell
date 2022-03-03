@@ -1,36 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:50:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:14:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
+#include "ftprintf.h"
+#include "ft_wordexp.h"
 #include "parser/parser.h"
-#include "adrian/test.h"
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	wordexp_debug(char *str, ...)
 {
-	char		*line;
+	va_list	args;
 
-	init_arg_main(argc, argv);
-	env_init();
-	handle_signal();
-	while (42)
+	if (WORDEXP_DEBUG == 0)
+		return ;
+	va_start(args, str);
+	vdprintf(STDERR_FILENO, str, args);
+}
+
+/*
+** TODO: REMOVE ME
+*/
+void	print_wordexp(t_token *token)
+{
+	char	**words;
+	int		i;
+
+	if (token == NULL || WORDEXP_DEBUG == 0)
+		return ;
+	words = ft_wordexp(token->raw);
+	i = 0;
+	while (words && words[i])
 	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		parser_execute(line);
-		free(line);
+		free(words[i]);
+		i++;
 	}
-	input_clear();
-	env_free(&_shell()->env);
-	return (0);
+	free(words);
 }

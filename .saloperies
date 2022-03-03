@@ -8,7 +8,14 @@ cat <
 echo a &&
 (echo ahaha) > toto
 
-export TEST=mdr"salut      '         ' * '  '      oui"
+export TEST=mdr"salut      '   ""  $USER    ' * '  '      oui"
 echo $TEST
 
 "l"s
+export a=3 | env
+
+exit | exit 42
+echo $?
+
+<< $PWD | << $HOME
+

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:47:53 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/17 20:25:27 by ajung             #+#    #+#             */
+/*   Updated: 2022/02/22 15:57:56 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser/parser.h"
+#include "adrian/test.h"
 
-void	command_pipeline_run(t_command *command)
+t_shell	*_shell(void)
 {
-	t_command		*before;
-	t_command		*after;
+	static t_shell	shell;
+	static int		check = 0;
 
-	before = command->before;
-	after = command->after;
-	exec_tree_dispatch(before);
-	exec_tree_dispatch(after);
+	if (check == 0)
+	{
+		check = 1;
+		ft_bzero(&shell, sizeof(t_shell));
+	}
+	return (&shell);
 }
