@@ -6,13 +6,17 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 19:00:26 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/02 20:37:55 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/main.c \
+	src/shell/init.c \
+	src/shell/loop.c \
+	src/shell/signals.c \
+	src/shell/singleton.c \
 	src/input/get_line.c \
 	src/input/clear.c \
 	src/wordexp/debug.c \
@@ -66,17 +70,12 @@ SRC = src/main.c \
 	src/lexer/token/candidate/operator.c \
 	src/lexer/token/candidate/quote.c \
 	src/lexer/token/candidate/text.c \
-	src/adrian/test.c \
-	src/adrian/utils1.c \
-	src/adrian/shell.c \
-	src/adrian/signal.c \
-	src/adrian/perror_exit.c \
-	src/env/content_destroy.c \
-	src/env/set_value.c \
-	src/env/env_free.c \
-	src/env/env_init.c \
-	src/env/env_print.c \
-	src/env/get_value.c \
+	src/env/content.c \
+	src/env/set.c \
+	src/env/free.c \
+	src/env/init.c \
+	src/env/print.c \
+	src/env/get.c \
 	src/env/unset.c \
 
 
