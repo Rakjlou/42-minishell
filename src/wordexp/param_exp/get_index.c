@@ -6,12 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:06:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 20:34:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:10:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_wordexp.h"
+#include "wordexp.h"
 
 static int	is_it_name(char c)
 {

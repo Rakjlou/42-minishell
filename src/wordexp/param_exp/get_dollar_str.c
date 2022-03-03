@@ -6,11 +6,11 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:04:25 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 20:31:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:10:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_wordexp.h"
+#include "wordexp.h"
 #include "shell.h"
 
 char	*get_before_dollar(char *str, int index_dollar)

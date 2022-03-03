@@ -6,12 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:33:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 20:36:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:10:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_wordexp.h"
+#include "wordexp.h"
 
 static char	*get_expanded(char *before_dollar, char *new_dollar_value,
 	char *after_dollar)
