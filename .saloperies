@@ -19,3 +19,5 @@ echo $?
 
 echo -n -n-n
 << $PWD | << $HOME
+
+"$USER "$USER" '$USER' ''"'$USER'
