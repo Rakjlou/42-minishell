@@ -13,7 +13,7 @@
 #ifndef WORDEXP_H
 # define WORDEXP_H
 
-# define WORDEXP_DEBUG 1
+# define WORDEXP_DEBUG 0
 
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
@@ -39,7 +39,10 @@ char	*get_after_dollar(char *str, int index_dollar);
 
 char	**unquoting(char **str);
 
+//A DELETE
 void	wordexp_debug(char *str, ...);
 void	wordexp_print(t_token *token);
+void	debug(char **unquote_output);
+
 
 #endif

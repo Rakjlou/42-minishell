@@ -47,3 +47,22 @@ void	print_wordexp(t_token *token)
 	}
 	free(words);
 }
+
+// A DELETE
+static void	print_split(char **str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+	{
+		dprintf(2, "- %s\n", str[i]);
+		i++;
+	}
+}
+
+void debug(char **unquote_output)
+{
+	dprintf(2, "\n---WORDEXP OUTPUT---\n");
+	print_split(unquote_output);
+}

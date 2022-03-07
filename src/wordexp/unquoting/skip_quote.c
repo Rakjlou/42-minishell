@@ -20,8 +20,8 @@ static void	change_quote_status(int *status)
 {
 	if (*status == QUOTE_STATUS_CLOSE)
 		*status = QUOTE_STATUS_OPEN;
-	else
-		*status = QUOTE_STATUS_OPEN;
+	else if (*status == QUOTE_STATUS_OPEN)
+		*status = QUOTE_STATUS_CLOSE;
 }
 
 static void	incr_and_change_status(t_cmatrix_iter *iter, int *status)
@@ -34,6 +34,6 @@ void	skip_quote(t_cmatrix_iter *iter, int *sin_stat, int *dou_stat)
 {
 	if (cmatrix_iter_getc(iter) == '\'' && *dou_stat == QUOTE_STATUS_CLOSE)
 		incr_and_change_status(iter, sin_stat);
-	else if (cmatrix_iter_getc(iter) == '\"' && sin_stat == QUOTE_STATUS_CLOSE)
+	else if (cmatrix_iter_getc(iter) == '\"' && *sin_stat == QUOTE_STATUS_CLOSE)
 		incr_and_change_status(iter, dou_stat);
 }

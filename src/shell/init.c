@@ -27,7 +27,7 @@ static void	param_init(int argc, char **argv)
 int	shell_init(int argc, char **argv)
 {
 	param_init(argc, argv);
-	if (env_init() != EXIT_SUCCESS || signals_init() != EXIT_SUCCESS)
+	if (env_init() != EXIT_SUCCESS )//|| signals_init() != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

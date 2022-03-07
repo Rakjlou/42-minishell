@@ -59,17 +59,11 @@ static int	on_quote(char c, int *sin_stat, int *dou_stat)
 {
 	if (c == '\'' && *dou_stat == QUOTE_STATUS_CLOSE)
 		return (EXIT_SUCCESS);
-	else if (c == '\"' && sin_stat == QUOTE_STATUS_CLOSE)
+	else if (c == '\"' && *sin_stat == QUOTE_STATUS_CLOSE)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
 
-/* 
-TEST a faire "123 '456' 789"
-2 problemes 
--> skip les mauvaises guillements
-->  Apres avoir skip une guillement skip le char suivant
- */
 static void	unquote(t_cmatrix_iter *output_iter, t_cmatrix_iter *str_iter)
 {
 	int 	sin_stat;
@@ -81,20 +75,16 @@ static void	unquote(t_cmatrix_iter *output_iter, t_cmatrix_iter *str_iter)
 	dou_stat= QUOTE_STATUS_CLOSE;
 	while (cmatrix_iter_incr(str_iter) == EXIT_SUCCESS)
 	{
-		//dprintf(2, "On rentre dans boucle \n"); // aenlever
 		c = cmatrix_iter_getc(str_iter);
 		while (on_quote(c, &sin_stat, &dou_stat) == EXIT_SUCCESS)
 		{
-			dprintf(2, "On skip une quote a i = %d, j = %d\n", str_iter->i, str_iter->j); //a enlever
 			skip_quote(str_iter, &sin_stat, &dou_stat);
-			cmatrix_iter_incr(str_iter);
 			c = cmatrix_iter_getc(str_iter);
 		}
 		cmatrix_iter_change_line(output_iter, str_iter);
 		cmatrix_iter_addc(output_iter, c);
 		output_iter->j++;
 	}
-	
 }
 
 char	**unquoting(char **str)
