@@ -14,5 +14,5 @@
 
 void	input_clear(void)
 {
-	rl_clear_history();
+	//rl_clear_history();
 }
