@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/04 20:52:19 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/07 19:13:05 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ char	**unquoting(char **str);
 void	wordexp_debug(char *str, ...);
 void	wordexp_print(t_token *token);
 void	debug(char **unquote_output);
-
 
 #endif

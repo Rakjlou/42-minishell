@@ -6,26 +6,22 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 20:21:16 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/04 21:48:54 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/07 19:08:37 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wordexp.h"
 #include "unquoting.h"
 #include <stdlib.h>
-
-
-# define QUOTE_STATUS_CLOSE 0
-# define QUOTE_STATUS_OPEN 1
-
-
+#define QUOTE_STATUS_CLOSE 0
+#define QUOTE_STATUS_OPEN 1
 
 static void	free_split(char **str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		free(str[i]);
 		i++;
@@ -37,7 +33,7 @@ static char	**alloc_output(char **str)
 {
 	int		i;
 	char	**output;
-	
+
 	i = 0;
 	while (str[i])
 		i++;
@@ -49,7 +45,7 @@ static char	**alloc_output(char **str)
 	{
 		output[i] = ft_calloc(sizeof(char), ft_strlen(str[i]) + 1);
 		if (!output[i])
-			return(free_split(output), NULL);
+			return (free_split(output), NULL);
 		i++;
 	}
 	return (output);
@@ -66,13 +62,13 @@ static int	on_quote(char c, int *sin_stat, int *dou_stat)
 
 static void	unquote(t_cmatrix_iter *output_iter, t_cmatrix_iter *str_iter)
 {
-	int 	sin_stat;
+	int		sin_stat;
 	int		dou_stat;
 	char	c;
 
-	output_iter->j= 0;
+	output_iter->j = 0;
 	sin_stat = QUOTE_STATUS_CLOSE;
-	dou_stat= QUOTE_STATUS_CLOSE;
+	dou_stat = QUOTE_STATUS_CLOSE;
 	while (cmatrix_iter_incr(str_iter) == EXIT_SUCCESS)
 	{
 		c = cmatrix_iter_getc(str_iter);
@@ -100,5 +96,4 @@ char	**unquoting(char **str)
 	cmatrix_iter_init(&output_iter, output);
 	unquote(&output_iter, &str_iter);
 	return (output_iter.data);
-	
 }
