@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/04 20:59:15 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/07 19:10:01 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ static void	free_split(char **str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		free(str[i]);
 		i++;
 	}
 	free(str);
 }
-
-
 
 char	**wordexp(char *str)
 {
@@ -34,13 +32,9 @@ char	**wordexp(char *str)
 	char	**pathname_output;
 	char	**output;
 
-	//PART 1 Param expansion
 	param_exp_output = paramexp(str);
-	//PART 2 field splitting
 	field_split_output = fieldsplit(param_exp_output);
-	//PART 3 Pathname expansion
 	(void) pathname_output;
-	//PART 4 Unquoting
 	output = unquoting(field_split_output);
 	debug(output); //A DELETE
 	free(param_exp_output);
