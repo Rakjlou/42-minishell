@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/04 19:38:11 by ajung            ###   ########.fr        #
+#    Updated: 2022/03/08 19:48:11 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,14 @@ SRC = src/main.c \
 	src/env/print.c \
 	src/env/get.c \
 	src/env/unset.c \
-
+	src/built_in/bi_cd.c \
+	src/built_in/bi_debug.c \
+	src/built_in/bi_echo.c \
+	src/built_in/bi_env.c \
+	src/built_in/bi_exit.c \
+	src/built_in/bi_export.c \
+	src/built_in/bi_pwd.c \
+	src/built_in/bi_unset.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)

@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 18:26:12 by ajung            ###   ########.fr       */
+/*   Created: 2022/03/08 16:59:07 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/08 20:01:31 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_H
-# define SHELL_H
+#include "libft/libft.h"
+#include "shell.h"
 
-# include "env.h"
+/* Prend name key  --> alphanumeique et underscore (sauf le premier pas numerique) */
 
-typedef struct s_shell_param
+
+int	bi_export(char **arg)
 {
-	int		argc;
-	char	**argv;
-	char	**env;
-}	t_shell_param;
-
-typedef struct s_shell
-{
-	t_shell_param	param;
-	t_env			env;
-}	t_shell;
-
-t_shell	*_shell(void);
-
-int		shell_init(int argc, char **argv);
-void	shell_loop(void);
-int		signals_init(void);
-
-#endif
+	(void) arg;
+	return (0);
+}
