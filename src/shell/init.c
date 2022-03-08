@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 19:51:39 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/07 19:20:15 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	param_init(int argc, char **argv)
 int	shell_init(int argc, char **argv)
 {
 	param_init(argc, argv);
-	if (env_init() != EXIT_SUCCESS || signals_init() != EXIT_SUCCESS)
+	if ((env_init() != EXIT_SUCCESS) || signals_init() != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
