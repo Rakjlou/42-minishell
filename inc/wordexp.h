@@ -6,14 +6,14 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/07 19:13:05 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/08 20:03:41 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORDEXP_H
 # define WORDEXP_H
 
-# define WORDEXP_DEBUG 0
+
 
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
@@ -25,6 +25,8 @@
 # include "libft/libft.h"
 
 typedef struct s_token	t_token;
+
+# define WORDEXP_DEBUG 0
 
 char	**wordexp(char *str);
 char	*paramexp(char *str);
