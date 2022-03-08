@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/02 20:37:55 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/08 18:50:12 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC = src/main.c \
 	src/parser/command/pipeline/build.c \
 	src/parser/command/pipeline/debug.c \
 	src/parser/command/pipeline/run.c \
+	src/parser/command/redirection/run.c \
 	src/parser/command/redirection/build.c \
 	src/parser/command/redirection/heredoc.c \
 	src/parser/command/redirection/debug.c \
