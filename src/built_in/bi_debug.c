@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   bi_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 18:26:12 by ajung            ###   ########.fr       */
+/*   Created: 2022/03/08 19:40:45 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/08 20:52:50 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_H
-# define SHELL_H
+#include "built_in.h"
 
-# include "env.h"
-
-typedef struct s_shell_param
+static void	free_split(char **str)
 {
-	int		argc;
-	char	**argv;
-	char	**env;
-}	t_shell_param;
+	int	i;
 
-typedef struct s_shell
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+void	bi_debug(char *str)
 {
-	t_shell_param	param;
-	t_env			env;
-}	t_shell;
-
-t_shell	*_shell(void);
-
-int		shell_init(int argc, char **argv);
-void	shell_loop(void);
-int		signals_init(void);
-
-#endif
+	char **arg;
+	
+	if (BUILT_IN_DEBUG == 0)
+		return ;
+	arg = ft_split(str, " ");
+	if (!arg || !arg[0])
+		return (free_split(arg));
+	if (ft_strncmp(arg[0], "echo", -1) == 0)
+		bi_echo(arg);
+	free_split(arg);
+}
