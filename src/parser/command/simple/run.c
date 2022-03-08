@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 18:54:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:59:39 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ static void	command_simple_exec(t_command *command)
 
 void	command_simple_run(t_command *command)
 {
-	redirections_run(command, &command->data.simple.args);
+	redirections_run(command, &command->data.simple.redirections);
 	command_simple_exec(command);
 }
