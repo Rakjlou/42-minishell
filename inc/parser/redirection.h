@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:22:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:49:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ typedef struct s_redirection
 	t_token	*arg;
 }	t_redirection;
 
-void	redirections_debug(t_lst *redirections);
 void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst);
+void	redirections_run(t_command *command, t_lst *redirections);
+void	redirections_debug(t_lst *redirections);
+
 int		heredoc_request(t_parser *parser, t_redirection *redirection);
 
 #endif
