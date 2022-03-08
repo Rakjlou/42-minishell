@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/07 19:10:26 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/08 19:02:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ static void	print_split(char **str)
 	}
 }
 
-//A DELETE 
+//A DELETE
 void	debug(char **unquote_output)
 {
+	if (!WORDEXP_DEBUG)
+		return ;
 	dprintf(2, "\n---WORDEXP OUTPUT---\n");
 	print_split(unquote_output);
 }
