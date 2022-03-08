@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 22:33:32 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:53:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
 
+# include <stddef.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "libft.h"
 
 typedef struct s_token	t_token;
 
@@ -35,7 +39,9 @@ char	*get_after_dollar(char *str, int index_dollar);
 
 char	**unquoting(char **str);
 
+//A DELETE
 void	wordexp_debug(char *str, ...);
 void	wordexp_print(t_token *token);
+void	debug(char **unquote_output);
 
 #endif

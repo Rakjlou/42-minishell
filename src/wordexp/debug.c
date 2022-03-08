@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:36:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/07 19:10:26 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,24 @@ void	print_wordexp(t_token *token)
 		i++;
 	}
 	free(words);
+}
+
+// A DELETE
+static void	print_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		dprintf(2, "- %s\n", str[i]);
+		i++;
+	}
+}
+
+//A DELETE 
+void	debug(char **unquote_output)
+{
+	dprintf(2, "\n---WORDEXP OUTPUT---\n");
+	print_split(unquote_output);
 }

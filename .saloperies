@@ -17,5 +17,7 @@ export a=3 | env
 exit | exit 42
 echo $?
 
+echo -n -n-n
 << $PWD | << $HOME
 
+"$USER "$USER" '$USER' ''"'$USER'
