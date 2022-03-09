@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 18:59:52 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 03:48:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	**wordexp(char *str)
 	field_split_output = fieldsplit(param_exp_output);
 	(void) pathname_output;
 	output = unquoting(field_split_output);
-	debug(output); //A DELETE
+	if (WORDEXP_DEBUG == 1)
+		debug(output); //A DELETE
 	free(param_exp_output);
 	free_split(field_split_output);
 	return (output);
