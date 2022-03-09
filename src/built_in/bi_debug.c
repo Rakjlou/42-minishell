@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   bi_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 19:47:33 by ajung            ###   ########.fr       */
+/*   Created: 2022/03/08 19:40:45 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/08 20:52:50 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
-#include "env.h"
-#include "parser/parser.h"
 #include "built_in.h"
 
-void	shell_loop(void)
+static void	free_split(char **str)
 {
-	char		*line;
+	int	i;
 
-	while (42)
+	i = 0;
+	while (str[i])
 	{
-		line = input_get_line();
-		if (line == NULL)
-			break ;
-		bi_debug(line);
-		parser_execute(line);
-		free(line);
+		free(str[i]);
+		i++;
 	}
-	input_clear();
-	env_free();
+	free(str);
+}
+
+void	bi_debug(char *str)
+{
+	char **arg;
+	
+	if (BUILT_IN_DEBUG == 0)
+		return ;
+	arg = ft_split(str, " ");
+	if (!arg || !arg[0])
+		return (free_split(arg));
+	if (ft_strncmp(arg[0], "echo", -1) == 0)
+		bi_echo(arg);
+	free_split(arg);
 }
