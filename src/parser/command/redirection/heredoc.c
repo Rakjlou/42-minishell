@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:23:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:08:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	heredoc_join(t_parser *parser, char **dest, char *str)
 	return (1);
 }
 
+/* Deserves a small refacto to write natively into a tmpfile */
 static void	heredoc_set_arg(t_redirection *redirection, char *new_arg)
 {
 	free(redirection->arg->raw);
