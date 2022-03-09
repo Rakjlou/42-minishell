@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 03:47:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:42:51 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef struct s_shell_param
 {
-	int		argc;
-	char	**argv;
-	char	**env;
+	int				argc;
+	char			**argv;
+	char			**env;
 }	t_shell_param;
 
 typedef struct s_shell

@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:54 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 04:17:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 19:36:43 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-# define BUILT_IN_DEBUG 1
+# define BUILT_IN_DEBUG 0
 
 # include <stddef.h>
 # include "libft.h"
 # include <stdio.h>
 # include <unistd.h>
-# include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
+# include <string.h>
 
 int	bi_cd(char **arg);
 int	bi_echo(char **arg);
