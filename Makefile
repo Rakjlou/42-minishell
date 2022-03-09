@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/08 20:59:16 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/08 21:25:46 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,7 @@ LDLIBS = -lft \
 all: libft $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)$(CFLAGS)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS) $(CFLAGS)
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
