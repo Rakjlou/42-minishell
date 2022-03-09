@@ -21,3 +21,6 @@ echo -n -n-n
 << $PWD | << $HOME
 
 "$USER "$USER" '$USER' ''"'$USER'
+
+export TEST="-n"
+echo $TEST hello
