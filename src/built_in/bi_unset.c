@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:44:22 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/08 19:50:35 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/09 04:19:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
-int	unset(char **arg)
+int	bi_unset(char **arg)
 {
 	(void) arg;
 	return (0);
