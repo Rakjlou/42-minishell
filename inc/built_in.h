@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:54 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/08 20:10:32 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/09 04:17:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define BUILT_IN_DEBUG 1
 
 # include <stddef.h>
-# include "libft/libft.h"
+# include "libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdio.h>
