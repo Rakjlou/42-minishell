@@ -5,34 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 20:58:00 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/08 20:54:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include "ftprintf.h"
 #include "parser/parser.h"
 
-void	exec_tree_destroy(t_command *command)
+static void	redirection_destroy(void *raw)
 {
-	t_command	*before;
-	t_command	*after;
+	t_redirection	*redirection;
 
-	if (command == NULL)
-		return ;
-	before = command->before;
-	after = command->after;
-	if (command->type == COMMAND_SIMPLE)
+	redirection = raw;
+	if (redirection->fd > 0 && close(redirection->fd) == -1)
 	{
-		redirections_destroy(&command->data.simple.redirections);
-		lst_destroy_nodes(&command->data.simple.args, NULL);
+		ftfprintf(
+			STDERR_FILENO,
+			"%s: %s: %s\n",
+			"minishell",
+			redirection->filename,
+			strerror(errno));
 	}
-	else if (command->type == COMMAND_COMPOUND)
-	{
-		redirections_destroy(&command->data.compound.redirections);
-		exec_tree_destroy(command->data.compound.tree);
-	}
-	free(command);
-	exec_tree_destroy(before);
-	exec_tree_destroy(after);
+	free(raw);
+}
+
+void	redirections_destroy(t_lst *redirections)
+{
+	lst_destroy_nodes(redirections, redirection_destroy);
 }
