@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:48:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 21:49:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 00:43:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ char			**ft_split(char const *str, const char *sep);
 void			ft_cmatrix_print(char **matrix);
 void			ft_cmatrix_free(char **matrix);
 size_t			ft_cmatrix_size(char **matrix);
+char			**ft_cmatrix_join(char **matrix1, char **matrix2);
+
 
 /* Raw memory */
 void			ft_bzero(void *s, size_t n);
