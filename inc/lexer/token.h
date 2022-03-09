@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 21:41:59 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 20:11:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum s_token_type
 	TOK_SLESS,
 	TOK_SGREAT,
 	TOK_DLESS,
-	TOK_DGREAT
+	TOK_DGREAT,
+	TOK_TOTAL
 }	t_token_type;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 21:31:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 20:46:07 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,9 @@
 #include "parser/parser.h"
 
 #include <unistd.h>
-
-int		open_file(char *filename, int flags, int *fd)
-{
-	int	candidate;
-
-	candidate = open(filename, flags);
-
-}
-
-void	redirection_handle(t_command *command, t_redirection *redirection)
-{
-	char	*filename;
-
-	filename = redirection->arg->expanded[0];
-	if (token_is(redirection->type, TOK_SGREAT))
-		redirection->fd = open(filename, O_CREAT);
-}
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 
 static int	is_ambiguous(t_redirection *redirection)
 {
@@ -52,6 +38,23 @@ static void	ambiguous_error(t_command *command, t_redirection *redirection)
 		redirection->arg->raw);
 }
 
+static int	expand_redirection(
+	t_command *command,
+	t_redirection *redirection)
+{
+	redirection->arg->expanded = wordexp(redirection->arg->raw);
+	if (is_ambiguous(redirection))
+		return (ambiguous_error(command, redirection), 0);
+	redirection->filename = redirection->arg->expanded[0];
+	return (1);
+}
+
+static void	redirection_handle(t_command *command, t_redirection *redirection)
+{
+	if (!redirection_open_file(command, redirection))
+		return ;
+}
+
 void	redirections_run(t_command *command, t_lst *redirections)
 {
 	t_redirection	*redirection;
@@ -61,12 +64,9 @@ void	redirections_run(t_command *command, t_lst *redirections)
 	while (iter_next(&iter))
 	{
 		redirection = iter.data;
-		if (!token_is(redirection->type, TOK_DLESS))
-		{
-			redirection->arg->expanded = wordexp(redirection->arg->raw);
-			if (is_ambiguous(redirection))
-				ambiguous_error(command, redirection);
-		}
+		if (!token_is(redirection->type, TOK_DLESS)
+			&& !expand_redirection(command, redirection))
+			return ;
 		redirection_handle(command, redirection);
 	}
 	return ;
