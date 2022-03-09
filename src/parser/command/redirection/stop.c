@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:25:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 00:30:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 static void	redirection_stop(t_redirection *redirection)
 {
-	if (redirection_is(redirection, R_OUT))
+	if (redirection_is(redirection, R_OUT) && redirection->stdout_fd >= 0)
 	{
 		dup2(redirection->stdout_fd, STDOUT_FILENO);
 		close(redirection->stdout_fd);
 	}
-	else if (redirection_is(redirection, R_IN))
+	else if (redirection_is(redirection, R_IN) && redirection->stdin_fd >= 0)
 	{
 		dup2(redirection->stdin_fd, STDIN_FILENO);
 		close(redirection->stdin_fd);
