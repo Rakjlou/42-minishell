@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:22:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 00:28:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	redirection_start(t_command *command, t_redirection *redirection)
 		if (redirection->stdout_fd < 0
 			|| dup2(redirection->fd, STDOUT_FILENO) < 0)
 			return ((command->status = EXIT_FAILURE), perror("minishell"));
-		ftfprintf(STDERR_FILENO, "S1\n");
 	}
 	else if (redirection_is(redirection, R_IN))
 	{
@@ -68,7 +67,6 @@ static void	redirection_start(t_command *command, t_redirection *redirection)
 		if (redirection->stdin_fd < 0
 			|| dup2(redirection->fd, STDIN_FILENO) < 0)
 			return ((command->status = EXIT_FAILURE), perror("minishell"));
-		ftfprintf(STDERR_FILENO, "S2\n");
 	}
 }
 
