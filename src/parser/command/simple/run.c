@@ -6,12 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 02:27:52 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 03:06:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "ftprintf.h"
 #include "wordexp.h"
 #include "env.h"
@@ -28,6 +30,7 @@ static int	build_argv(t_command *command)
 	t_lst			*args;
 	t_iter			iter;
 	t_token			*arg;
+	char			**tmp;
 
 	args = &command->data.simple.args;
 	iter_init(&iter, args, ASC);
@@ -37,10 +40,13 @@ static int	build_argv(t_command *command)
 		arg->expanded = wordexp(arg->raw);
 		if (arg->expanded == NULL)
 			return (build_argv_error(command), 0);
+		tmp = command->argv;
 		command->argv = ft_cmatrix_join(command->argv, arg->expanded);
 		if (command->argv == NULL)
-			return (build_argv_error(command), 0);
+			return (ft_cmatrix_free(tmp), build_argv_error(command), 0);
+		ft_cmatrix_free(tmp);
 	}
+	ft_cmatrix_print(command->argv);
 	return (1);
 }
 
@@ -80,11 +86,6 @@ static int	is_absolute_or_relative(char *path)
 	);
 }
 
-static int	is_executable(char *path)
-{
-	return (access(path, X_OK) == 0);
-}
-
 static void	command_error(t_command *command)
 {
 	command->status = EXIT_FAILURE;
@@ -93,6 +94,19 @@ static void	command_error(t_command *command)
 		"%s: %s\n",
 		"minishell",
 		strerror(errno));
+}
+
+static int	is_executable_file(t_command *command, char *path)
+{
+	struct stat	sb;
+	int			stat_result;
+
+	stat_result = stat(path, &sb);
+	if (stat_result == -1 && errno != ENOENT)
+		return (command_error(command), 0);
+	else if (stat_result == -1)
+		return (0);
+	return (sb.st_mode & S_IXUSR && S_ISREG(sb.st_mode));
 }
 
 static void	command_find_path_error(t_command *command)
@@ -158,12 +172,12 @@ static int	command_find_path_in_env(t_command *command, char **path)
 	else if (ft_cmatrix_size(paths) == 0)
 		return (ft_cmatrix_free(paths), command_not_found_error(command), 0);
 	i = 0;
-	while (paths[i])
+	while (paths[i] && command->status == EXIT_SUCCESS)
 	{
 		candidate = build_pathname(paths[i], command->argv[0]);
 		if (candidate == NULL)
 			return (ft_cmatrix_free(paths), command_error(command), 0);
-		else if (is_executable(candidate))
+		else if (is_executable_file(command, candidate))
 			return (ft_cmatrix_free(paths), (*path = candidate), 1);
 		free(candidate);
 		++i;
@@ -176,10 +190,16 @@ static int	command_find_path(t_command *command, char **path)
 	char	*user_input;
 
 	user_input = command->argv[0];
-	if (is_absolute_or_relative(user_input) && !is_executable(user_input))
+	if (is_absolute_or_relative(user_input)
+		&& !is_executable_file(command, user_input))
 		return (command_find_path_error(command), 0);
 	else if (is_absolute_or_relative(user_input))
-		return ((*path = user_input), 1);
+	{
+		*path = ft_strdup(user_input);
+		if (*path == NULL)
+			return (command_error(command), 0);
+		return (1);
+	}
 	return (command_find_path_in_env(command, path));
 }
 
@@ -189,7 +209,6 @@ static void	command_exec(t_command *command)
 
 	if (!command_find_path(command, &path))
 		return ;
-	ftprintf("FOUND %s\n", path);
 	free(path);
 }
 
