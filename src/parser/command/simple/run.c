@@ -6,17 +6,19 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 03:30:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 03:45:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include "ftprintf.h"
 #include "wordexp.h"
 #include "env.h"
+#include "shell.h"
 #include "parser/parser.h"
 
 static void	command_error(t_command *command)
@@ -220,10 +222,20 @@ static int	command_find_path(t_command *command, char **path)
 static void	command_exec(t_command *command)
 {
 	char	*path;
+	pid_t	child_pid;
 
-	if (!command_find_path(command, &path))
+	if (command->status != EXIT_SUCCESS || !command_find_path(command, &path))
 		return ;
-	free(path);
+	child_pid = fork();
+	if (child_pid == -1)
+		return (command_error(command));
+	else if (child_pid == 0)
+		execve(path, command->argv, _shell()->param.env);
+	else
+	{
+		waitpid(child_pid, NULL, 0);
+		free(path);
+	}
 }
 
 static void	command_simple_exec(t_command *command)
