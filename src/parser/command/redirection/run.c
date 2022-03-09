@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 20:46:07 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 00:22:56 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,27 @@ static int	expand_redirection(
 	return (1);
 }
 
-static void	redirection_handle(t_command *command, t_redirection *redirection)
+static void	redirection_start(t_command *command, t_redirection *redirection)
 {
-	if (!redirection_open_file(command, redirection))
+	if (!redirection_is(redirection, R_HERE)
+		&& !redirection_open_file(command, redirection))
 		return ;
+	else if (redirection_is(redirection, R_OUT))
+	{
+		redirection->stdout_fd = dup(STDOUT_FILENO);
+		if (redirection->stdout_fd < 0
+			|| dup2(redirection->fd, STDOUT_FILENO) < 0)
+			return ((command->status = EXIT_FAILURE), perror("minishell"));
+		ftfprintf(STDERR_FILENO, "S1\n");
+	}
+	else if (redirection_is(redirection, R_IN))
+	{
+		redirection->stdin_fd = dup(STDIN_FILENO);
+		if (redirection->stdin_fd < 0
+			|| dup2(redirection->fd, STDIN_FILENO) < 0)
+			return ((command->status = EXIT_FAILURE), perror("minishell"));
+		ftfprintf(STDERR_FILENO, "S2\n");
+	}
 }
 
 void	redirections_run(t_command *command, t_lst *redirections)
@@ -67,7 +84,7 @@ void	redirections_run(t_command *command, t_lst *redirections)
 		if (!token_is(redirection->type, TOK_DLESS)
 			&& !expand_redirection(command, redirection))
 			return ;
-		redirection_handle(command, redirection);
+		redirection_start(command, redirection);
 	}
 	return ;
 }
