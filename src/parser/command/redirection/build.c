@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:30:01 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/08 23:52:38 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 #include "ftprintf.h"
 #include "input.h"
 #include "parser/parser.h"
+
+static t_redirection	*redirection_new(void)
+{
+	t_redirection	*redirection;
+
+	redirection = ft_calloc(sizeof(t_redirection), 1);
+	if (redirection == NULL)
+		return (NULL);
+	redirection->stdout_fd = -1;
+	redirection->stdin_fd = -1;
+	return (redirection);
+}
 
 void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst)
 {
@@ -28,7 +40,7 @@ void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst)
 		return (parser_unexpected_token(parser, iter->data));
 	arg = iter->data;
 	arg->type = TOK_WORD;
-	redirection = ft_calloc(sizeof(t_redirection), 1);
+	redirection = redirection_new();
 	if (redirection == NULL)
 		return (parser_internal_error(parser));
 	redirection->type = type;
