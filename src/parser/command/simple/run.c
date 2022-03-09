@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 03:06:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 03:30:27 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,49 @@
 #include "wordexp.h"
 #include "env.h"
 #include "parser/parser.h"
+
+static void	command_error(t_command *command)
+{
+	command->status = EXIT_FAILURE;
+	ftfprintf(
+		STDERR_FILENO,
+		"%s: %s\n",
+		"minishell",
+		strerror(errno));
+}
+
+static void	command_file_error_errcode(t_command *command, int errcode)
+{
+	command->status = EXIT_FAILURE;
+	ftfprintf(
+		STDERR_FILENO,
+		"%s: %s: %s\n",
+		"minishell",
+		command->argv[0],
+		strerror(errcode));
+}
+
+static void	command_file_error_message(t_command *command, char *message)
+{
+	command->status = EXIT_FAILURE;
+	ftfprintf(
+		STDERR_FILENO,
+		"%s: %s: %s\n",
+		"minishell",
+		command->argv[0],
+		message);
+}
+
+static void	command_not_found_error(t_command *command)
+{
+	command->status = EXIT_FAILURE;
+	ftfprintf(
+		STDERR_FILENO,
+		"%s: %s: %s\n",
+		"minishell",
+		command->argv[0],
+		"command not found");
+}
 
 static void	build_argv_error(t_command *command)
 {
@@ -46,7 +89,6 @@ static int	build_argv(t_command *command)
 			return (ft_cmatrix_free(tmp), build_argv_error(command), 0);
 		ft_cmatrix_free(tmp);
 	}
-	ft_cmatrix_print(command->argv);
 	return (1);
 }
 
@@ -86,16 +128,6 @@ static int	is_absolute_or_relative(char *path)
 	);
 }
 
-static void	command_error(t_command *command)
-{
-	command->status = EXIT_FAILURE;
-	ftfprintf(
-		STDERR_FILENO,
-		"%s: %s\n",
-		"minishell",
-		strerror(errno));
-}
-
 static int	is_executable_file(t_command *command, char *path)
 {
 	struct stat	sb;
@@ -106,29 +138,11 @@ static int	is_executable_file(t_command *command, char *path)
 		return (command_error(command), 0);
 	else if (stat_result == -1)
 		return (0);
-	return (sb.st_mode & S_IXUSR && S_ISREG(sb.st_mode));
-}
-
-static void	command_find_path_error(t_command *command)
-{
-	command->status = EXIT_FAILURE;
-	ftfprintf(
-		STDERR_FILENO,
-		"%s: %s: %s\n",
-		"minishell",
-		command->argv[0],
-		strerror(errno));
-}
-
-static void	command_not_found_error(t_command *command)
-{
-	command->status = EXIT_FAILURE;
-	ftfprintf(
-		STDERR_FILENO,
-		"%s: %s: %s\n",
-		"minishell",
-		command->argv[0],
-		"command not found");
+	if (!(sb.st_mode & S_IXUSR))
+		return (command_file_error_errcode(command, EACCES), 0);
+	else if (!S_ISREG(sb.st_mode))
+		return (command_file_error_message(command, "Is a directory"), 0);
+	return (1);
 }
 
 char	*build_pathname(char *path, char *cmd)
@@ -192,7 +206,7 @@ static int	command_find_path(t_command *command, char **path)
 	user_input = command->argv[0];
 	if (is_absolute_or_relative(user_input)
 		&& !is_executable_file(command, user_input))
-		return (command_find_path_error(command), 0);
+		return (0);
 	else if (is_absolute_or_relative(user_input))
 	{
 		*path = ft_strdup(user_input);
