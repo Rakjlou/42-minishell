@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:13:00 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:52:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	command_set_last(t_command *command)
 void	command_set_last_status(t_command *command, int status)
 {
 	command->status = status;
-	ftfprintf(STDERR_FILENO, "status %d\n", status);
+	if (DEBUG_COMMAND_STATUS)
+		ftfprintf(STDERR_FILENO, "status %d\n", status);
 	command_set_last(command);
 }
