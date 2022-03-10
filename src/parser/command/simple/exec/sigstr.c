@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 22:22:15 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:00:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	sigstr_init_1(char *message[NSIG])
 	message[SIGQUIT] = "Quit";
 	message[SIGILL] = "Illegal instruction";
 	message[SIGTRAP] = "BPT trace/trap";
-	message[SIGABRT] = "ABORT instruction";
+	message[SIGABRT] = "Aborted";
 	message[SIGFPE] = "Floating point exception";
 	message[SIGKILL] = "Killed";
 	message[SIGBUS] = "Bus error";

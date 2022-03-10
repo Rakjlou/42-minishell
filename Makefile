@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/09 22:27:24 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/09 22:58:27 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = src/main.c \
 	src/parser/command/build.c \
 	src/parser/command/is.c \
 	src/parser/command/get.c \
+	src/parser/command/set.c \
 	src/parser/command/compound/build.c \
 	src/parser/command/compound/debug.c \
 	src/parser/command/compound/run.c \

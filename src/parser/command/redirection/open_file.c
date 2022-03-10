@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 23:12:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:16:00 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	redirection_open_file_error(
 	t_redirection *redirection)
 {
 	if (command != NULL)
-		command->status = EXIT_FAILURE;
+		command_set_last_status(command, EXIT_FAILURE);
 	ftfprintf(
 		STDERR_FILENO,
 		"%s: %s: %s\n",

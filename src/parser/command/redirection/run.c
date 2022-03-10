@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:28:22 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:36:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,60 @@ static int	is_ambiguous(t_redirection *redirection)
 	);
 }
 
-static void	ambiguous_error(t_command *command, t_redirection *redirection)
-{
-	command->status = EXIT_FAILURE;
-	ftfprintf(
-		STDERR_FILENO,
-		"%s: %s: ambiguous redirect\n",
-		"minishell",
-		redirection->arg->raw);
-}
-
-static int	expand_redirection(
+static int	redirection_setup(
 	t_command *command,
 	t_redirection *redirection)
 {
+	if (redirection_is(redirection, R_HERE))
+		return (1);
 	redirection->arg->expanded = wordexp(redirection->arg->raw);
 	if (is_ambiguous(redirection))
-		return (ambiguous_error(command, redirection), 0);
+	{
+		command_set_last_status(command, EXIT_FAILURE);
+		ftfprintf(
+			STDERR_FILENO,
+			"%s: %s: ambiguous redirect\n",
+			"minishell",
+			redirection->arg->raw);
+		return (0);
+	}
 	redirection->filename = redirection->arg->expanded[0];
-	return (1);
+	return (redirection_open_file(command, redirection));
 }
 
-static void	redirection_start(t_command *command, t_redirection *redirection)
+static void	redirection_start(
+	t_command *command,
+	t_redirection *redirection,
+	int *save,
+	int duplicated)
 {
-	if (!redirection_is(redirection, R_HERE)
-		&& !redirection_open_file(command, redirection))
-		return ;
-	else if (redirection_is(redirection, R_OUT))
+	*save = dup(duplicated);
+	if (*save < 0 || dup2(redirection->fd, duplicated) < 0)
 	{
-		redirection->stdout_fd = dup(STDOUT_FILENO);
-		if (redirection->stdout_fd < 0
-			|| dup2(redirection->fd, STDOUT_FILENO) < 0)
-			return ((command->status = EXIT_FAILURE), perror("minishell"));
+		return (
+			command_set_last_status(command, EXIT_FAILURE),
+			perror("minishell")
+		);
+	}
+}
+
+static void	redirection_dispatch(t_command *command, t_redirection *redirection)
+{
+	if (redirection_is(redirection, R_OUT))
+	{
+		redirection_start(
+			command,
+			redirection,
+			&redirection->stdout_fd,
+			STDOUT_FILENO);
 	}
 	else if (redirection_is(redirection, R_IN))
 	{
-		redirection->stdin_fd = dup(STDIN_FILENO);
-		if (redirection->stdin_fd < 0
-			|| dup2(redirection->fd, STDIN_FILENO) < 0)
-			return ((command->status = EXIT_FAILURE), perror("minishell"));
+		redirection_start(
+			command,
+			redirection,
+			&redirection->stdin_fd,
+			STDIN_FILENO);
 	}
 }
 
@@ -79,10 +94,9 @@ void	redirections_run(t_command *command, t_lst *redirections)
 	while (iter_next(&iter))
 	{
 		redirection = iter.data;
-		if (!token_is(redirection->type, TOK_DLESS)
-			&& !expand_redirection(command, redirection))
+		if (!redirection_setup(command, redirection))
 			return ;
-		redirection_start(command, redirection);
+		redirection_dispatch(command, redirection);
 	}
 	return ;
 }

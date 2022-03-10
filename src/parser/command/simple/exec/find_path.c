@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:20:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:47:49 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	is_absolute_or_relative(char *path)
 	return (
 		path[0] == '/'
 		|| (path[0] == '.' && path[1] == '/')
-		|| (path[0] == '.' && path[1] == '.' && path[1] == '/')
+		|| (path[0] == '.' && path[1] == '.' && path[2] == '/')
 	);
 }
 
-static int	is_executable_file(t_command *command, char *path)
+static int	is_executable_file(t_command *command, char *path, int print_enoent)
 {
 	struct stat	sb;
 	int			stat_result;
@@ -34,9 +34,13 @@ static int	is_executable_file(t_command *command, char *path)
 	if (stat_result == -1 && errno != ENOENT)
 		return (command_error(command), 0);
 	else if (stat_result == -1)
-		return (0);
+	{
+		if (!print_enoent)
+			return (0);
+		return (command_file_error_errcode(command, errno, 127), 0);
+	}
 	if (!(sb.st_mode & S_IXUSR))
-		return (command_file_error_errcode(command, EACCES), 0);
+		return (command_file_error_errcode(command, EACCES, 126), 0);
 	else if (!S_ISREG(sb.st_mode))
 		return (command_file_error_message(command, "Is a directory"), 0);
 	return (1);
@@ -88,7 +92,7 @@ static int	command_find_path_in_env(t_command *command, char **path)
 		candidate = build_pathname(paths[i], command->argv[0]);
 		if (candidate == NULL)
 			return (ft_cmatrix_free(paths), command_error(command), 0);
-		else if (is_executable_file(command, candidate))
+		else if (is_executable_file(command, candidate, 0))
 			return (ft_cmatrix_free(paths), (*path = candidate), 1);
 		free(candidate);
 		++i;
@@ -102,7 +106,7 @@ int	command_find_path(t_command *command, char **path)
 
 	user_input = command->argv[0];
 	if (is_absolute_or_relative(user_input)
-		&& !is_executable_file(command, user_input))
+		&& !is_executable_file(command, user_input, 1))
 		return (0);
 	else if (is_absolute_or_relative(user_input))
 	{
