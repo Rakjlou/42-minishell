@@ -47,12 +47,15 @@ char	*get_new_dollar_value(char *str, int index_dollar)
 	raw = get_raw_dollar_var(str, index_dollar);
 	if (!raw)
 		return (NULL);
-	if (ft_isdigit(raw[0] == 1))
+	if (ft_isdigit(raw[0]) == 1)
 		return (free(raw), ft_calloc(sizeof(char), 1));
-	value = env_get_value(raw);
+	if (ft_strncmp(raw, "?", -1) == 0)
+		value = ft_itoa(_last_command_status());
+	else
+		value = ft_strdup(env_get_value(raw));
 	if (!value)
 		return (free(raw), ft_strdup(""));
-	return (free(raw), ft_strdup(value));
+	return (free(raw), value);
 }
 
 char	*get_after_dollar(char *str, int index_dollar)

@@ -29,6 +29,7 @@ typedef struct s_shell
 	t_parser		parser;
 	t_env			env;
 	t_command		*last_command;
+	int				last_command_status;
 }	t_shell;
 
 t_shell	*_shell(void);
