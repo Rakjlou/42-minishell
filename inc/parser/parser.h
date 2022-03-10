@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:25:55 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:05:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ typedef struct s_parser
 	t_lexer			lexer;
 	t_command		*tree;
 	int				subshell;
+	char			*user_input;
 }	t_parser;
 
-void	parser_init(t_parser *parser, char *line);
-void	parser_destroy(t_parser *parser);
-void	parser_execute(char *line);
+t_parser	*_parser(void);
+
+void	parser_init(char *line);
+void	parser_destroy(void);
+void	parser_execute(void);
 int		parser_next_token(t_parser *parser, t_iter *iter);
 int		parser_next_token_noendl(t_parser *parser, t_iter *iter);
 

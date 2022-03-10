@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:51:40 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/09 21:12:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_H
-# define SHELL_H
+#include "parser/parser.h"
+#include "input.h"
+#include "shell.h"
 
-# include "env.h"
-# include "parser/parser.h"
-
-typedef struct s_shell_param
+void	shell_destroy(void)
 {
-	int		argc;
-	char	**argv;
-	char	**env;
-}	t_shell_param;
-
-typedef struct s_shell
-{
-	t_shell_param	param;
-	t_parser		parser;
-	t_env			env;
-}	t_shell;
-
-t_shell	*_shell(void);
-
-int		shell_init(int argc, char **argv);
-void	shell_destroy(void);
-void	shell_loop(void);
-int		signals_init(void);
-
-#endif
+	parser_destroy();
+	input_clear();
+	env_free();
+}
