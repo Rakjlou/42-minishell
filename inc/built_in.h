@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:54 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 15:00:28 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:16:24 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int		bi_exit(char **arg);
 int		bi_export(char **arg);
 int		bi_pwd(char **arg);
 int		bi_unset(char **arg);
+
+//UTILS
+char	*keyval_get_key(char *str);
+char	*keyval_get_value(char *str);
 
 //A ENLEVER
 void	bi_debug(char *str);
