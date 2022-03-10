@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 22:48:24 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:07:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 
 	if (waitpid(child_pid, &status, 0) == -1)
 		return (command_error(command));
-	command->status = process_exit_status(status);
+	command_set_last_status(command, process_exit_status(status));
 	if (!WIFSTOPPED(status) && WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) != SIGINT && WTERMSIG(status) != SIGTERM)

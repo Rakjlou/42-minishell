@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:51:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 22:54:00 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_shell
 	t_shell_param	param;
 	t_parser		parser;
 	t_env			env;
+	t_command		*last_command;
 }	t_shell;
 
 t_shell	*_shell(void);

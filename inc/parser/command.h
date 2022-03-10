@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 22:21:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:46:52 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ void	builtin_exec(t_command *command);
 int		command_find_path(t_command *command, char **path);
 int		command_build_argv(t_command *command);
 
+void	command_set_last(t_command *command);
+void	command_set_last_status(t_command *command, int status);
+
 void	command_error(t_command *command);
-void	command_file_error_errcode(t_command *command, int errcode);
+void	command_file_error_errcode(t_command *command, int errcode, int status);
 void	command_file_error_message(t_command *command, char *message);
 void	command_not_found_error(t_command *command);
 void	build_argv_error(t_command *command);
