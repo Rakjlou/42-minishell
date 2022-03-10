@@ -6,12 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:46:52 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:53:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
 # define COMMAND_H
+
+# define DEBUG_COMMAND_STATUS 0
 
 # include "parser/command_simple.h"
 # include "parser/command_list.h"

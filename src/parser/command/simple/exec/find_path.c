@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:47:49 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 00:09:51 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static int	is_executable_file(t_command *command, char *path, int print_enoent)
 	}
 	if (!(sb.st_mode & S_IXUSR))
 		return (command_file_error_errcode(command, EACCES, 126), 0);
-	else if (!S_ISREG(sb.st_mode))
+	else if (S_ISDIR(sb.st_mode))
 		return (command_file_error_message(command, "Is a directory"), 0);
-	return (1);
+	return (S_ISREG(sb.st_mode));
 }
 
 static char	*build_pathname(char *path, char *cmd)
