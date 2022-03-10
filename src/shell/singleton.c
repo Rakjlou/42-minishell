@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:21:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:53:25 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,12 @@ t_env	*_env(void)
 
 	shell = _shell();
 	return (&shell->env);
+}
+
+t_parser	*_parser(void)
+{
+	t_shell	*shell;
+
+	shell = _shell();
+	return (&shell->parser);
 }

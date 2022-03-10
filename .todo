@@ -1,1 +1,1 @@
-open (O_TMPFILE) pour gérer les heredocs
+cat + ctrl-c --> double prompt

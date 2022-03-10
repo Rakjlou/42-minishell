@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:25:48 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 22:21:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	command_file_error_errcode(t_command *command, int errcode);
 void	command_file_error_message(t_command *command, char *message);
 void	command_not_found_error(t_command *command);
 void	build_argv_error(t_command *command);
-
+char	*sigstr(int sig);
 
 #endif

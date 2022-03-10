@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 04:21:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:06:07 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	shell_loop(void)
 		line = input_get_line();
 		if (line == NULL)
 			break ;
-		parser_execute(line);
-		free(line);
+		parser_init(line);
+		parser_execute();
+		parser_destroy();
 	}
-	input_clear();
-	env_free();
 }

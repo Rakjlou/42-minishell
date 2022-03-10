@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/09 20:27:29 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/09 22:27:24 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = minishell
 
 SRC = src/main.c \
 	src/shell/init.c \
+	src/shell/destroy.c \
 	src/shell/loop.c \
 	src/shell/signals.c \
 	src/shell/singleton.c \
@@ -64,6 +65,7 @@ SRC = src/main.c \
 	src/parser/command/simple/exec/exec.c \
 	src/parser/command/simple/exec/find_path.c \
 	src/parser/command/simple/exec/run.c \
+	src/parser/command/simple/exec/sigstr.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \
