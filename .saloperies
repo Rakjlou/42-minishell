@@ -25,6 +25,10 @@ echo -n -n-n
 export TEST="-n"
 echo $TEST hello
 
+> toto
+
+
+------HEREDOC---------
 bash-5.0$ cat << 'end'
 > $USER
 > end

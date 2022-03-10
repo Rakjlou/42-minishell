@@ -35,6 +35,8 @@ int	get_index_end(char *str, int index_dollar)
 	int	i;
 
 	i = index_dollar + 1;
+	if (str[i] == '?')
+		return(i + 1);
 	if (ft_isdigit(str[i]) == 1)
 		return (i + 1);
 	while (str[i])

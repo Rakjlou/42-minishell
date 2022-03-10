@@ -47,7 +47,5 @@ int	_last_command_status(void)
 	t_shell	*shell;
 
 	shell = _shell();
-	if (shell->last_command == NULL)
-		return (EXIT_SUCCESS);
-	return (shell->last_command->status);
+	return (shell->last_command_status);
 }
