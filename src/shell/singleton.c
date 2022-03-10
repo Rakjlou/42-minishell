@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 20:53:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:23:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ t_parser	*_parser(void)
 
 	shell = _shell();
 	return (&shell->parser);
+}
+
+int	_last_command_status(void)
+{
+	t_shell	*shell;
+
+	shell = _shell();
+	if (shell->last_command == NULL)
+		return (EXIT_SUCCESS);
+	return (shell->last_command->status);
 }
