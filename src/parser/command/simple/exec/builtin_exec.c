@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:25:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 23:39:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@
 void	builtin_exec(t_command *command)
 {
 	if (!ft_strncmp(command->argv[0], "echo", -1))
-		command->status = bi_echo(command->argv);
+		command_set_last_status(command, bi_echo(command->argv));
 	else if (!ft_strncmp(command->argv[0], "cd", -1))
-		command->status = bi_cd(command->argv);
+		command_set_last_status(command, bi_cd(command->argv));
 	else if (!ft_strncmp(command->argv[0], "pwd", -1))
-		command->status = bi_pwd(command->argv);
+		command_set_last_status(command, bi_pwd(command->argv));
 	else if (!ft_strncmp(command->argv[0], "export", -1))
-		command->status = bi_export(command->argv);
+		command_set_last_status(command, bi_export(command->argv));
 	else if (!ft_strncmp(command->argv[0], "unset", -1))
-		command->status = bi_unset(command->argv);
+		command_set_last_status(command, bi_unset(command->argv));
 	else if (!ft_strncmp(command->argv[0], "env", -1))
-		command->status = bi_env(command->argv);
+		command_set_last_status(command, bi_env(command->argv));
 	else if (!ft_strncmp(command->argv[0], "exit", -1))
-		command->status = bi_exit(command->argv);
+		command_set_last_status(command, bi_exit(command->argv));
 }
