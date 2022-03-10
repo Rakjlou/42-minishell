@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:41:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 21:04:24 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 18:47:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ static void non_numeric_args(char **arg)
 			arg[0],
 			arg[1],
 			"numeric argument required");
-	input_clear();
-	env_free();
+	shell_destroy();
 	exit(2);
-	
+
 }
 
 static void	valid_exit_no_arg()
 {
-	input_clear();
-	env_free();
+	shell_destroy();
 	exit(0);
 }
 
@@ -60,6 +58,7 @@ static int	check_arg(char **arg)
 
 int	bi_exit(char **arg)
 {
+	unsigned char	out;
 
 	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	if (arg[1] == NULL)
@@ -72,9 +71,9 @@ int	bi_exit(char **arg)
 			non_numeric_args(arg);
 		else
 		{
-			input_clear();
-			env_free();
-			exit((unsigned char)ft_atoi(arg[1]));
+			out = ft_atoi(arg[1]);
+			shell_destroy();
+			exit(out);
 		}
 	}
 	return (EXIT_SUCCESS);
