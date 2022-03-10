@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:36 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 14:54:14 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:39:34 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	start_arg(char **arg)
 	return (i);
 }
 
+// TODO: echo - test
 int	bi_echo(char **arg)
 {
 	int	i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wordexp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 03:48:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:45:01 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	free_split(char **str)
 	free(str);
 }
 
+// TODO: "'                  '" actuellement est split, ne devrait pas
 char	**wordexp(char *str)
 {
 	char	*param_exp_output;
