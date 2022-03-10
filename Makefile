@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/09 03:48:18 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/09 20:27:29 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,12 @@ SRC = src/main.c \
 	src/parser/command/redirection/debug.c \
 	src/parser/command/simple/build.c \
 	src/parser/command/simple/debug.c \
-	src/parser/command/simple/run.c \
+	src/parser/command/simple/exec/build_argv.c \
+	src/parser/command/simple/exec/builtin_exec.c \
+	src/parser/command/simple/exec/errors.c \
+	src/parser/command/simple/exec/exec.c \
+	src/parser/command/simple/exec/find_path.c \
+	src/parser/command/simple/exec/run.c \
 	src/lexer/init_destroy.c \
 	src/lexer/build_token_list.c \
 	src/lexer/errors.c \

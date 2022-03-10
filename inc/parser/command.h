@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:46:34 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:25:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,19 @@ void	command_build(
 void	command_pipeline_run(t_command *command);
 void	command_pipeline_build(t_parser *parser, t_iter *i, t_command **cmd);
 void	command_pipeline_debug(t_command *command);
+
+/* Exec */
+void	command_exec(t_command *command);
+void	builtin_exec(t_command *command);
+
+int		command_find_path(t_command *command, char **path);
+int		command_build_argv(t_command *command);
+
+void	command_error(t_command *command);
+void	command_file_error_errcode(t_command *command, int errcode);
+void	command_file_error_message(t_command *command, char *message);
+void	command_not_found_error(t_command *command);
+void	build_argv_error(t_command *command);
+
 
 #endif

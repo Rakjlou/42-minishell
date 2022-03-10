@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_destroy.c                                     :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 17:28:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 20:43:57 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/03/09 20:25:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/wait.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "shell.h"
 #include "parser/parser.h"
 
-void	parser_init(t_parser *parser, char *line)
+void	command_exec(t_command *command)
 {
-	ft_bzero(parser, sizeof(t_parser));
-	lexer_init(&parser->lexer, line);
-	lexer_build_token_list(&parser->lexer);
-}
+	char	*path;
+	pid_t	child_pid;
 
-void	parser_destroy(t_parser *parser)
-{
-	exec_tree_destroy(parser->tree);
-	lexer_destroy(&parser->lexer);
-	parser->tree = NULL;
+	if (command->status != EXIT_SUCCESS || !command_find_path(command, &path))
+		return ;
+	child_pid = fork();
+	if (child_pid == -1)
+		return (command_error(command));
+	else if (child_pid == 0)
+		execve(path, command->argv, _shell()->param.env);
+	else
+	{
+		waitpid(child_pid, NULL, 0);
+		free(path);
+	}
 }
