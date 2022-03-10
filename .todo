@@ -1,1 +1,2 @@
 cat + ctrl-c --> double prompt
+heredocuments, gerer l'expansion en fonction du quoting du delimiteur
