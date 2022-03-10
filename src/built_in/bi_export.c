@@ -42,16 +42,17 @@ static int	valid_name(char **arg)
 	return (EXIT_SUCCESS);
 }
 
-static void	invalid_identifier(char **arg)
+static int	invalid_identifier(char **arg)
 {
-		ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
+	ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
 		"minishell",
 		arg[0],
 		arg[1],
 		"not a valid identifier");
-
-		//retour erreur 1
+	return (1);
 }
+
+// static void	
 
 int	bi_export(char **arg)
 {
@@ -60,6 +61,6 @@ int	bi_export(char **arg)
 	else if(valid_name(arg) == EXIT_SUCCESS)
 		ftfprintf(STDOUT_FILENO, "valid export\n");
 	else if (valid_name(arg) == EXIT_FAILURE)
-		invalid_identifier(arg);
+		return(invalid_identifier(arg));
 	return (EXIT_SUCCESS);
 }
