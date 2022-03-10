@@ -27,6 +27,9 @@ echo $TEST hello
 
 > toto
 
+export test1 123 test2
+echo $?
+
 
 ------HEREDOC---------
 bash-5.0$ cat << 'end'
