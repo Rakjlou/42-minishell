@@ -19,12 +19,12 @@
 static void	too_many_args(char **arg)
 {
 	ftfprintf(STDERR_FILENO, "%s: %s: %s\n",
-				"minishell",
-				arg[0],
-				"too many arguments");
+		"minishell",
+		arg[0],
+		"too many arguments");
 }
 
-static void non_numeric_args(char **arg)
+static void	non_numeric_args(char **arg)
 {
 	ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
 			"minishell",
@@ -36,7 +36,7 @@ static void non_numeric_args(char **arg)
 
 }
 
-static void	valid_exit_no_arg()
+static void	valid_exit_no_arg(void)
 {
 	shell_destroy();
 	exit(0);

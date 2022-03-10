@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:53:20 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 18:01:38 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 14:59:21 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	bi_pwd(char **arg)
 {
-	(void) 	arg;
 	char	douille[10000];
-	
+
+	(void) arg;
 	getcwd(douille, 10000);
 	ft_putstr_fd(douille, STDOUT_FILENO);
 	ft_putstr_fd("\n", STDOUT_FILENO);

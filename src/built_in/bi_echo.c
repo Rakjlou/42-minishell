@@ -6,13 +6,13 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:36 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 15:51:10 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 14:54:14 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
-static int start_arg(char **arg)
+static int	start_arg(char **arg)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,6 @@ static int start_arg(char **arg)
 		i++;
 	}
 	return (i);
-
 }
 
 int	bi_echo(char **arg)
@@ -39,9 +38,6 @@ int	bi_echo(char **arg)
 	int	i;
 
 	i = start_arg(arg);
-
-	if (BUILT_IN_DEBUG == 1) 		//DEBUG A ENLEVER
-		dprintf(2, "start arg %d\n", i);
 	while (arg[i])
 	{
 		ft_putstr_fd(arg[i], STDOUT_FILENO);

@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:54 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 19:36:43 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 15:00:28 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include <stdlib.h>
 # include <string.h>
 
-int	bi_cd(char **arg);
-int	bi_echo(char **arg);
-int	bi_env(char **arg);
-int	bi_exit(char **arg);
-int	bi_export(char **arg);
-int	bi_pwd(char **arg);
-int	bi_unset(char **arg);
+int		bi_cd(char **arg);
+int		bi_echo(char **arg);
+int		bi_env(char **arg);
+int		bi_exit(char **arg);
+int		bi_export(char **arg);
+int		bi_pwd(char **arg);
+int		bi_unset(char **arg);
 
 //A ENLEVER
 void	bi_debug(char *str);
