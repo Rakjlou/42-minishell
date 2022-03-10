@@ -24,3 +24,21 @@ echo -n -n-n
 
 export TEST="-n"
 echo $TEST hello
+
+bash-5.0$ cat << 'end'
+> $USER
+> end
+$USER
+
+bash-5.0$ cat << end
+> $USER
+> end
+ajung
+
+bash-5.0$ cat << e'n'd
+> $USER
+> end
+$USER
+
+bash-5.0$ cat
+^\Quit (core dumped)

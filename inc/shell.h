@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 22:54:00 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:18:03 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_shell_param
 {
-	int		argc;
-	char	**argv;
-	char	**env;
+	int				argc;
+	char			**argv;
+	char			**env;
 }	t_shell_param;
 
 typedef struct s_shell
