@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/10 18:18:03 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:24:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_shell
 }	t_shell;
 
 t_shell	*_shell(void);
+int		_last_command_status(void);
 
 int		shell_init(int argc, char **argv);
 void	shell_destroy(void);
