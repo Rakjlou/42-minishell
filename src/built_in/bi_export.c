@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:59:07 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/14 15:38:19 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/14 17:26:33 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	export_to_env(char *arg)
 	free(value);
 }
 
-static void check_args(char **args, int *output)
+static void	check_args(char **args, int *output)
 {
 	int	i;
 
@@ -72,7 +72,7 @@ static void check_args(char **args, int *output)
 int	bi_export(char **args)
 {
 	int	output;
-	
+
 	output = EXIT_SUCCESS;
 	if (args[1] == NULL)
 		env_print_export();
