@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 21:05:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:28:01 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ typedef struct s_parser
 
 t_parser	*_parser(void);
 
-void	parser_init(char *line);
-void	parser_destroy(void);
-void	parser_execute(void);
-int		parser_next_token(t_parser *parser, t_iter *iter);
-int		parser_next_token_noendl(t_parser *parser, t_iter *iter);
+void		parser_init(char *line);
+void		parser_destroy(void);
+void		parser_execute(void);
+int			parser_next_token(t_parser *parser, t_iter *iter);
+int			parser_next_token_noendl(t_parser *parser, t_iter *iter);
 
-void	parser_unexpected_token(t_parser *parser, t_token *token);
-void	parser_internal_error(t_parser *parser);
+void		parser_unexpected_token(t_parser *parser, t_token *token);
+void		parser_internal_error(t_parser *parser);
 
-void	print_wordexp(t_token *token);
+void		print_wordexp(t_token *token);
 
 #endif
