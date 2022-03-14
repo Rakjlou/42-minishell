@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/10 21:45:01 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/14 15:38:43 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	free_split(char **str)
 	free(str);
 }
 
-// TODO: "'                  '" actuellement est split, ne devrait pas
 char	**wordexp(char *str)
 {
 	char	*param_exp_output;
@@ -38,7 +37,7 @@ char	**wordexp(char *str)
 	(void) pathname_output;
 	output = unquoting(field_split_output);
 	if (WORDEXP_DEBUG == 1)
-		debug(output); //A DELETE
+		debug(output);
 	free(param_exp_output);
 	free_split(field_split_output);
 	return (output);
