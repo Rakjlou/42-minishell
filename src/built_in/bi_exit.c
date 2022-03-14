@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:41:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 18:47:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:37:51 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ static void	too_many_args(char **arg)
 static void	non_numeric_args(char **arg)
 {
 	ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
-			"minishell",
-			arg[0],
-			arg[1],
-			"numeric argument required");
+		"minishell",
+		arg[0],
+		arg[1],
+		"numeric argument required");
 	shell_destroy();
 	exit(2);
-
 }
 
 static void	valid_exit_no_arg(void)

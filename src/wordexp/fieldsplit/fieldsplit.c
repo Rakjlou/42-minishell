@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fieldsplit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:51:02 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/03 19:15:11 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:38:55 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*get_ifs(void)
+static char	*get_ifs(void)
 {
 	char	*ifs;
 
@@ -22,13 +22,30 @@ char	*get_ifs(void)
 	return (ifs);
 }
 
+static int	search_quote(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+			return (EXIT_SUCCESS);
+		i++;
+	}
+	return (EXIT_FAILURE);
+}
+
 char	**fieldsplit(char *str)
 {
 	char	*ifs;
 	char	**output;
 
 	ifs = get_ifs();
-	output = ft_split(str, ifs);
+	if (search_quote(str) == EXIT_SUCCESS)
+		output = ft_split(str, "");
+	else
+		output = ft_split(str, ifs);
 	if (!output)
 		return (NULL);
 	return (output);

@@ -49,3 +49,7 @@ $USER
 
 bash-5.0$ cat
 ^\Quit (core dumped)
+
+echo -
+
+echo test"   test2                        test3                                       test4"test5
