@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 21:42:41 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/14 14:22:29 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_token	t_token;
 
-# define WORDEXP_DEBUG 1
+# define WORDEXP_DEBUG 0
 
 char	**wordexp(char *str);
 char	*paramexp(char *str);
