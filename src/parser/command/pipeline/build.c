@@ -6,11 +6,19 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:25:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:47:09 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/parser.h"
+
+static void	set_parent(t_command *pipeline)
+{
+	if (pipeline->before != NULL)
+		pipeline->before->parent = pipeline;
+	if (pipeline->after != NULL)
+		pipeline->after->parent = pipeline;
+}
 
 void	command_pipeline_build(
 	t_parser *parser,
@@ -31,4 +39,5 @@ void	command_pipeline_build(
 	*command = pipeline;
 	if (pipeline->after == NULL || command_is_empty(pipeline->after))
 		parser_unexpected_token(parser, (t_token *)iter->data);
+	set_parent(pipeline);
 }

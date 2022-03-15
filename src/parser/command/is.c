@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 19:38:20 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:50:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	command_is_empty(t_command *command)
 
 int	command_is(t_command *command, t_command_type type)
 {
-	return (command->type == type);
+	return (command != NULL && command->type == type);
 }
 
 int	command_is_start_of(t_token *token, t_command_type type)
