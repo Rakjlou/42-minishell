@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:48:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:30:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	command_compound_build(
 	cdata = &compound->data.compound;
 	cdata->tree = NULL;
 	command_compound_build_subtree(parser, iter, cdata);
+	if (cdata->tree != NULL)
+		cdata->tree->parent = compound;
 	compound->before = *command;
 	*command = compound;
 	if (parser->status != PARSER_STATUS_DEFAULT)
