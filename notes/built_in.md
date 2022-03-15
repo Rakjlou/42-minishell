@@ -3,7 +3,7 @@
 	cd with only a relative or absolute path
 	-->DONE pwd : no options
 	--> DONE export : no options
-	unset : no options
+	--> DONE unset : no options
 	--> DONE env : no options or arguments
 	--> DONE exit : no options
 

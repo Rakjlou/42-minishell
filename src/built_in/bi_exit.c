@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:41:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/14 15:37:51 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/15 18:37:37 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static int	check_arg(char **arg)
 {
 	int	i;
 
-	i = 0;
+	if (ft_isdigit(arg[1][0]) == 0 && arg[1][0] != '+' && arg[1][0] != '-')
+		return (EXIT_FAILURE);
+	i = 1;
 	while (arg[1][i])
 	{
 		if (ft_isdigit(arg[1][i]) == 0)

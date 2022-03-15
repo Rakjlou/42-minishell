@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:45:54 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 21:16:24 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/15 20:24:13 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <string.h>
+# include <linux/limits.h>
+
 
 int		bi_cd(char **arg);
 int		bi_echo(char **arg);
