@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dollar_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:04:25 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 21:10:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:24:52 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ char	*get_new_dollar_value(char *str, int index_dollar)
 	if (ft_strncmp(raw, "?", -1) == 0)
 		value = ft_itoa(_last_command_status());
 	else
-		value = ft_strdup(env_get_value(raw));
+	{
+		if (env_get_value(raw) == NULL)
+			value = ft_strdup("");
+		else
+			value = ft_strdup(env_get_value(raw));
+	}
 	if (!value)
 		return (free(raw), ft_strdup(""));
 	return (free(raw), value);

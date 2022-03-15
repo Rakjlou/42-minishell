@@ -53,3 +53,5 @@ bash-5.0$ cat
 echo -
 
 echo test"   test2                        test3                                       test4"test5
+
+exit -42
