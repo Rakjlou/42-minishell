@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:53:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:16:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_command
 	t_command_data		data;
 	int					status;
 	char				**argv;
+	struct s_command	*parent;
 	struct s_command	*before;
 	struct s_command	*after;
 }	t_command;
