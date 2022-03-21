@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:10:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/10 19:24:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:03:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,19 @@ typedef struct s_shell_param
 	char			**env;
 }	t_shell_param;
 
+typedef struct s_exec
+{
+	int	pipeline;
+	int	pipe_in;
+	int	pipe_out;
+}	t_exec;
+
 typedef struct s_shell
 {
 	t_shell_param	param;
 	t_parser		parser;
 	t_env			env;
+	t_exec			exec;
 	t_command		*last_command;
 }	t_shell;
 
