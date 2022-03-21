@@ -6,7 +6,7 @@
 #    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/10 20:58:10 by ajung            ###   ########.fr        #
+#    Updated: 2022/03/21 20:29:26 by ajung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = src/main.c \
 	src/wordexp/unquoting/unquoting.c \
 	src/wordexp/unquoting/skip_quote.c \
 	src/wordexp/unquoting/cmatrix_iterator.c \
+	src/wordexp/pathname_exp/pathname_exp.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/next_token.c \
