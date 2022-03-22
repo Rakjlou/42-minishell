@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 19:56:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:47:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 
 void	builtin_exec(t_command *command)
 {
-	if (!ft_strncmp(command->argv[0], "echo", -1))
+	if (!redirections_run(command, &command->data.simple.redirections))
+		return (redirections_stop(&command->data.simple.redirections));
+	else if (!ft_strncmp(command->argv[0], "echo", -1))
 		command_set_last_status(command, bi_echo(command->argv));
 	else if (!ft_strncmp(command->argv[0], "cd", -1))
 		command_set_last_status(command, bi_cd(command->argv));
@@ -38,4 +40,5 @@ void	builtin_exec(t_command *command)
 		command_set_last_status(command, bi_env(command->argv));
 	else if (!ft_strncmp(command->argv[0], "exit", -1))
 		command_set_last_status(command, bi_exit(command->argv));
+	redirections_stop(&command->data.simple.redirections);
 }

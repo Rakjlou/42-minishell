@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:36:36 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:28:07 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	redirection_dispatch(t_command *command, t_redirection *redirection)
 	}
 }
 
-void	redirections_run(t_command *command, t_lst *redirections)
+int	redirections_run(t_command *command, t_lst *redirections)
 {
 	t_redirection	*redirection;
 	t_iter			iter;
@@ -95,8 +95,8 @@ void	redirections_run(t_command *command, t_lst *redirections)
 	{
 		redirection = iter.data;
 		if (!redirection_setup(command, redirection))
-			return ;
+			return (0);
 		redirection_dispatch(command, redirection);
 	}
-	return ;
+	return (1);
 }

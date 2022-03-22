@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 19:56:28 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:16:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	is_builtin(char *str)
 	return (0);
 }
 
-static void	command_simple_exec(t_command *command)
+void	command_simple_run(t_command *command)
 {
 	if (command->status != 0
 		|| !command_build_argv(command)
@@ -44,11 +44,4 @@ static void	command_simple_exec(t_command *command)
 		builtin_exec(command);
 	else
 		command_exec(command);
-}
-
-void	command_simple_run(t_command *command)
-{
-	redirections_run(command, &command->data.simple.redirections);
-	command_simple_exec(command);
-	redirections_stop(&command->data.simple.redirections);
 }

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 18:15:31 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:59:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ static int	try_pipe(int pipe_fd[2])
 static int	handle_new_pipe(t_command *command)
 {
 	t_command_pipeline	*pipeline;
-	int					pipe_fd[2];
 
-	pipeline = &command->data.pipeline;
 	_shell()->exec.pipeline = 1;
+	pipeline = &command->data.pipeline;
 	if (!try_dup(&pipeline->in, _shell()->exec.pipe_in)
 		|| !try_dup(&pipeline->out, _shell()->exec.pipe_out)
-		|| !try_pipe(pipe_fd))
+		|| !try_pipe(pipeline->fds))
 		return (command_error(command), 0);
 	return (1);
 }
