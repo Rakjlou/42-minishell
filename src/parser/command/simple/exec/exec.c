@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 21:13:00 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:32:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	handle_pipe(t_command *command)
 
 	if (!_shell()->exec.pipeline)
 		return (1);
-	fds[0] = command->parent->data.pipeline.fds[0];
-	fds[1] = command->parent->data.pipeline.fds[1];
+	fds[PIPE_WRITE] = command->parent->data.pipeline.fds[PIPE_WRITE];
+	fds[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
 	if (_shell()->exec.pipeline == 1)
 	{
 		ftprintf("_shell()->exec.pipeline == 1\n");
@@ -36,7 +36,7 @@ static int	handle_pipe(t_command *command)
 	{
 		ftprintf("_shell()->exec.pipeline == 2\n");
 		dup2(fds[PIPE_READ], _shell()->exec.pipe_in);
-		close(fds[PIPE_READ]);
+		close(fds[PIPE_WRITE]);
 	}
 	return (1);
 }
@@ -63,7 +63,13 @@ static void	parent_wait_pipeline(t_command *command, pid_t child_pid)
 {
 	(void)command;
 	(void)child_pid;
-	_shell()->exec.pipeline++;
+	if (_shell()->exec.pipeline == 1)
+	{
+		close(command->parent->data.pipeline.fds[PIPE_WRITE]);
+		_shell()->exec.pipeline++;
+	}
+	else if (_shell()->exec.pipeline == 2)
+		close(command->parent->data.pipeline.fds[PIPE_READ]);
 }
 
 static void	parent_wait(t_command *command, pid_t child_pid)
@@ -71,9 +77,11 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 	int	status;
 
 	if (_shell()->exec.pipeline > 0)
-		parent_wait_pipeline(command, child_pid);
+		return (parent_wait_pipeline(command, child_pid));
+	ftfprintf(STDERR_FILENO, "BEFORE WAIT\n");
 	if (waitpid(child_pid, &status, 0) == -1)
 		return (command_error(command));
+	ftfprintf(STDERR_FILENO, "AFTER WAIT\n");
 	command_set_last_status(command, process_exit_status(status));
 	if (!WIFSTOPPED(status) && WIFSIGNALED(status))
 	{
