@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 23:07:12 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:53:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@
 static void	command_exec_child(t_command *command, char *path)
 {
 	if (execve(path, command->argv, _shell()->param.env) == -1)
-	{
 		command_error(command);
-		shell_destroy();
-		exit(EXIT_FAILURE);
-	}
 }
 
 static int	process_exit_status(int status)
