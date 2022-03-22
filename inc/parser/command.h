@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/21 19:02:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:15:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,21 @@ typedef enum e_command_type
 	COMMAND_TYPE_COUNT
 }	t_command_type;
 
+# define PIPE_WRITE 1;
+# define PIPE_READ 0;
+
+typedef struct s_command_pipeline
+{
+	int	in;
+	int	out;
+}	t_command_pipeline;
+
 typedef union u_command_data
 {
 	t_command_simple	simple;
 	t_command_list		list;
 	t_command_compound	compound;
+	t_command_pipeline	pipeline;
 }	t_command_data;
 
 typedef struct s_command

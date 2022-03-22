@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/21 18:29:37 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/22 19:55:15 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC = src/main.c \
 	src/parser/command/list/debug.c \
 	src/parser/command/list/run.c \
 	src/parser/command/pipeline/build.c \
+	src/parser/command/pipeline/close.c \
 	src/parser/command/pipeline/debug.c \
 	src/parser/command/pipeline/run.c \
 	src/parser/command/redirection/run.c \
@@ -145,7 +146,7 @@ test: all
 	--show-leak-kinds=all \
 	--show-reachable=yes \
 	--suppressions=./.readline.supp \
-	./minishell < test
+	./minishell
 
 .PHONY: clean fclean re libft test
 
