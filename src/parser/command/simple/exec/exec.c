@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:24:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:03:07 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ static int	handle_pipe(t_command *command)
 	current_fd[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
 	if (pipeline_is_first())
 	{
-		dup2(current_fd[PIPE_WRITE], STDOUT_FILENO);
+		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
 		close(current_fd[PIPE_READ]);
 		return (1);
 	}
 	else if (pipeline_is_middle())
 	{
-		dup2(command->parent->parent->data.pipeline.fds[PIPE_READ], STDIN_FILENO);
-		dup2(current_fd[PIPE_WRITE], STDOUT_FILENO);
+		dup2(command->parent->parent->data.pipeline.fds[PIPE_READ], _shell()->pipeline.pipe_in);
+		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
 		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
 		close(command->parent->data.pipeline.fds[PIPE_READ]);
 	}
 	else if (pipeline_is_last())
 	{
-		dup2(current_fd[PIPE_READ], STDIN_FILENO);
+		dup2(current_fd[PIPE_READ], _shell()->pipeline.pipe_in);
 		close(current_fd[PIPE_WRITE]);
 	}
 	return (1);
@@ -76,6 +76,7 @@ static void	parent_wait_pipeline(t_command *command, pid_t child_pid)
 	{
 		close(command->parent->data.pipeline.fds[PIPE_READ]);
 		_shell()->pipeline.r--;
+		pipeline_close();
 	}
 	else if (pipeline_is_middle())
 	{
