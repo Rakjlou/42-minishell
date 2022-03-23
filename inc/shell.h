@@ -38,6 +38,7 @@ typedef struct s_shell
 	t_env			env;
 	t_pipeline		pipeline;
 	t_command		*last_command;
+	int				last_command_status;
 }	t_shell;
 
 t_shell	*_shell(void);
