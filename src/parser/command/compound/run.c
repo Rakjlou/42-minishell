@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:01:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:16:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 void	subshell_start(t_command *subshell)
 {
-	t_pipeline	pipeline_save;
-
-	ft_memcpy(&pipeline_save, &_shell()->pipeline, sizeof(t_pipeline));
 	exec_tree_run(subshell);
-	ft_memcpy(&_shell()->pipeline, &pipeline_save, sizeof(t_pipeline));
 }
 
 void	command_compound_run(t_command *command)
