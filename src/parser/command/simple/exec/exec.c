@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 21:32:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:02:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ static int	handle_pipe(t_command *command)
 {
 	int	fds[2];
 
-	if (!_shell()->exec.pipeline)
+	if (!pipeline_is_active())
 		return (1);
 	fds[PIPE_WRITE] = command->parent->data.pipeline.fds[PIPE_WRITE];
 	fds[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
-	if (_shell()->exec.pipeline == 1)
+	if (pipeline_is_first())
 	{
-		ftprintf("_shell()->exec.pipeline == 1\n");
-		dup2(fds[PIPE_WRITE], _shell()->exec.pipe_out);
+		ftprintf("pipeline_is_first\n");
+		dup2(fds[PIPE_WRITE], STDOUT_FILENO);
 		close(fds[PIPE_READ]);
 		return (1);
 	}
-	else if (_shell()->exec.pipeline == 2)
+	else if (pipeline_is_last())
 	{
-		ftprintf("_shell()->exec.pipeline == 2\n");
-		dup2(fds[PIPE_READ], _shell()->exec.pipe_in);
+		ftprintf("pipeline_is_last\n");
+		dup2(fds[PIPE_READ], STDIN_FILENO);
 		close(fds[PIPE_WRITE]);
 	}
 	return (1);
@@ -61,27 +61,27 @@ static int	process_exit_status(int status)
 
 static void	parent_wait_pipeline(t_command *command, pid_t child_pid)
 {
-	(void)command;
 	(void)child_pid;
-	if (_shell()->exec.pipeline == 1)
+	if (pipeline_is_first())
 	{
 		close(command->parent->data.pipeline.fds[PIPE_WRITE]);
-		_shell()->exec.pipeline++;
+		_shell()->pipeline.l--;
 	}
-	else if (_shell()->exec.pipeline == 2)
+	else if (pipeline_is_last())
+	{
 		close(command->parent->data.pipeline.fds[PIPE_READ]);
+		_shell()->pipeline.r--;
+	}
 }
 
 static void	parent_wait(t_command *command, pid_t child_pid)
 {
 	int	status;
 
-	if (_shell()->exec.pipeline > 0)
+	if (pipeline_is_active())
 		return (parent_wait_pipeline(command, child_pid));
-	ftfprintf(STDERR_FILENO, "BEFORE WAIT\n");
-	if (waitpid(child_pid, &status, 0) == -1)
+	else if (waitpid(child_pid, &status, 0) == -1)
 		return (command_error(command));
-	ftfprintf(STDERR_FILENO, "AFTER WAIT\n");
 	command_set_last_status(command, process_exit_status(status));
 	if (!WIFSTOPPED(status) && WIFSIGNALED(status))
 	{

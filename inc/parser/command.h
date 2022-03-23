@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 21:02:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:00:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef enum e_command_type
 
 typedef struct s_command_pipeline
 {
-	int	in;
-	int	out;
 	int	fds[2];
 }	t_command_pipeline;
 
@@ -75,6 +73,10 @@ void	command_pipeline_build(t_parser *parser, t_iter *i, t_command **cmd);
 void	command_pipeline_debug(t_command *command);
 
 void	pipeline_close(void);
+int		pipeline_is_active(void);
+int		pipeline_is_first(void);
+int		pipeline_is_middle(void);
+int		pipeline_is_last(void);
 
 /* Exec */
 void	command_exec(t_command *command);
