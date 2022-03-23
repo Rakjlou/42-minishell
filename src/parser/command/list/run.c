@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/21 20:26:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:01:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	dispatch_before(t_command *command)
 {
 	exec_tree_dispatch(command->before);
-	if (_shell()->exec.pipeline)
+	if (pipeline_is_active())
 		pipeline_close();
 }
 

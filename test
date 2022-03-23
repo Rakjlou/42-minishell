@@ -1,6 +1,3 @@
-echo a | (echo b | echo c) | echo d
-echo a | (echo b && echo c) | echo d
-echo a | echo b
-echo a | echo b && echo c
-(echo a) && echo b
-echo a && echo b | echo c
+A | B
+A | B | C
+A | B | C | D

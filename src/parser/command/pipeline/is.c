@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   is.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:00:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:53:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ftprintf.h"
 #include "shell.h"
 
-static int	try_pipe(int pipe_fd[2])
+int	pipeline_is_active(void)
 {
-	if (pipe(pipe_fd) < 0)
-		return (0);
-	return (1);
+	return (_shell()->pipeline.r > 0);
 }
 
-static void	incr_lr(void)
+int	pipeline_is_first(void)
 {
-	_shell()->pipeline.l++;
-	_shell()->pipeline.r++;
+	return (_shell()->pipeline.l == 1 && _shell()->pipeline.r == 1);
 }
 
-void	command_pipeline_run(t_command *command)
+int	pipeline_is_middle(void)
 {
-	t_command		*before;
-	t_command		*after;
+	return (_shell()->pipeline.l == 1 && _shell()->pipeline.r == 2);
+}
 
-	before = command->before;
-	after = command->after;
-	incr_lr();
-	if (!try_pipe(command->data.pipeline.fds))
-		return (command_error(command));
-	exec_tree_dispatch(before);
-	exec_tree_dispatch(after);
+int	pipeline_is_last(void)
+{
+	return (_shell()->pipeline.l == 0 && _shell()->pipeline.r == 1);
 }
