@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:33:39 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 18:59:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:46:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,4 @@ void	exec_tree_dispatch(t_command *node)
 void	exec_tree_run(t_command *tree)
 {
 	exec_tree_dispatch(tree);
-	if (pipeline_is_active())
-		pipeline_close();
 }

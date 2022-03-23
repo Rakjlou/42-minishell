@@ -6,14 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/09 03:47:46 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:51:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORDEXP_H
 # define WORDEXP_H
-
-
 
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
