@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:00:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:24:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ftprintf.h"
 #include "shell.h"
 
-static int	try_pipe(int pipe_fd[2])
+static int	try_pipe(int fds[2])
 {
-	if (pipe(pipe_fd) < 0)
+	if (pipe(fds) < 0)
 		return (0);
 	return (1);
 }
