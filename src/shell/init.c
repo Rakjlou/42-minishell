@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/21 18:24:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:59:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	param_init(int argc, char **argv)
 	shell->param.argc = argc;
 	shell->param.argv = argv;
 	shell->param.env = environ;
-	shell->exec.pipe_in = STDIN_FILENO;
-	shell->exec.pipe_out = STDOUT_FILENO;
+	//shell->exec.pipe_in = STDIN_FILENO;
+	//shell->exec.pipe_out = STDOUT_FILENO;
 }
 
 int	shell_init(int argc, char **argv)
