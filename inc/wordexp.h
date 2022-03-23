@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wordexp.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/23 19:51:21 by nsierra-         ###   ########.fr       */
-=======
-/*   Updated: 2022/03/23 19:57:51 by ajung            ###   ########.fr       */
->>>>>>> Adrian
+/*   Updated: 2022/03/23 20:11:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +18,7 @@
 
 # define DETECTED 1
 # define UNDETECTED 0
+# define WORDEXP_DEBUG 0
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -32,8 +29,6 @@
 # include "libft.h"
 
 typedef struct s_token	t_token;
-
-# define WORDEXP_DEBUG 0
 
 char	**wordexp(char *str);
 char	*paramexp(char *str);
