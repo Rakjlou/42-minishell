@@ -25,6 +25,13 @@ echo -n -n-n
 export TEST="-n"
 echo $TEST hello
 
+> toto
+
+export test1 123 test2
+echo $?
+
+
+------HEREDOC---------
 bash-5.0$ cat << 'end'
 > $USER
 > end
@@ -42,3 +49,12 @@ $USER
 
 bash-5.0$ cat
 ^\Quit (core dumped)
+
+echo -
+
+echo test"   test2                        test3                                       test4"test5
+
+exit -42
+
+export test=cho
+e$test bonjour

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wordexp.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/23 19:51:21 by nsierra-         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/23 19:57:51 by ajung            ###   ########.fr       */
+>>>>>>> Adrian
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +20,14 @@
 # define QUOTE_STATUS_CLOSE 0
 # define QUOTE_STATUS_OPEN 1
 
+# define DETECTED 1
+# define UNDETECTED 0
+
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <dirent.h>
+# include <sys/types.h>
 # include <stdio.h>
 # include "libft.h"
 
@@ -38,6 +47,8 @@ char	*get_new_dollar_value(char *str, int index_dollar);
 char	*get_after_dollar(char *str, int index_dollar);
 
 char	**unquoting(char **str);
+
+char	**pathname_exp(char	**arg);
 
 //A DELETE
 void	wordexp_debug(char *str, ...);

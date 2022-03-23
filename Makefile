@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/23 20:03:39 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/23 20:10:36 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = src/main.c \
 	src/wordexp/unquoting/unquoting.c \
 	src/wordexp/unquoting/skip_quote.c \
 	src/wordexp/unquoting/cmatrix_iterator.c \
+	src/wordexp/pathname_exp/pathname_exp.c \
 	src/parser/errors.c \
 	src/parser/execute.c \
 	src/parser/next_token.c \
@@ -102,6 +103,7 @@ SRC = src/main.c \
 	src/built_in/bi_export.c \
 	src/built_in/bi_pwd.c \
 	src/built_in/bi_unset.c \
+	src/built_in/bi_utils.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)

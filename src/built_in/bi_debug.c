@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 19:40:45 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/08 20:52:50 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/10 14:54:43 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	free_split(char **str)
 
 void	bi_debug(char *str)
 {
-	char **arg;
-	
+	char	**arg;
+
 	if (BUILT_IN_DEBUG == 0)
 		return ;
 	arg = ft_split(str, " ");

@@ -20,6 +20,7 @@ void	command_set_last(t_command *command)
 
 	shell = _shell();
 	shell->last_command = command;
+	shell->last_command_status = command->status;
 }
 
 void	command_set_last_status(t_command *command, int status)

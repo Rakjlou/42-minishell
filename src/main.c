@@ -19,5 +19,5 @@ int	main(int argc, char **argv)
 		return (perror("minishell"), EXIT_FAILURE);
 	shell_loop();
 	shell_destroy();
-	return (EXIT_SUCCESS);
+	return (_last_command_status());
 }
