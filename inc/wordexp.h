@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/21 20:28:16 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/23 19:57:51 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 # define DETECTED 1
 # define UNDETECTED 0
-
-
 
 # include <stddef.h>
 # include <stdlib.h>

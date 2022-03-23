@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:53:47 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/16 16:00:12 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/23 19:56:09 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ F OK --> si fichier existe
 static void	too_many_args(char **arg)
 {
 	t_shell	*shell;
-	
+
 	shell = _shell();
 	ftfprintf(STDERR_FILENO, "%s: %s: %s\n",
 		"minishell",
@@ -39,7 +39,7 @@ static void	too_many_args(char **arg)
 	shell->last_command_status = 1;
 }
 
-static void update_pwd(void)
+static void	update_pwd(void)
 {
 	char	douille[PATH_MAX];
 
@@ -52,10 +52,10 @@ static void	update_old_pwd(void)
 	env_set_value("OLDPWD", env_get_value("PWD"));
 }
 
-static void invalid_path(char **arg)
+static void	invalid_path(char **arg)
 {
 	t_shell	*shell;
-	
+
 	shell = _shell();
 	ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
 		"minishell",
@@ -71,7 +71,7 @@ int	bi_cd(char **arg)
 
 	size = ft_cmatrix_size(arg);
 	if (size > 2)
-		return(too_many_args(arg), EXIT_SUCCESS);
+		return (too_many_args(arg), EXIT_SUCCESS);
 	if (size == 2 && access(arg[1], F_OK) < 0)
 		return (invalid_path(arg), EXIT_SUCCESS);
 	if (size == 1)

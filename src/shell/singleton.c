@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:23:14 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/16 16:05:02 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/23 19:57:33 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_shell	*_shell(void)
 {
 	static t_shell	shell;
-	static int	check = 0;
+	static int		check = 0;
 
 	if (check == 0)
 	{
