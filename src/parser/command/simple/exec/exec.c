@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:02:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:24:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,29 @@
 
 static int	handle_pipe(t_command *command)
 {
-	int	fds[2];
+	int	current_fd[2];
 
 	if (!pipeline_is_active())
 		return (1);
-	fds[PIPE_WRITE] = command->parent->data.pipeline.fds[PIPE_WRITE];
-	fds[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
+	current_fd[PIPE_WRITE] = command->parent->data.pipeline.fds[PIPE_WRITE];
+	current_fd[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
 	if (pipeline_is_first())
 	{
-		ftprintf("pipeline_is_first\n");
-		dup2(fds[PIPE_WRITE], STDOUT_FILENO);
-		close(fds[PIPE_READ]);
+		dup2(current_fd[PIPE_WRITE], STDOUT_FILENO);
+		close(current_fd[PIPE_READ]);
 		return (1);
+	}
+	else if (pipeline_is_middle())
+	{
+		dup2(command->parent->parent->data.pipeline.fds[PIPE_READ], STDIN_FILENO);
+		dup2(current_fd[PIPE_WRITE], STDOUT_FILENO);
+		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
+		close(command->parent->data.pipeline.fds[PIPE_READ]);
 	}
 	else if (pipeline_is_last())
 	{
-		ftprintf("pipeline_is_last\n");
-		dup2(fds[PIPE_READ], STDIN_FILENO);
-		close(fds[PIPE_WRITE]);
+		dup2(current_fd[PIPE_READ], STDIN_FILENO);
+		close(current_fd[PIPE_WRITE]);
 	}
 	return (1);
 }
@@ -70,6 +75,13 @@ static void	parent_wait_pipeline(t_command *command, pid_t child_pid)
 	else if (pipeline_is_last())
 	{
 		close(command->parent->data.pipeline.fds[PIPE_READ]);
+		_shell()->pipeline.r--;
+	}
+	else if (pipeline_is_middle())
+	{
+		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
+		close(command->parent->data.pipeline.fds[PIPE_WRITE]);
+		_shell()->pipeline.l--;
 		_shell()->pipeline.r--;
 	}
 }
