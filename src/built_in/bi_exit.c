@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:41:03 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 18:47:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:37:37 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,23 @@
 static void	too_many_args(char **arg)
 {
 	ftfprintf(STDERR_FILENO, "%s: %s: %s\n",
-				"minishell",
-				arg[0],
-				"too many arguments");
+		"minishell",
+		arg[0],
+		"too many arguments");
 }
 
-static void non_numeric_args(char **arg)
+static void	non_numeric_args(char **arg)
 {
 	ftfprintf(STDERR_FILENO, "%s: %s: %s: %s\n",
-			"minishell",
-			arg[0],
-			arg[1],
-			"numeric argument required");
+		"minishell",
+		arg[0],
+		arg[1],
+		"numeric argument required");
 	shell_destroy();
 	exit(2);
-
 }
 
-static void	valid_exit_no_arg()
+static void	valid_exit_no_arg(void)
 {
 	shell_destroy();
 	exit(0);
@@ -46,7 +45,9 @@ static int	check_arg(char **arg)
 {
 	int	i;
 
-	i = 0;
+	if (ft_isdigit(arg[1][0]) == 0 && arg[1][0] != '+' && arg[1][0] != '-')
+		return (EXIT_FAILURE);
+	i = 1;
 	while (arg[1][i])
 	{
 		if (ft_isdigit(arg[1][i]) == 0)

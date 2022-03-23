@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:48:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 00:43:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:00:50 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void			ft_cmatrix_print(char **matrix);
 void			ft_cmatrix_free(char **matrix);
 size_t			ft_cmatrix_size(char **matrix);
 char			**ft_cmatrix_join(char **matrix1, char **matrix2);
-
 
 /* Raw memory */
 void			ft_bzero(void *s, size_t n);
