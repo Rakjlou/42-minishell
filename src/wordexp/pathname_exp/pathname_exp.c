@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:59:57 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/21 21:34:48 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/23 19:55:47 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 #include <stdlib.h>
 #include "libft.h"
 
+#define DETECTED 1
+#define UNDETECTED 0
 
-# define DETECTED 1
-# define UNDETECTED 0
-
-
-static void	free_split(char **str)
+/* static void	free_split(char **str)
 {
 	int	i;
 
@@ -47,7 +45,6 @@ static int	get_size_dir(void)
 		size_dir++;
 	return (size_dir);
 }
-
 
 char	**get_dir(int dot_flag)
 {
@@ -126,3 +123,4 @@ char	**pathname_exp(char	**arg)
 
 	return (output);
 }
+ */
