@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 20:49:39 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/23 21:11:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ void	pipeline_close(void)
 
 	status = EXIT_SUCCESS;
 	while (waitpid(-1, &status, 0) != -1)
-		;
-	if (_shell()->last_command)
-		_shell()->last_command->status = process_exit_status(status);
+		_shell()->last_command_status = process_exit_status(status);
 }
