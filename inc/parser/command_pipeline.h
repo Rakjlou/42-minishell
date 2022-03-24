@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 17:38:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:23:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ int			pipeline_handle(t_command *command);
 void		pipeline_fork_parent(t_command *command);
 t_command	*pipeline_get_parent(t_command *command);
 t_command	*pipeline_get_previous(t_command *command);
+int			pipeline_get_parent_write(t_command *command);
+int			pipeline_get_parent_read(t_command *command);
+int			pipeline_get_previous_write(t_command *command);
+int			pipeline_get_previous_read(t_command *command);
 
 #endif

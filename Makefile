@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/24 17:30:15 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/24 18:13:43 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC = src/main.c \
 	src/parser/command/pipeline/is.c \
 	src/parser/command/pipeline/fork_parent.c \
 	src/parser/command/pipeline/handle.c \
+	src/parser/command/pipeline/get.c \
 	src/parser/command/redirection/run.c \
 	src/parser/command/redirection/stop.c \
 	src/parser/command/redirection/is.c \

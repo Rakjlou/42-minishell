@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 17:38:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:23:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,25 @@ t_command	*pipeline_get_previous(t_command *command)
 
 int	pipeline_handle(t_command *command)
 {
-	int	current_fd[2];
-
 	if (!pipeline_is_active())
 		return (1);
-	current_fd[PIPE_WRITE] = pipeline_get_parent(command)->data.pipeline.fds[PIPE_WRITE];
-	current_fd[PIPE_READ] = pipeline_get_parent(command)->data.pipeline.fds[PIPE_READ];
-	if (pipeline_is_first())
+	else if (pipeline_is_first())
 	{
-		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
-		close(current_fd[PIPE_READ]);
+		dup2(pipeline_get_parent_write(command), _shell()->pipeline.pipe_out);
+		close(pipeline_get_parent_read(command));
 		return (1);
 	}
 	else if (pipeline_is_middle())
 	{
-		dup2(pipeline_get_previous(command)->data.pipeline.fds[PIPE_READ], _shell()->pipeline.pipe_in);
-		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
-		close(pipeline_get_previous(command)->data.pipeline.fds[PIPE_READ]);
-		close(pipeline_get_parent(command)->data.pipeline.fds[PIPE_READ]);
+		dup2(pipeline_get_previous_read(command), _shell()->pipeline.pipe_in);
+		dup2(pipeline_get_parent_write(command), _shell()->pipeline.pipe_out);
+		close(pipeline_get_previous_read(command));
+		close(pipeline_get_parent_read(command));
 	}
 	else if (pipeline_is_last())
 	{
-		dup2(current_fd[PIPE_READ], _shell()->pipeline.pipe_in);
-		close(current_fd[PIPE_WRITE]);
+		dup2(pipeline_get_parent_read(command), _shell()->pipeline.pipe_in);
+		close(pipeline_get_parent_write(command));
 	}
 	return (1);
 }
