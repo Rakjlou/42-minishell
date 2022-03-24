@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   handle_signal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/09 03:47:55 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/03/24 18:01:02 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/24 18:29:26 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef HANDLE_SIGNAL_H
+# define HANDLE_SIGNAL_H
 
 #include <signal.h>
 #include <unistd.h>
 #include "libft.h"
 #include "input.h"
 #include "shell.h"
+#include "libft/ftprintf.h"
 
-static void	sigint_handler(int signal)
-{
-	(void)signal;
-	ft_putstr_fd("\n", STDIN_FILENO);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
+# define MAIN_PROCESS 0
+# define HEREDOC 1
+# define CHILD 2
+# define PARENT 3
 
-int	signals_init(void)
-{
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR
-		|| signal(SIGINT, sigint_handler) == SIG_ERR)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+int	handle_signal_parent(void);
+int	handle_signal_heredoc(void);
+int	handle_signal_child(void);
+int	handle_signal_main_process(void);
+int	handle_signals(int status);
+
+#endif
