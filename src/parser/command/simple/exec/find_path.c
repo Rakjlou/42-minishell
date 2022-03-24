@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/10 00:09:51 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:27:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	command_find_path(t_command *command, char **path)
 {
 	char	*user_input;
 
+	if (ft_cmatrix_size(command->argv) == 0)
+		return (1);
 	user_input = command->argv[0];
 	if (is_absolute_or_relative(user_input)
 		&& !is_executable_file(command, user_input, 1))
