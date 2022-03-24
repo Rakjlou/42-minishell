@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 20:52:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:19:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,9 @@
 #include "shell.h"
 #include "parser/parser.h"
 
-static int	handle_pipe(t_command *command)
-{
-	int	current_fd[2];
-
-	if (!pipeline_is_active())
-		return (1);
-	current_fd[PIPE_WRITE] = command->parent->data.pipeline.fds[PIPE_WRITE];
-	current_fd[PIPE_READ] = command->parent->data.pipeline.fds[PIPE_READ];
-	if (pipeline_is_first())
-	{
-		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
-		close(current_fd[PIPE_READ]);
-		return (1);
-	}
-	else if (pipeline_is_middle())
-	{
-		dup2(command->parent->parent->data.pipeline.fds[PIPE_READ], _shell()->pipeline.pipe_in);
-		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
-		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
-		close(command->parent->data.pipeline.fds[PIPE_READ]);
-	}
-	else if (pipeline_is_last())
-	{
-		dup2(current_fd[PIPE_READ], _shell()->pipeline.pipe_in);
-		close(current_fd[PIPE_WRITE]);
-	}
-	return (1);
-}
-
 static void	command_exec_child(t_command *command, char *path)
 {
-	if (handle_pipe(command)
+	if (pipeline_handle(command)
 		&& redirections_run(command, &command->data.simple.redirections)
 		&& execve(path, command->argv, _shell()->param.env) == -1)
 	{
@@ -64,35 +35,12 @@ static int	process_exit_status(int status)
 	return (WEXITSTATUS(status));
 }
 
-static void	parent_wait_pipeline(t_command *command, pid_t child_pid)
-{
-	(void)child_pid;
-	if (pipeline_is_first())
-	{
-		close(command->parent->data.pipeline.fds[PIPE_WRITE]);
-		_shell()->pipeline.l--;
-	}
-	else if (pipeline_is_last())
-	{
-		close(command->parent->data.pipeline.fds[PIPE_READ]);
-		_shell()->pipeline.r--;
-		pipeline_close();
-	}
-	else if (pipeline_is_middle())
-	{
-		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
-		close(command->parent->data.pipeline.fds[PIPE_WRITE]);
-		_shell()->pipeline.l--;
-		_shell()->pipeline.r--;
-	}
-}
-
 static void	parent_wait(t_command *command, pid_t child_pid)
 {
 	int	status;
 
 	if (pipeline_is_active())
-		return (parent_wait_pipeline(command, child_pid));
+		return (pipeline_fork_parent(command));
 	else if (waitpid(child_pid, &status, 0) == -1)
 		return (command_error(command));
 	command_set_last_status(command, process_exit_status(status));
