@@ -6,17 +6,12 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 19:46:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:03:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 #include "shell.h"
-
-static void	dispatch_before(t_command *command)
-{
-	exec_tree_dispatch(command->before);
-}
 
 void	command_list_run(t_command *command)
 {
@@ -29,13 +24,13 @@ void	command_list_run(t_command *command)
 	list_data = &command->data.list;
 	if (token_is(list_data->type, TOK_AND_IF))
 	{
-		dispatch_before(command);
+		exec_tree_dispatch(command->before);
 		if (before->status == EXIT_SUCCESS)
 			exec_tree_dispatch(after);
 	}
 	else if (token_is(list_data->type, TOK_OR_IF))
 	{
-		dispatch_before(command);
+		exec_tree_dispatch(command->before);
 		if (before->status != EXIT_SUCCESS)
 			exec_tree_dispatch(after);
 	}

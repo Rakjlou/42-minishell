@@ -45,4 +45,5 @@ test_file "tests/pipe_triple" 2>/dev/null
 test_file "tests/logical_simple" 2>/dev/null
 test_file "tests/logical_mix" 2>/dev/null
 test_file "tests/wordexp" 2>/dev/null
+test_file "tests/pipe_logical_mix" 2>/dev/null
 

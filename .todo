@@ -1,2 +1,4 @@
 cat + ctrl-c --> double prompt
-heredocuments, gerer l'expansion en fonction du quoting du delimiteur
+heredoc, gerer l'expansion en fonction du quoting du delimiteur
+heredoc ctrl+c
+check return value ctrl+c ctrl+\

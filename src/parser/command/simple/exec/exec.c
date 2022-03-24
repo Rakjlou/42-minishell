@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 14:19:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:47:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,26 @@
 static void	command_exec_child(t_command *command, char *path)
 {
 	if (pipeline_handle(command)
-		&& redirections_run(command, &command->data.simple.redirections)
-		&& execve(path, command->argv, _shell()->param.env) == -1)
+		&& redirections_run(command, &command->data.simple.redirections))
 	{
-		redirections_stop(&command->data.simple.redirections);
-		command_error(command);
+		if (command->argv == NULL)
+		{
+			redirections_stop(&command->data.simple.redirections);
+			shell_destroy();
+			exit(EXIT_SUCCESS);
+		}
+		else if (execve(path, command->argv, _shell()->param.env) == -1)
+		{
+			redirections_stop(&command->data.simple.redirections);
+			command_error(command);
+			shell_destroy();
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		shell_destroy();
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -61,6 +76,7 @@ void	command_exec(t_command *command)
 	char	*path;
 	pid_t	child_pid;
 
+	path = NULL;
 	if (command->status != EXIT_SUCCESS || !command_find_path(command, &path))
 		return ;
 	child_pid = fork();
