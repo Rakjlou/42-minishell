@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/24 16:09:41 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/24 17:30:15 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,7 +151,7 @@ test: all
 	--show-leak-kinds=all \
 	--show-reachable=yes \
 	--suppressions=./.readline.supp \
-	./minishell
+	./minishell <test
 
 .PHONY: clean fclean re libft test
 
