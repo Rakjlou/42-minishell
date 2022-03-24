@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_main_process.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:59:59 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/24 19:18:51 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/24 19:41:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sigint_handler_main_process(int mescouilles)
 {
 	t_shell	*shell;
-	
+
 	shell = _shell();
 	(void) mescouilles;
 	shell->last_command_status = 130;

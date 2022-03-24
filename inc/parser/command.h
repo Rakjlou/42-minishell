@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/23 20:03:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:09:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "parser/command_simple.h"
 # include "parser/command_list.h"
 # include "parser/command_compound.h"
+# include "parser/command_pipeline.h"
 
 typedef struct s_iter		t_iter;
 typedef struct s_parser		t_parser;
@@ -30,14 +31,6 @@ typedef enum e_command_type
 	COMMAND_COMPOUND,
 	COMMAND_TYPE_COUNT
 }	t_command_type;
-
-# define PIPE_WRITE 1
-# define PIPE_READ 0
-
-typedef struct s_command_pipeline
-{
-	int	fds[2];
-}	t_command_pipeline;
 
 typedef union u_command_data
 {
@@ -67,16 +60,6 @@ void	command_build(
 			t_parser *parser,
 			t_iter *iter,
 			t_command **command);
-
-void	command_pipeline_run(t_command *command);
-void	command_pipeline_build(t_parser *parser, t_iter *i, t_command **cmd);
-void	command_pipeline_debug(t_command *command);
-
-void	pipeline_close(void);
-int		pipeline_is_active(void);
-int		pipeline_is_first(void);
-int		pipeline_is_middle(void);
-int		pipeline_is_last(void);
 
 /* Exec */
 void	command_exec(t_command *command);
