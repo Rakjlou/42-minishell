@@ -1,2 +1,1 @@
-cat Makefile | cat | grep fclean
-cat Makefile | cat | grep fclean
+cat Makefile | grep b && echo oui

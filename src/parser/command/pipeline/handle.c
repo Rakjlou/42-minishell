@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 14:19:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:19:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	pipeline_handle(t_command *command)
 	{
 		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
 		close(current_fd[PIPE_READ]);
+		ftfprintf(STDERR_FILENO, "pipeline_is_first\n");
 		return (1);
 	}
 	else if (pipeline_is_middle())
@@ -37,9 +38,11 @@ int	pipeline_handle(t_command *command)
 		dup2(current_fd[PIPE_WRITE], _shell()->pipeline.pipe_out);
 		close(command->parent->parent->data.pipeline.fds[PIPE_READ]);
 		close(command->parent->data.pipeline.fds[PIPE_READ]);
+		ftfprintf(STDERR_FILENO, "pipeline_is_middle\n");
 	}
 	else if (pipeline_is_last())
 	{
+		ftfprintf(STDERR_FILENO, "pipeline_is_last\n");
 		dup2(current_fd[PIPE_READ], _shell()->pipeline.pipe_in);
 		close(current_fd[PIPE_WRITE]);
 	}

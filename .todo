@@ -1,2 +1,5 @@
 cat + ctrl-c --> double prompt
+sigint catching rebond de ses morts
 heredocuments, gerer l'expansion en fonction du quoting du delimiteur
+Foirade des fd quand un pipe est suivi d'un operateur logic
+ctrl +D dans un minishell dans un minishell --> pas de retour ligne et pas d'exit
