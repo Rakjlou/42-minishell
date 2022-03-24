@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/24 18:13:43 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/24 19:49:24 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRC = src/main.c \
 	src/shell/init.c \
 	src/shell/destroy.c \
 	src/shell/loop.c \
-	src/shell/signals.c \
 	src/shell/singleton.c \
 	src/input/get_line.c \
 	src/input/clear.c \
@@ -107,6 +106,11 @@ SRC = src/main.c \
 	src/built_in/bi_pwd.c \
 	src/built_in/bi_unset.c \
 	src/built_in/bi_utils.c \
+	src/shell/signals/signals.c \
+	src/shell/signals/signal_parent.c \
+	src/shell/signals/signal_main_process.c \
+	src/shell/signals/signal_heredoc.c \
+	src/shell/signals/signal_child.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -152,7 +156,7 @@ test: all
 	--show-leak-kinds=all \
 	--show-reachable=yes \
 	--suppressions=./.readline.supp \
-	./minishell <test
+	./minishell
 
 .PHONY: clean fclean re libft test
 

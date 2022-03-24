@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 16:47:59 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:48:26 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 #include "ftprintf.h"
 #include "shell.h"
 #include "parser/parser.h"
+#include "handle_signal.h"
 
 static void	command_exec_child(t_command *command, char *path)
 {
+	handle_signals(CHILD);
 	if (pipeline_handle(command)
 		&& redirections_run(command, &command->data.simple.redirections))
 	{
@@ -54,10 +56,15 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 {
 	int	status;
 
+	handle_signals(PARENT);
 	if (pipeline_is_active())
-		return (pipeline_fork_parent(command));
+	{
+		pipeline_fork_parent(command);
+		handle_signals(MAIN_PROCESS);
+		return ;
+	}
 	else if (waitpid(child_pid, &status, 0) == -1)
-		return (command_error(command));
+		return (handle_signals(MAIN_PROCESS), command_error(command));
 	command_set_last_status(command, process_exit_status(status));
 	if (!WIFSTOPPED(status) && WIFSIGNALED(status))
 	{
@@ -69,6 +76,7 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 			ftfprintf(STDERR_FILENO, "\n");
 		}
 	}
+	handle_signals(MAIN_PROCESS);
 }
 
 void	command_exec(t_command *command)
