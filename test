@@ -1,2 +1,0 @@
-cat Makefile | cat | grep fclean
-cat Makefile | cat | grep fclean

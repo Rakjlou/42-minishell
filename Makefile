@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajung <ajung@student.42.fr>                +#+  +:+       +#+         #
+#    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/24 18:29:58 by ajung            ###   ########.fr        #
+#    Updated: 2022/03/24 19:49:24 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ SRC = src/main.c \
 	src/parser/command/pipeline/debug.c \
 	src/parser/command/pipeline/run.c \
 	src/parser/command/pipeline/is.c \
+	src/parser/command/pipeline/fork_parent.c \
+	src/parser/command/pipeline/handle.c \
+	src/parser/command/pipeline/get.c \
 	src/parser/command/redirection/run.c \
 	src/parser/command/redirection/stop.c \
 	src/parser/command/redirection/is.c \
