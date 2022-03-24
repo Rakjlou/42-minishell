@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   signal_main_process.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 18:28:48 by ajung            ###   ########.fr       */
+/*   Created: 2022/03/24 17:59:59 by ajung             #+#    #+#             */
+/*   Updated: 2022/03/24 19:18:51 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "shell.h"
 #include "handle_signal.h"
 
-static void	param_init(int argc, char **argv)
+void	sigint_handler_main_process(int mescouilles)
 {
-	extern char	**environ;
-	t_shell		*shell;
-
+	t_shell	*shell;
+	
 	shell = _shell();
-	shell->param.argc = argc;
-	shell->param.argv = argv;
-	shell->param.env = environ;
-	shell->pipeline.pipe_in = STDIN_FILENO;
-	shell->pipeline.pipe_out = STDOUT_FILENO;
+	(void) mescouilles;
+	shell->last_command_status = 130;
+	ft_putstr_fd("\n", STDIN_FILENO);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	return ;
 }
 
-int	shell_init(int argc, char **argv)
+int	handle_signal_main_process(void)
 {
-	param_init(argc, argv);
-	if ((env_init() != EXIT_SUCCESS)
-		|| handle_signals(MAIN_PROCESS) != EXIT_SUCCESS)
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR
+		|| signal(SIGINT, sigint_handler_main_process) == SIG_ERR)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
