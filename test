@@ -1,1 +1,1 @@
-cat Makefile | grep b && cat Makefile | grep fclean
+cat Makefile | grep b && echo LOL && cat Makefile | grep fclean
