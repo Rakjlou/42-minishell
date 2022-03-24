@@ -1,0 +1,1 @@
+cat Makefile | grep b | grep s | grep c

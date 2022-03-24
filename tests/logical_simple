@@ -1,0 +1,4 @@
+echo a && echo b
+echo a || echo b
+alskdj && echo nope
+alskdj || echo yeup
