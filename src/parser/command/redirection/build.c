@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 23:52:38 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:31:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst)
 	redirection->arg = arg;
 	if (!lst_push_back(lst, redirection))
 		parser_internal_error(parser);
-	else if (token_is(redirection->type, TOK_DLESS))
-		heredoc_request(parser, redirection);
+	else if (token_is(redirection->type, TOK_DLESS)
+		&& !heredoc_request(parser, redirection))
+		return ;
 	parser_next_token(parser, iter);
 }

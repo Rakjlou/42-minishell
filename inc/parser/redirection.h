@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/25 16:55:08 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:54:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_redirection
 	t_token	*type;
 	t_token	*arg;
 	char	*filename;
+	char	*heredoc_line;
+	char	*heredoc_stop;
 	int		fd;
 	int		stdout_fd;
 	int		stdin_fd;
@@ -52,5 +54,7 @@ int		redirection_is(t_redirection *redirection, t_redirection_is thing);
 
 int		heredoc_request(t_parser *parser, t_redirection *redirection);
 char	*heredoc_get_stop_token(t_redirection *redirection);
+int		heredoc_open(t_parser *parser, t_redirection *redirection);
+void	heredoc_close(t_parser *parser, t_redirection *redirection);
 
 #endif
