@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 20:26:34 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:55:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	redirection_build(t_parser *parser, t_iter *iter, t_lst *lst);
 int		redirection_is(t_redirection *redirection, t_redirection_is thing);
 
 int		heredoc_request(t_parser *parser, t_redirection *redirection);
+char	*heredoc_get_stop_token(t_redirection *redirection);
 
 #endif
