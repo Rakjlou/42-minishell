@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/25 17:04:10 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/25 17:35:00 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRC = src/main.c \
 	src/parser/command/redirection/debug.c \
 	src/parser/command/redirection/heredoc/request.c \
 	src/parser/command/redirection/heredoc/get_stop_token.c \
+	src/parser/command/redirection/heredoc/open_close.c \
 	src/parser/command/simple/build.c \
 	src/parser/command/simple/debug.c \
 	src/parser/command/simple/exec/build_argv.c \

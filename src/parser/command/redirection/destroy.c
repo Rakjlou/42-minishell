@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/08 22:46:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:58:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	heredoc_destroy(t_redirection *redirection)
 			redirectrion_destroy_error(redirection);
 		free(redirection->filename);
 	}
+	free(redirection->heredoc_line);
+	free(redirection->heredoc_stop);
 }
 
 static void	redirection_destroy(void *raw)
