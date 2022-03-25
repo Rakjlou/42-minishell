@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/25 17:03:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:54:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "ftprintf.h"
 #include "input.h"
 #include "wordexp.h"
+#include "handle_signal.h"
 #include "parser/parser.h"
 
 static void	heredoc_eof_warning(t_parser *parser, char *stop)
@@ -28,16 +29,6 @@ static void	heredoc_eof_warning(t_parser *parser, char *stop)
 		"minishell",
 		"warning",
 		stop);
-}
-
-static int	heredoc_open(t_parser *parser, t_redirection *redirection)
-{
-	redirection->fd = ft_tmpfile(&redirection->filename);
-	if (redirection->fd == 0)
-		return (parser_internal_error(parser), 0);
-	else if (redirection->fd < 0)
-		return (redirection_open_file_error(NULL, redirection), 0);
-	return (1);
 }
 
 static int	heredoc_write(
@@ -67,40 +58,30 @@ static int	heredoc_write(
 	return (1);
 }
 
-static void	heredoc_close(t_parser *parser, t_redirection *redirection)
-{
-	if (close(redirection->fd) == -1)
-		return (parser_internal_error(parser));
-	redirection->fd = open(redirection->filename, O_RDONLY);
-	if (redirection->fd <= 0)
-		return (parser_internal_error(parser));
-}
-
 int	heredoc_request(t_parser *parser, t_redirection *redir)
 {
-	char	*stop;
-	char	*line;
 	int		quoted;
 
 	if (!heredoc_open(parser, redir))
 		return (0);
-	stop = heredoc_get_stop_token(redir);
-	if (stop == NULL)
+	redir->heredoc_stop = heredoc_get_stop_token(redir);
+	if (redir->heredoc_stop == NULL)
 		return (parser_internal_error(parser), 0);
-	quoted = ft_strlen(stop) != ft_strlen(redir->arg->raw);
+	quoted = ft_strlen(redir->heredoc_stop) != ft_strlen(redir->arg->raw);
 	while (parser->status == PARSER_STATUS_DEFAULT)
 	{
-		line = input_get_line2();
-		if (line == NULL)
-		{
-			return (heredoc_eof_warning(parser, stop),
-				heredoc_close(parser, redir), free(stop), 1);
-		}
-		else if (!ft_strncmp(stop, line, -1))
-			return (heredoc_close(parser, redir), free(line), free(stop), 1);
-		else if (!heredoc_write(parser, redir, line, quoted))
-			return (free(line), free(stop), 0);
-		free(line);
+		redir->heredoc_line = input_get_line2();
+		if (redir->heredoc_line == NULL)
+			return (heredoc_eof_warning(parser, redir->heredoc_stop),
+				heredoc_close(parser, redir), handle_signals(MAIN_PROCESS), 1);
+		else if (!ft_strncmp(redir->heredoc_stop, redir->heredoc_line, -1))
+			return (heredoc_close(parser, redir),
+				handle_signals(MAIN_PROCESS), 1);
+		else if (!heredoc_write(parser, redir, redir->heredoc_line, quoted))
+			return (handle_signals(MAIN_PROCESS), 0);
+		free(redir->heredoc_line);
+		redir->heredoc_line = NULL;
 	}
-	return (free(stop), 1);
+	handle_signals(MAIN_PROCESS);
+	return (parser->status == PARSER_STATUS_DEFAULT);
 }
