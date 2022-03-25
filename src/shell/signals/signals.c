@@ -6,11 +6,16 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 19:54:55 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 19:04:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "handle_signal.h"
+
+static int	empty(void)
+{
+	return (0);
+}
 
 int	handle_signals(int status)
 {
@@ -21,6 +26,7 @@ int	handle_signals(int status)
 	}
 	else if (status == HEREDOC)
 	{
+		rl_event_hook = empty;
 		if (handle_signal_heredoc() == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
