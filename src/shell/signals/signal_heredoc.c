@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 18:05:55 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/24 19:54:19 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 19:01:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	sigint_handler_heredoc(int signum)
 	(void)signum;
 	shell = _shell();
 	shell->last_command_status = 130;
-	ftprintf("\n");
-	return ;
+	shell->parser.status = PARSER_HEREDOC_INTERRUPTED;
+	handle_signals(MAIN_PROCESS);
+	ft_putstr_fd("\n", STDIN_FILENO);
+	rl_on_new_line();
+	rl_done = 1;
 }
 
 int	handle_signal_heredoc(void)
