@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_main_process.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:59:59 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/24 19:54:28 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/25 19:40:44 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sigint_handler_main_process(int signum)
 {
 	t_shell	*shell;
 
-	(void)signum;
+	(void) signum;
 	shell = _shell();
 	shell->last_command_status = 130;
 	ft_putstr_fd("\n", STDIN_FILENO);
