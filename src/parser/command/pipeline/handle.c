@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 18:23:23 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:30:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 
 t_command	*pipeline_get_parent(t_command *command)
 {
-	if (command_is(command->parent, COMMAND_PIPELINE))
-		return (command->parent);
-	else if (command_is(command->parent, COMMAND_LIST))
-		return (command->parent->parent);
-	else
+	if (command == NULL)
 		return (NULL);
+	else if (command_is(command->parent, COMMAND_PIPELINE))
+		return (command->parent);
+	return (pipeline_get_parent(command->parent));
 }
 
 t_command	*pipeline_get_previous(t_command *command)
