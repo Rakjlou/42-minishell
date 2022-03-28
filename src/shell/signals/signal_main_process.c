@@ -6,7 +6,7 @@
 /*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:59:59 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/25 19:40:44 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/28 17:05:43 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	sigint_handler_main_process(int signum)
 	(void) signum;
 	shell = _shell();
 	shell->last_command_status = 130;
-	ft_putstr_fd("\n", STDIN_FILENO);
 	rl_on_new_line();
 	rl_replace_line("", 0);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 	rl_redisplay();
 	return ;
 }

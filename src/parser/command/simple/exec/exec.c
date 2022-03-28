@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 19:48:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:12:26 by ajung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,16 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 	if (pipeline_is_active())
 	{
 		pipeline_fork_parent(command);
-		handle_signals(MAIN_PROCESS);
 		return ;
 	}
 	else if (waitpid(child_pid, &status, 0) == -1)
-		return (handle_signals(MAIN_PROCESS), command_error(command));
+		return (command_error(command));
 	command_set_last_status(command, process_exit_status(status));
 	if (!WIFSTOPPED(status) && WIFSIGNALED(status))
 	{
-		if (WTERMSIG(status) != SIGINT && WTERMSIG(status) != SIGTERM)
+		if (WTERMSIG(status) == SIGINT)
+			ft_putstr_fd("\n", STDOUT_FILENO);
+		else if (WTERMSIG(status) != SIGINT && WTERMSIG(status) != SIGTERM)
 		{
 			ftfprintf(STDERR_FILENO, "%s", sigstr(WTERMSIG(status)));
 			if (WCOREDUMP(status))
@@ -76,7 +77,6 @@ static void	parent_wait(t_command *command, pid_t child_pid)
 			ftfprintf(STDERR_FILENO, "\n");
 		}
 	}
-	handle_signals(MAIN_PROCESS);
 }
 
 void	command_exec(t_command *command)
@@ -93,5 +93,6 @@ void	command_exec(t_command *command)
 	else if (child_pid == 0)
 		command_exec_child(command, path);
 	else
-		(free(path), parent_wait(command, child_pid));
+		(free(path), parent_wait(command, child_pid),
+			handle_signals(MAIN_PROCESS));
 }
