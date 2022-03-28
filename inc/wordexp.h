@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:41:24 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/23 20:11:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:24:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "libft.h"
 
 typedef struct s_token	t_token;
+typedef struct dirent	t_dirent;
 
 char	**wordexp(char *str);
 char	*paramexp(char *str);
@@ -44,6 +45,8 @@ char	*get_after_dollar(char *str, int index_dollar);
 char	**unquoting(char **str);
 
 char	**pathname_exp(char	**arg);
+
+char	**glob(char **matrix);
 
 //A DELETE
 void	wordexp_debug(char *str, ...);

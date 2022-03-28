@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 13:56:55 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/09 00:43:31 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/28 21:59:33 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ LST_SRC = iter_init.c \
 	lst_push_front.c \
 	lst_remove.c \
 	lst_swap.c \
+	lst_as_cmatrix.c \
 	node_destroy.c \
 	node_insert_between.c \
 	node_new.c \
