@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 19:48:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:18:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,19 @@ static void	command_exec_child(t_command *command, char *path)
 		if (command->argv == NULL)
 		{
 			redirections_stop(&command->data.simple.redirections);
-			shell_destroy();
-			exit(EXIT_SUCCESS);
+			(free(path), shell_destroy(), exit(EXIT_SUCCESS));
 		}
 		else if (execve(path, command->argv, _shell()->param.env) == -1)
 		{
 			redirections_stop(&command->data.simple.redirections);
 			command_error(command);
-			shell_destroy();
-			exit(EXIT_FAILURE);
+			(free(path), shell_destroy(), exit(EXIT_FAILURE));
 		}
 	}
 	else
 	{
-		shell_destroy();
-		exit(EXIT_FAILURE);
+		redirections_stop(&command->data.simple.redirections);
+		(free(path), shell_destroy(), exit(EXIT_FAILURE));
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/25 18:54:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:01:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	heredoc_request(t_parser *parser, t_redirection *redir)
 
 	if (!heredoc_open(parser, redir))
 		return (0);
-	redir->heredoc_stop = heredoc_get_stop_token(redir);
+	redir->heredoc_stop = heredoc_wordexp(redir);
 	if (redir->heredoc_stop == NULL)
 		return (parser_internal_error(parser), 0);
 	quoted = ft_strlen(redir->heredoc_stop) != ft_strlen(redir->arg->raw);
