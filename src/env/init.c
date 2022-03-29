@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:26:56 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/10 21:49:04 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:46:39 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,22 @@ static char	*get_value(char *str)
 
 static int	env_load_envp_variable(char *str)
 {
-	char			*value;
-	char			*key;
+	char	*value;
+	char	*key;
+	int		ret;
 
+	ret = EXIT_SUCCESS;
 	value = get_value(str);
+	if (value == NULL)
+		return (EXIT_FAILURE);
 	key = get_key(str);
-	if (!key || env_set_value(key, value) == EXIT_FAILURE)
-		return (free(key), free(value), EXIT_FAILURE);
-	return (free(key), free(value), EXIT_SUCCESS);
+	if (key == NULL)
+		return (free(value), EXIT_FAILURE);
+	else if (!key || env_set_value(key, value) == EXIT_FAILURE)
+		ret = EXIT_FAILURE;
+	free(key);
+	free(value);
+	return (ret);
 }
 
 int	env_init(void)
