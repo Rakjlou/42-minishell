@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 13:56:55 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/28 17:50:17 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/28 23:16:09 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,7 +155,7 @@ OBJ = $(addprefix $(LIBFT_DIR), $(LIBFT_SRC:.c=.o)) \
 	$(addprefix $(CONFIG_DIR), $(CONFIG_SRC:.c=.o)) \
 	$(addprefix $(ERR_DIR), $(ERR_SRC:.c=.o)) \
 
-CC = clang
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 IFLAGS = -I.
