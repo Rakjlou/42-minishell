@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/28 22:25:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:43:00 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,11 @@ char	**glob(char **matrix)
 			dup = ft_strdup(matrix[i]);
 			if (dup == NULL)
 				return (lst_destroy_nodes(&result, free), NULL);
-			(lst_push_back(&result, dup), ++i);
-			continue ;
+			else if (++i && !lst_push_back(&result, dup))
+				(perror("minishell"), free(dup));
 		}
-		else if (!glob_execute(matrix[i], &result))
+		else if (!glob_execute(matrix[i++], &result))
 			return (lst_destroy_nodes(&result, free), NULL);
-		++i;
 	}
 	result_matrix = lst_as_cmatrix(&result, 0);
 	lst_destroy_nodes(&result, NULL);
