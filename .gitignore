@@ -5,3 +5,5 @@
 .nfs*
 .vscode
 minishell
+ft_mallocator/
+stdintest
