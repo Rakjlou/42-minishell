@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/28 18:01:11 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:02:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	heredoc_request(t_parser *parser, t_redirection *redir)
 		if (redir->heredoc_line == NULL)
 			return (heredoc_eof_warning(parser, redir->heredoc_stop),
 				heredoc_close(parser, redir), handle_signals(MAIN_PROCESS), 1);
-		else if (!ft_strncmp(redir->heredoc_stop, redir->heredoc_line, -1))
+		else if (parser->status == PARSER_STATUS_DEFAULT
+			&& !ft_strncmp(redir->heredoc_stop, redir->heredoc_line, -1))
 			return (heredoc_close(parser, redir),
 				handle_signals(MAIN_PROCESS), 1);
 		else if (!heredoc_write(parser, redir, redir->heredoc_line, quoted))
