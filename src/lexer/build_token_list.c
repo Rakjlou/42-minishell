@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:34:11 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/02 22:08:02 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:01:02 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	lexer_load_tokens(t_lexer *lexer)
 		else if (!lst_push_back(&lexer->tokens, token))
 		{
 			lexer->status = LEXER_STATUS_ERROR;
+			token_destroy(token);
 			perror("minishell");
 		}
 	}
