@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:59:07 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/14 17:26:33 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/28 22:37:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	valid_name(char *arg)
 {
 	int	j;
 
-	if (!(ft_isalpha(arg[0]) || arg[0] == '_'))
+	if (arg == NULL || !(ft_isalpha(arg[0]) || arg[0] == '_'))
 		return (EXIT_FAILURE);
 	j = 1;
 	while (arg[j])
@@ -59,7 +59,7 @@ static void	check_args(char **args, int *output)
 	int	i;
 
 	i = 1;
-	while (args[i])
+	while (args && args[i])
 	{
 		if (valid_name(keyval_get_key(args[i])) == EXIT_FAILURE)
 			invalid_identifier(args[i], output);
