@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/28 17:50:05 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/28 23:15:56 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ SRC = src/main.c \
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
 
-CC = clang
+CC = gcc
 
 LIBFT_DIR = libft
 
