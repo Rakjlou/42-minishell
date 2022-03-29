@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/28 22:25:29 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:28:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,20 @@ char	**wordexp(char *str)
 	char	**glob_output;
 
 	param_exp_output = paramexp(str);
+	if (param_exp_output == NULL)
+		return (NULL);
 	field_split_output = fieldsplit(param_exp_output);
+	if (field_split_output == NULL)
+		return (free(param_exp_output), NULL);
 	glob_output = glob(field_split_output);
+	if (glob_output == NULL)
+		return (free(param_exp_output),
+			free_split(field_split_output), NULL);
 	unquoting_output = unquoting(glob_output);
-	if (WORDEXP_DEBUG == 1)
-		debug(unquoting_output);
+	if (unquoting_output == NULL)
+		return (free(param_exp_output), free_split(field_split_output),
+			free_split(glob_output), NULL);
+	debug(unquoting_output);
 	free(param_exp_output);
 	free_split(field_split_output);
 	free_split(glob_output);
