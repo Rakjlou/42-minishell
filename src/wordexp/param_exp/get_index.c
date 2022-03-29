@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:06:10 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/14 15:39:46 by ajung            ###   ########.fr       */
+/*   Updated: 2022/03/28 21:34:09 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	get_index_dollar(char *str)
 	i = 0;
 	single_quote = QUOTE_STATUS_CLOSE;
 	double_quote = QUOTE_STATUS_CLOSE;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] == '\'' && double_quote == QUOTE_STATUS_CLOSE)
 			single_quote = change_quote_status(single_quote);

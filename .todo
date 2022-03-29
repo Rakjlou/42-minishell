@@ -1,4 +1,0 @@
-cat + ctrl-c --> double prompt
-sigint catching rebond de ses morts
-heredocuments, gerer l'expansion en fonction du quoting du delimiteur
-heredoc ctrl+c

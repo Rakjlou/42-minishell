@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_value.c                                        :+:      :+:    :+:   */
+/*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:40:42 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:30:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:54:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static int	create_new_elem(char *key, char *value)
 	t_env_content	*content;
 
 	content = env_content_new(key, value);
-	if (!content || lst_push_back(_env(), content) == 0)
+	if (content == NULL)
 		return (EXIT_FAILURE);
+	else if (!lst_push_back(_env(), content))
+		return (env_content_destroy(content), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

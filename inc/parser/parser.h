@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:33:07 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/24 17:39:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:31:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum e_parser_status
 	PARSER_STATUS_DEFAULT,
 	PARSER_STATUS_FINISHED,
 	PARSER_LEXER_ERROR,
+	PARSER_HEREDOC_INTERRUPTED,
 	PARSER_INTERNAL_ERROR
 }	t_parser_status;
 

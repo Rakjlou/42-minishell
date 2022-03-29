@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:52:17 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/22 20:28:07 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:00:52 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	redirection_setup(
 {
 	if (redirection_is(redirection, R_HERE))
 		return (1);
-	redirection->arg->expanded = wordexp(redirection->arg->raw);
+	redirection->arg->expanded = redirection_wordexp(redirection->arg->raw);
 	if (is_ambiguous(redirection))
 	{
 		command_set_last_status(command, EXIT_FAILURE);

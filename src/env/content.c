@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:16:09 by ajung             #+#    #+#             */
-/*   Updated: 2022/03/02 19:39:22 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:40:25 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_env_content	*env_content_new(char *key, char *value)
 	t_env_content	*content;
 
 	content = ft_calloc(sizeof(t_env_content), 1);
-	if (!content)
-		return (NULL);
+	if (!content || !key)
+		return (free(content), NULL);
 	content->key = ft_strdup(key);
 	if (!content->key)
 		return (env_content_destroy(content), NULL);

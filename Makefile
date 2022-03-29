@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/24 19:49:24 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/28 23:33:51 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = src/main.c \
 	src/wordexp/debug.c \
 	src/wordexp/fieldsplit/fieldsplit.c \
 	src/wordexp/wordexp.c \
+	src/wordexp/glob.c \
 	src/wordexp/param_exp/get_dollar_str.c \
 	src/wordexp/param_exp/get_index.c \
 	src/wordexp/param_exp/paramexp.c \
@@ -61,8 +62,10 @@ SRC = src/main.c \
 	src/parser/command/redirection/open_file.c \
 	src/parser/command/redirection/destroy.c \
 	src/parser/command/redirection/build.c \
-	src/parser/command/redirection/heredoc.c \
 	src/parser/command/redirection/debug.c \
+	src/parser/command/redirection/wordexp.c \
+	src/parser/command/redirection/heredoc/request.c \
+	src/parser/command/redirection/heredoc/open_close.c \
 	src/parser/command/simple/build.c \
 	src/parser/command/simple/debug.c \
 	src/parser/command/simple/exec/build_argv.c \
@@ -134,7 +137,7 @@ LDLIBS = -lft \
 all: libft $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS) $(CFLAGS)
+	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
