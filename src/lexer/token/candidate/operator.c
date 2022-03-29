@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 02:42:29 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/02/18 23:04:30 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:11:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	token_candidate_is_end_of_operator(t_token_candidate *candidate)
 	if (candidate->quoting || !candidate->is_operator)
 		return (0);
 	text = token_candidate_text(candidate, 0, 1);
-	if (ft_strncmp(AND_IF, text, UINT_MAX) != 0
+	if (text && ft_strncmp(AND_IF, text, UINT_MAX) != 0
 		&& ft_strncmp(OR_IF, text, UINT_MAX) != 0
 		&& ft_strncmp(SLESS, text, UINT_MAX) != 0
 		&& ft_strncmp(SGREAT, text, UINT_MAX) != 0
