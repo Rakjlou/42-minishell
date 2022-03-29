@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/28 23:15:56 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/03/28 23:33:51 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,16 +139,15 @@ all: libft $(NAME)
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
 
-malloc_test: $(LIBFT_DIR)/libft.a $(OBJ)
-	$(CC) $(CFLAGS) -fsanitize=undefined -rdynamic $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS) -L. -lmallocator
-
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
 
 clean:
+	make --no-print-directory -C $(LIBFT_DIR) clean
 	rm -f $(OBJ) $(DEPS)
 
 fclean: clean
+	make --no-print-directory -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
