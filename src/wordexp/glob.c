@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 21:59:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/28 21:43:00 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:48:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**glob(char **matrix)
 		else if (!glob_execute(matrix[i++], &result))
 			return (lst_destroy_nodes(&result, free), NULL);
 	}
-	result_matrix = lst_as_cmatrix(&result, 0);
-	lst_destroy_nodes(&result, NULL);
+	result_matrix = lst_as_cmatrix(&result, 1);
+	lst_destroy_nodes(&result, free);
 	return (result_matrix);
 }

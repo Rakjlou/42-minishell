@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 04:30:52 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/28 22:19:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:49:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ char	**lst_as_cmatrix(t_lst *lst, int duplicate)
 	while (i < lst->size)
 	{
 		if (duplicate)
+		{
 			result[i] = ft_strdup(lst_data_at(lst, i));
+			if (result[i] == NULL)
+				return (ft_cmatrix_free(result), NULL);
+		}
 		else
 			result[i] = lst_data_at(lst, i);
 		++i;
